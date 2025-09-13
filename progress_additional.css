@@ -1,0 +1,121 @@
+/* 進捗ページの追加スタイル - セリフ表示用 */
+
+/* セリフセクション */
+.dialogue-section {
+    margin: 2rem 0;
+}
+
+.dialogue-section h3 {
+    color: #ff6b6b;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-left: 4px solid #ff6b6b;
+    padding-left: 1rem;
+}
+
+.dialogue-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dialogue-item {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dialogue-item:last-child {
+    margin-bottom: 0;
+}
+
+.speaker {
+    font-weight: 700;
+    color: #4ecdc4;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dialogue-text {
+    color: #f0f0f0;
+    line-height: 1.6;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 3px solid #4ecdc4;
+    margin: 0;
+}
+
+/* ステージ詳細 */
+.stage-details {
+    margin-top: 1rem;
+}
+
+.stage-item {
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stage-item h5 {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.stage-item p {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* セリフスクロールバー */
+.dialogue-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dialogue-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.dialogue-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    border-radius: 3px;
+}
+
+.dialogue-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #44a08d, #4ecdc4);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .dialogue-container {
+        padding: 1rem;
+    }
+    
+    .dialogue-text {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+    
+    .speaker {
+        font-size: 1rem;
+    }
+    
+    .stage-item {
+        padding: 1rem;
+    }
+    
+    .dialogue-section h3 {
+        font-size: 1.3rem;
+    }
+}
