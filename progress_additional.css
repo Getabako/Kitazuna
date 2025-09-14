@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    position: relative;
 }
 
 .dialogue-item:last-child {
@@ -46,9 +47,30 @@
     font-size: 1rem;
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem;
+    padding-right: 3rem;
     border-radius: 10px;
     border-left: 3px solid #4ecdc4;
     margin: 0;
+    position: relative;
+}
+
+.emotion {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 /* ステージ詳細 */
@@ -105,6 +127,14 @@
     .dialogue-text {
         font-size: 0.9rem;
         padding: 0.8rem;
+        padding-right: 2.5rem;
+    }
+    
+    .emotion {
+        font-size: 1.2rem;
+        width: 2rem;
+        height: 2rem;
+        right: 0.5rem;
     }
     
     .speaker {
@@ -117,5 +147,255 @@
     
     .dialogue-section h3 {
         font-size: 1.3rem;
+    }
+}
+
+/* マップアイコン用スタイル */
+.map-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.map-icon-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.map-icon-container h5 {
+    color: #4ecdc4;
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.map-icon-canvas {
+    border-radius: 8px;
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* キャラクターアニメーション用スタイル */
+.character-animation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.character-animation-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.character-animation-container h6 {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.character-canvas {
+    border-radius: 8px;
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ロゴアニメーション用スタイル */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+}
+
+.logo-canvas {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .map-icon-container,
+    .character-animation-container {
+        padding: 0.8rem;
+    }
+    
+    .map-icon-canvas,
+    .character-canvas {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    .logo-canvas {
+        width: 400px !important;
+        height: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-icon-canvas,
+    .character-canvas {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .logo-canvas {
+        width: 300px !important;
+        height: 100px !important;
+    }
+}
+
+/* 立ち絵ギャラリー用スタイル */
+.standing-art-section {
+    margin: 2rem 0;
+}
+
+.standing-art-section h5, 
+.standing-art-section h6 {
+    color: #4ecdc4;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.standing-art-section h6 {
+    font-size: 1.1rem;
+    color: #ff6b6b;
+    margin-bottom: 0.8rem;
+}
+
+.standing-art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.standing-art-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.standing-art-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(78, 205, 196, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.standing-art-item.final-art {
+    border-color: rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.standing-art-item.final-art:hover {
+    border-color: rgba(255, 215, 0, 0.7);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.standing-art-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.standing-art-image.final-image {
+    max-height: 250px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.standing-art-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.standing-art-label {
+    margin-top: 0.8rem;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.standing-art-label.final-label {
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+    color: #333;
+    border-color: rgba(255, 215, 0, 0.5);
+    font-weight: 700;
+}
+
+.no-standing-art {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .standing-art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.8rem;
+    }
+    
+    .standing-art-item {
+        padding: 0.8rem;
+    }
+    
+    .standing-art-image {
+        max-height: 150px;
+    }
+    
+    .standing-art-image.final-image {
+        max-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .standing-art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .standing-art-image {
+        max-height: 120px;
+    }
+    
+    .standing-art-image.final-image {
+        max-height: 140px;
     }
 }
