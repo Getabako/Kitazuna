@@ -219,6 +219,10 @@ class AnimationManager {
             standFolder = `character/masahiro`;
         } else if (character === 'hiroshi') {
             standFolder = `character/hiroshi`;
+        } else if (character.endsWith('-face')) {
+            // 他のキャラクターのfaceフォルダ
+            const charName = character.replace('-face', '');
+            standFolder = `character/${charName}/${charName}face`;
         } else {
             standFolder = `character/${character}/${character}stand`;
         }
@@ -247,6 +251,9 @@ class AnimationManager {
                         baseName = 'masahiroface';
                     } else if (character === 'hiroshi') {
                         baseName = 'hiroshiface';
+                    } else if (character.endsWith('-face')) {
+                        const charName = character.replace('-face', '');
+                        baseName = `${charName}face`;
                     }
                     
                     const path = `${this.basePath}${standFolder}/${baseName}0-${index}.jpg`;
@@ -284,6 +291,9 @@ class AnimationManager {
                             baseName = 'masahiroface';
                         } else if (character === 'hiroshi') {
                             baseName = 'hiroshiface';
+                        } else if (character.endsWith('-face')) {
+                            const charName = character.replace('-face', '');
+                            baseName = `${charName}face`;
                         }
                         
                         const path = `${this.basePath}${standFolder}/${baseName}0-${index}.png`;
@@ -326,6 +336,15 @@ class AnimationManager {
                     path = `${this.basePath}character/masahiro/masahirofacenormal.png`;
                 } else if (character === 'hiroshi') {
                     path = `${this.basePath}character/hiroshi/hiroshifacenormal.png`;
+                } else if (character === 'masahiro-face') {
+                    path = `${this.basePath}character/masahiro/masahiroface/masahirofacenormal.png`;
+                } else if (character === 'hiroshi-face') {
+                    path = `${this.basePath}character/hiroshi/hiroshiface/hiroshifacenormal.png`;
+                } else if (character === 'genzaburo-face') {
+                    path = `${this.basePath}character/genzaburo/genzaburoface/genzaburoufacenormal.png`;
+                } else if (character.endsWith('-face')) {
+                    const charName = character.replace('-face', '');
+                    path = `${this.basePath}character/${charName}/${charName}face/${charName}facenormal.png`;
                 } else {
                     path = `${this.basePath}${standFolder}/${character}stand.png`;
                 }

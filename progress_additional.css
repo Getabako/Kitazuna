@@ -118,6 +118,176 @@
     background: linear-gradient(135deg, #44a08d, #4ecdc4);
 }
 
+/* 感情色設定 */
+/* 各感情に応じた背景色を定義 */
+
+/* 喜び・嬉しさ系 - 黄色・オレンジ */
+.emotion[data-emotion="喜"], .emotion[data-emotion="歓"], .emotion[data-emotion="笑"], 
+.emotion[data-emotion="和"], .emotion[data-emotion="安"], .emotion[data-emotion="好"] {
+    background: linear-gradient(135deg, #ffd700, #ffb347) !important;
+    border-color: rgba(255, 215, 0, 0.7) !important;
+    color: #333 !important;
+}
+
+/* 悲しみ・憂い系 - 青色 */
+.emotion[data-emotion="憂"], .emotion[data-emotion="悲"], .emotion[data-emotion="寂"], 
+.emotion[data-emotion="痛"], .emotion[data-emotion="諦"], .emotion[data-emotion="深"] {
+    background: linear-gradient(135deg, #4a90e2, #7bb3f0) !important;
+    border-color: rgba(74, 144, 226, 0.7) !important;
+    color: white !important;
+}
+
+/* 怒り・緊張系 - 赤色 */
+.emotion[data-emotion="怒"], .emotion[data-emotion="恐"], .emotion[data-emotion="危"], 
+.emotion[data-emotion="警"], .emotion[data-emotion="熱"], .emotion[data-emotion="燃"] {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+    border-color: rgba(231, 76, 60, 0.7) !important;
+    color: white !important;
+}
+
+/* 困惑・驚き系 - オレンジ色 */
+.emotion[data-emotion="困"], .emotion[data-emotion="驚"], .emotion[data-emotion="呆"], 
+.emotion[data-emotion="疑"], .emotion[data-emotion="汗"], .emotion[data-emotion="震"] {
+    background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+    border-color: rgba(243, 156, 18, 0.7) !important;
+    color: #333 !important;
+}
+
+/* 決意・真剣系 - 紫色 */
+.emotion[data-emotion="決"], .emotion[data-emotion="真"], .emotion[data-emotion="志"], 
+.emotion[data-emotion="意"], .emotion[data-emotion="力"], .emotion[data-emotion="重"], 
+.emotion[data-emotion="厳"] {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad) !important;
+    border-color: rgba(155, 89, 182, 0.7) !important;
+    color: white !important;
+}
+
+/* 愛・思いやり系 - ピンク色 */
+.emotion[data-emotion="愛"], .emotion[data-emotion="情"], .emotion[data-emotion="思"], 
+.emotion[data-emotion="優"], .emotion[data-emotion="懐"], .emotion[data-emotion="託"] {
+    background: linear-gradient(135deg, #e91e63, #ad1457) !important;
+    border-color: rgba(233, 30, 99, 0.7) !important;
+    color: white !important;
+}
+
+/* 知識・理解系 - 緑色 */
+.emotion[data-emotion="知"], .emotion[data-emotion="理"], .emotion[data-emotion="悟"], 
+.emotion[data-emotion="見"], .emotion[data-emotion="察"], .emotion[data-emotion="明"], 
+.emotion[data-emotion="探"] {
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+    border-color: rgba(39, 174, 96, 0.7) !important;
+    color: white !important;
+}
+
+/* 希望・信念系 - 水色 */
+.emotion[data-emotion="希"], .emotion[data-emotion="信"], .emotion[data-emotion="誇"], 
+.emotion[data-emotion="賛"], .emotion[data-emotion="認"], .emotion[data-emotion="尊"] {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    border-color: rgba(52, 152, 219, 0.7) !important;
+    color: white !important;
+}
+
+/* 中性・その他 - グレー */
+.emotion[data-emotion="淡"], .emotion[data-emotion="気"], .emotion[data-emotion="感"], 
+.emotion[data-emotion="止"], .emotion[data-emotion="集"], .emotion[data-emotion="軽"] {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d) !important;
+    border-color: rgba(149, 165, 166, 0.7) !important;
+    color: white !important;
+}
+
+/* 顔グラフィック用の感情色背景システム */
+.character-portrait {
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* 感情背景グラデーション効果 */
+.character-portrait::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3;
+    border-radius: 10px;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.character-portrait img {
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+}
+
+/* 感情別の背景色クラス */
+.character-portrait.emotion-joy::before {
+    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.4) 0%, rgba(255, 179, 71, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-sad::before {
+    background: radial-gradient(ellipse at center, rgba(74, 144, 226, 0.4) 0%, rgba(123, 179, 240, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-anger::before {
+    background: radial-gradient(ellipse at center, rgba(231, 76, 60, 0.4) 0%, rgba(192, 57, 43, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-confused::before {
+    background: radial-gradient(ellipse at center, rgba(243, 156, 18, 0.4) 0%, rgba(230, 126, 34, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-determined::before {
+    background: radial-gradient(ellipse at center, rgba(155, 89, 182, 0.4) 0%, rgba(142, 68, 173, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-love::before {
+    background: radial-gradient(ellipse at center, rgba(233, 30, 99, 0.4) 0%, rgba(173, 20, 87, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-knowledge::before {
+    background: radial-gradient(ellipse at center, rgba(39, 174, 96, 0.4) 0%, rgba(46, 204, 113, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-hope::before {
+    background: radial-gradient(ellipse at center, rgba(52, 152, 219, 0.4) 0%, rgba(41, 128, 185, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-neutral::before {
+    background: radial-gradient(ellipse at center, rgba(149, 165, 166, 0.3) 0%, rgba(127, 140, 141, 0.1) 70%, transparent 100%);
+}
+
+/* ホバー効果で感情色を強調 */
+.character-portrait:hover::before {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* 使用例のためのスタイル */
+.emotion-demo {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.emotion-demo h4 {
+    color: #4ecdc4;
+    margin-bottom: 0.5rem;
+}
+
+.emotion-demo p {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .dialogue-container {

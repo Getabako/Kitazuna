@@ -162,4 +162,114 @@ document.addEventListener('DOMContentLoaded', function() {
     if (firstTabButton) {
         firstTabButton.setAttribute('tabindex', '0');
     }
+    
+    // 感情の色分け
+    function applyEmotionColors() {
+        // 感情のカテゴリー分けマップ
+        const emotionColorMap = {
+            // 喜び・嬉しさ系 - 黄色・オレンジ
+            'joy': ['喜', '歓', '笑', '和', '安', '好'],
+            // 悲しみ・憂い系 - 青色
+            'sad': ['憂', '悲', '寂', '痛', '諦', '深'],
+            // 怒り・緊張系 - 赤色
+            'anger': ['怒', '恐', '危', '警', '熱', '燃'],
+            // 困惑・驚き系 - オレンジ色
+            'confused': ['困', '驚', '呆', '疑', '汗', '震'],
+            // 決意・真剣系 - 紫色
+            'determined': ['決', '真', '志', '意', '力', '重', '厳'],
+            // 愛・思いやり系 - ピンク色
+            'love': ['愛', '情', '思', '優', '懐', '託'],
+            // 知識・理解系 - 緑色
+            'knowledge': ['知', '理', '悟', '見', '察', '明', '探'],
+            // 希望・信念系 - 水色
+            'hope': ['希', '信', '誇', '賛', '認', '尊'],
+            // 中性・その他 - グレー
+            'neutral': ['淡', '気', '感', '止', '集', '軽']
+        };
+        
+        // 色のマップ
+        const colorStyles = {
+            'joy': {
+                background: 'linear-gradient(135deg, #ffd700, #ffb347)',
+                borderColor: 'rgba(255, 215, 0, 0.7)',
+                color: '#333'
+            },
+            'sad': {
+                background: 'linear-gradient(135deg, #4a90e2, #7bb3f0)',
+                borderColor: 'rgba(74, 144, 226, 0.7)',
+                color: 'white'
+            },
+            'anger': {
+                background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
+                borderColor: 'rgba(231, 76, 60, 0.7)',
+                color: 'white'
+            },
+            'confused': {
+                background: 'linear-gradient(135deg, #f39c12, #e67e22)',
+                borderColor: 'rgba(243, 156, 18, 0.7)',
+                color: '#333'
+            },
+            'determined': {
+                background: 'linear-gradient(135deg, #9b59b6, #8e44ad)',
+                borderColor: 'rgba(155, 89, 182, 0.7)',
+                color: 'white'
+            },
+            'love': {
+                background: 'linear-gradient(135deg, #e91e63, #ad1457)',
+                borderColor: 'rgba(233, 30, 99, 0.7)',
+                color: 'white'
+            },
+            'knowledge': {
+                background: 'linear-gradient(135deg, #27ae60, #2ecc71)',
+                borderColor: 'rgba(39, 174, 96, 0.7)',
+                color: 'white'
+            },
+            'hope': {
+                background: 'linear-gradient(135deg, #3498db, #2980b9)',
+                borderColor: 'rgba(52, 152, 219, 0.7)',
+                color: 'white'
+            },
+            'neutral': {
+                background: 'linear-gradient(135deg, #95a5a6, #7f8c8d)',
+                borderColor: 'rgba(149, 165, 166, 0.7)',
+                color: 'white'
+            }
+        };
+        
+        // 全ての感情要素を取得して色を適用
+        const emotionElements = document.querySelectorAll('.emotion');
+        emotionElements.forEach(element => {
+            const emotionText = element.textContent.trim();
+            
+            // 感情文字に対応するカテゴリーを見つける
+            let emotionCategory = 'neutral'; // デフォルト
+            
+            for (const [category, emotions] of Object.entries(emotionColorMap)) {
+                if (emotions.includes(emotionText)) {
+                    emotionCategory = category;
+                    break;
+                }
+            }
+            
+            // スタイルを適用
+            const style = colorStyles[emotionCategory];
+            element.style.background = style.background;
+            element.style.borderColor = style.borderColor;
+            element.style.color = style.color;
+            
+            // data属性も追加（将来のカスタマイズ用）
+            element.setAttribute('data-emotion', emotionText);
+            element.setAttribute('data-emotion-category', emotionCategory);
+        });
+    }
+    
+    // ページ読み込み時に感情色を適用
+    applyEmotionColors();
+    
+    // タブ切り替え時にも感情色を再適用
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(applyEmotionColors, 100);
+        });
+    });
 });
