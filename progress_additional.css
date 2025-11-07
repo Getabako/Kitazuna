@@ -1,0 +1,645 @@
+/* 進捗ページの追加スタイル - セリフ表示用 */
+
+/* セリフセクション */
+.dialogue-section {
+    margin: 2rem 0;
+}
+
+.dialogue-section h3 {
+    color: #ff6b6b;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-left: 4px solid #ff6b6b;
+    padding-left: 1rem;
+}
+
+.dialogue-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dialogue-item {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.dialogue-item:last-child {
+    margin-bottom: 0;
+}
+
+.speaker {
+    font-weight: 700;
+    color: #4ecdc4;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dialogue-text {
+    color: #f0f0f0;
+    line-height: 1.6;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    padding-right: 3rem;
+    border-radius: 10px;
+    border-left: 3px solid #4ecdc4;
+    margin: 0;
+    position: relative;
+}
+
+.emotion {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* ステージ詳細 */
+.stage-details {
+    margin-top: 1rem;
+}
+
+.stage-item {
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stage-item h5 {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.stage-item p {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* キャラクター素材セクション */
+.character-asset-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.character-asset-section h5 {
+    color: #4ecdc4;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(78, 205, 196, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.asset-subsection {
+    margin-bottom: 2rem;
+}
+
+.asset-subsection h6 {
+    color: #ffd700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* 顔画像表示 */
+.face-images-display {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.face-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.face-img:hover {
+    transform: scale(1.5);
+    border-color: #ffd700;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+    z-index: 10;
+    position: relative;
+}
+
+/* アニメーションキャンバス */
+.animation-canvas {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* 竿燈画像のサイズ調整 */
+.asset-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* セリフスクロールバー */
+.dialogue-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dialogue-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.dialogue-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    border-radius: 3px;
+}
+
+.dialogue-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #44a08d, #4ecdc4);
+}
+
+/* 感情色設定 */
+/* 各感情に応じた背景色を定義 */
+
+/* 喜び・嬉しさ系 - 黄色・オレンジ */
+.emotion[data-emotion="喜"], .emotion[data-emotion="歓"], .emotion[data-emotion="笑"], 
+.emotion[data-emotion="和"], .emotion[data-emotion="安"], .emotion[data-emotion="好"] {
+    background: linear-gradient(135deg, #ffd700, #ffb347) !important;
+    border-color: rgba(255, 215, 0, 0.7) !important;
+    color: #333 !important;
+}
+
+/* 悲しみ・憂い系 - 青色 */
+.emotion[data-emotion="憂"], .emotion[data-emotion="悲"], .emotion[data-emotion="寂"], 
+.emotion[data-emotion="痛"], .emotion[data-emotion="諦"], .emotion[data-emotion="深"] {
+    background: linear-gradient(135deg, #4a90e2, #7bb3f0) !important;
+    border-color: rgba(74, 144, 226, 0.7) !important;
+    color: white !important;
+}
+
+/* 怒り・緊張系 - 赤色 */
+.emotion[data-emotion="怒"], .emotion[data-emotion="恐"], .emotion[data-emotion="危"], 
+.emotion[data-emotion="警"], .emotion[data-emotion="熱"], .emotion[data-emotion="燃"] {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+    border-color: rgba(231, 76, 60, 0.7) !important;
+    color: white !important;
+}
+
+/* 困惑・驚き系 - オレンジ色 */
+.emotion[data-emotion="困"], .emotion[data-emotion="驚"], .emotion[data-emotion="呆"], 
+.emotion[data-emotion="疑"], .emotion[data-emotion="汗"], .emotion[data-emotion="震"] {
+    background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+    border-color: rgba(243, 156, 18, 0.7) !important;
+    color: #333 !important;
+}
+
+/* 決意・真剣系 - 紫色 */
+.emotion[data-emotion="決"], .emotion[data-emotion="真"], .emotion[data-emotion="志"], 
+.emotion[data-emotion="意"], .emotion[data-emotion="力"], .emotion[data-emotion="重"], 
+.emotion[data-emotion="厳"] {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad) !important;
+    border-color: rgba(155, 89, 182, 0.7) !important;
+    color: white !important;
+}
+
+/* 愛・思いやり系 - ピンク色 */
+.emotion[data-emotion="愛"], .emotion[data-emotion="情"], .emotion[data-emotion="思"], 
+.emotion[data-emotion="優"], .emotion[data-emotion="懐"], .emotion[data-emotion="託"] {
+    background: linear-gradient(135deg, #e91e63, #ad1457) !important;
+    border-color: rgba(233, 30, 99, 0.7) !important;
+    color: white !important;
+}
+
+/* 知識・理解系 - 緑色 */
+.emotion[data-emotion="知"], .emotion[data-emotion="理"], .emotion[data-emotion="悟"], 
+.emotion[data-emotion="見"], .emotion[data-emotion="察"], .emotion[data-emotion="明"], 
+.emotion[data-emotion="探"] {
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+    border-color: rgba(39, 174, 96, 0.7) !important;
+    color: white !important;
+}
+
+/* 希望・信念系 - 水色 */
+.emotion[data-emotion="希"], .emotion[data-emotion="信"], .emotion[data-emotion="誇"], 
+.emotion[data-emotion="賛"], .emotion[data-emotion="認"], .emotion[data-emotion="尊"] {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    border-color: rgba(52, 152, 219, 0.7) !important;
+    color: white !important;
+}
+
+/* 中性・その他 - グレー */
+.emotion[data-emotion="淡"], .emotion[data-emotion="気"], .emotion[data-emotion="感"], 
+.emotion[data-emotion="止"], .emotion[data-emotion="集"], .emotion[data-emotion="軽"] {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d) !important;
+    border-color: rgba(149, 165, 166, 0.7) !important;
+    color: white !important;
+}
+
+/* 顔グラフィック用の感情色背景システム */
+.character-portrait {
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* 感情背景グラデーション効果 */
+.character-portrait::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3;
+    border-radius: 10px;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.character-portrait img {
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+}
+
+/* 感情別の背景色クラス */
+.character-portrait.emotion-joy::before {
+    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.4) 0%, rgba(255, 179, 71, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-sad::before {
+    background: radial-gradient(ellipse at center, rgba(74, 144, 226, 0.4) 0%, rgba(123, 179, 240, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-anger::before {
+    background: radial-gradient(ellipse at center, rgba(231, 76, 60, 0.4) 0%, rgba(192, 57, 43, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-confused::before {
+    background: radial-gradient(ellipse at center, rgba(243, 156, 18, 0.4) 0%, rgba(230, 126, 34, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-determined::before {
+    background: radial-gradient(ellipse at center, rgba(155, 89, 182, 0.4) 0%, rgba(142, 68, 173, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-love::before {
+    background: radial-gradient(ellipse at center, rgba(233, 30, 99, 0.4) 0%, rgba(173, 20, 87, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-knowledge::before {
+    background: radial-gradient(ellipse at center, rgba(39, 174, 96, 0.4) 0%, rgba(46, 204, 113, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-hope::before {
+    background: radial-gradient(ellipse at center, rgba(52, 152, 219, 0.4) 0%, rgba(41, 128, 185, 0.2) 70%, transparent 100%);
+}
+
+.character-portrait.emotion-neutral::before {
+    background: radial-gradient(ellipse at center, rgba(149, 165, 166, 0.3) 0%, rgba(127, 140, 141, 0.1) 70%, transparent 100%);
+}
+
+/* ホバー効果で感情色を強調 */
+.character-portrait:hover::before {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* 使用例のためのスタイル */
+.emotion-demo {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.emotion-demo h4 {
+    color: #4ecdc4;
+    margin-bottom: 0.5rem;
+}
+
+.emotion-demo p {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .dialogue-container {
+        padding: 1rem;
+    }
+    
+    .dialogue-text {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        padding-right: 2.5rem;
+    }
+    
+    .emotion {
+        font-size: 1.2rem;
+        width: 2rem;
+        height: 2rem;
+        right: 0.5rem;
+    }
+    
+    .speaker {
+        font-size: 1rem;
+    }
+    
+    .stage-item {
+        padding: 1rem;
+    }
+    
+    .dialogue-section h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* マップアイコン用スタイル */
+.map-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.map-icon-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.map-icon-container h5 {
+    color: #4ecdc4;
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.map-icon-canvas {
+    border-radius: 8px;
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* キャラクターアニメーション用スタイル */
+.character-animation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.character-animation-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.character-animation-container h6 {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.character-canvas {
+    border-radius: 8px;
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ロゴアニメーション用スタイル */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+}
+
+.logo-canvas {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .map-icon-container,
+    .character-animation-container {
+        padding: 0.8rem;
+    }
+    
+    .map-icon-canvas,
+    .character-canvas {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    .logo-canvas {
+        width: 400px !important;
+        height: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-icon-canvas,
+    .character-canvas {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .logo-canvas {
+        width: 300px !important;
+        height: 100px !important;
+    }
+}
+
+/* 立ち絵ギャラリー用スタイル */
+.standing-art-section {
+    margin: 2rem 0;
+}
+
+.standing-art-section h5, 
+.standing-art-section h6 {
+    color: #4ecdc4;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.standing-art-section h6 {
+    font-size: 1.1rem;
+    color: #ff6b6b;
+    margin-bottom: 0.8rem;
+}
+
+.standing-art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.standing-art-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.standing-art-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(78, 205, 196, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.standing-art-item.final-art {
+    border-color: rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.standing-art-item.final-art:hover {
+    border-color: rgba(255, 215, 0, 0.7);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.standing-art-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.standing-art-image.final-image {
+    max-height: 250px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.standing-art-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.standing-art-label {
+    margin-top: 0.8rem;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.standing-art-label.final-label {
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+    color: #333;
+    border-color: rgba(255, 215, 0, 0.5);
+    font-weight: 700;
+}
+
+.no-standing-art {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .standing-art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.8rem;
+    }
+    
+    .standing-art-item {
+        padding: 0.8rem;
+    }
+    
+    .standing-art-image {
+        max-height: 150px;
+    }
+    
+    .standing-art-image.final-image {
+        max-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .standing-art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .standing-art-image {
+        max-height: 120px;
+    }
+    
+    .standing-art-image.final-image {
+        max-height: 140px;
+    }
+}

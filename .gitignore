@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Temporary files
+*_temp.*
+*_backup.*
+
+# Output directories (may want to keep these for GitHub Actions)
+# WorkFlow_origin/output/
+# WorkFlow_origin/calendar/
+
+# Logs
+logs
+*.log

@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>開発進捗 - Kitazuna: 未来杉の守護者</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="progress.css">
+    <link rel="stylesheet" href="progress_additional.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Cinzel:wght@400;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body class="progress-body">
+    <div id="particle-container"></div>
+
+    <header class="progress-header">
+        <div class="header-content">
+            <a href="index.html" class="logo-link">
+                <img src="images/kitazunalogo.png" alt="Kitazuna ロゴ" class="header-logo">
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">ホーム</a>
+                <a href="index.html#story-section" class="nav-link">ストーリー</a>
+                <a href="index.html#character-section" class="nav-link">キャラクター</a>
+                <a href="index.html#game-section" class="nav-link">ゲーム</a>
+                <a href="progress.html" class="nav-link active">進捗</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="progress-main">
+        <div class="progress-container">
+            <!-- ロゴアニメーション -->
+            <div class="logo-animation-container">
+                <canvas class="logo-canvas" width="600" height="200"></canvas>
+            </div>
+            
+            <h1 class="progress-title">ゲーム開発進捗</h1>
+            <p class="progress-subtitle">各章の開発状況をリアルタイムでお届けします</p>
+
+            <!-- タブナビゲーション -->
+            <div class="tab-navigation">
+                <button class="tab-button active" data-tab="overview">概要</button>
+                <button class="tab-button" data-tab="opening">オープニング</button>
+                <button class="tab-button" data-tab="namahage">なまはげ伝承編</button>
+                <button class="tab-button" data-tab="komachi">世界基準秋田美人編</button>
+                <button class="tab-button" data-tab="tradition">伝統と祭編</button>
+                <button class="tab-button" data-tab="lakes">三湖伝説編</button>
+                <button class="tab-button" data-tab="dog">シン忠犬物語編</button>
+                <button class="tab-button" data-tab="kiritanpo">究極きりたんぽ編</button>
+                <button class="tab-button" data-tab="final">Kitazuna'sよ、永遠に編</button>
+                <button class="tab-button" data-tab="ending">エンディング</button>
+                <button class="tab-button" data-tab="worldmap">ワールドマップ</button>
+            </div>
+
+            <!-- タブコンテンツ -->
+            <div class="tab-content">
+                <!-- 概要タブ -->
+                <div class="tab-pane active" id="overview">
+                    <div class="overview-section">
+                        <h2 class="section-title">開発進捗概要</h2>
+                        <div class="progress-grid">
+                            <div class="progress-card">
+                                <h3>オープニング</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>なまはげ伝承編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>世界基準秋田美人編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>伝統と祭編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>三湖伝説編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>シン忠犬物語編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>究極きりたんぽ編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>Kitazuna'sよ、永遠に編</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                            <div class="progress-card">
+                                <h3>エンディング</h3>
+                                <div class="status-badge planning">企画中</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="progress-percent">10%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 感情色システム説明 -->
+                        <div class="emotion-demo">
+                            <h4>🎨 感情色システム</h4>
+                            <p>会話中の感情漢字は、感情に応じて自動的に色分けされます。顔グラフィック表示時も同じ色が背景として使用されます。</p>
+                            
+                            <div class="emotion-sample-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; margin-top: 1rem;">
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">喜</span>
+                                    <br><small style="color: #ccc;">喜び</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">憂</span>
+                                    <br><small style="color: #ccc;">悲しみ</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">怒</span>
+                                    <br><small style="color: #ccc;">怒り</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">困</span>
+                                    <br><small style="color: #ccc;">困惑</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">決</span>
+                                    <br><small style="color: #ccc;">決意</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">愛</span>
+                                    <br><small style="color: #ccc;">愛情</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">知</span>
+                                    <br><small style="color: #ccc;">知識</small>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span class="emotion" style="position: relative; margin-bottom: 0.5rem;">希</span>
+                                    <br><small style="color: #ccc;">希望</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- オープニングタブ -->
+                <div class="tab-pane" id="opening">
+                    <div class="chapter-section">
+                        <h2 class="section-title">オープニング</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話（新幹線内）</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">……僕の名前は杉野健太。平凡な大学生だ。<span class="emotion">淡</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">まあ、これといった特徴もないけど、なんだかんだ楽しい大学生活を送ってる。<span class="emotion">和</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">だったんだけど……<span class="emotion">憂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">まさか、こんな理由で秋田に行くことになるなんて、全然思ってなかったよ。<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">健太、久しぶりだな。突然だが、お前にしか頼めん。<span class="emotion">真</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">魂の提灯の力が弱まっている。このままでは、かつて封印したスギノオウが復活する恐れがあるのだ。<span class="emotion">憂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">スギノオウ……？ なんだよそれ。<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">スギノオウとは、秋田県民の『過度な真面目さ』が生んだ化身だ。<span class="emotion">重</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">奴が復活すれば、秋田の人々は真面目すぎるあまり、経済も生活も停滞し、最悪の場合……県そのものが壊れるかもしれん。<span class="emotion">恐</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">秋田県民の真面目さが原因で化け物が出るって……じいちゃん、どんなSF見てるんだよ。<span class="emotion">呆</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">だが、希望はある。秋田には『Kitazuna』と呼ばれる真の魂を持つ者がいる。<span class="emotion">希</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">そいつの協力を得れば、提灯に再び魂を込められるだろう。<span class="emotion">信</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">まずは男鹿にいる戦友、海風源三郎を訪ねろ。<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">……信じて行動せよって……信じられるかよ、こんな話。<span class="emotion">疑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">でも……なんだかんだで、じいちゃんの言うこと無視できないんだよな。<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">……秋田、久しぶりだな。<span class="emotion">懐</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>新幹線車内</h5>
+                                        <p>座席に座る健太、窓の外を流れる風景、車内アナウンス、他の乗客のシルエット</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>回想シーン</h5>
+                                        <p>祖父の家、和室、掛け軸、古い写真、魂の提灯が光る演出</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>秋田到着</h5>
+                                        <p>秋田駅のホーム、なまはげの看板、きりたんぽの広告、観光案内板</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>健太（待機）</h6>
+                                            <canvas class="character-canvas" data-character="kenta" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>健太（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="kenta" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Kentaオープニング新幹線画像 -->
+                                <div class="standing-art-section">
+                                    <h5>Kentaオープニング新幹線画像</h5>
+                                    <div class="standing-art-container" data-character="kenta-op"></div>
+                                </div>
+
+                            </div>
+
+                            <!-- キャラクター素材 -->
+                            <div class="required-assets">
+                                <h4>キャラクター素材</h4>
+
+                                <!-- 健太 -->
+                                <div class="character-asset-section">
+                                    <h5>杉野健太（主人公）</h5>
+                                    <div class="asset-grid">
+                                        <div class="asset-subsection">
+                                            <h6>表情バリエーション</h6>
+                                            <div class="face-images-display">
+                                                <img src="images/kitazunasozai/character/kenta/kentaface/1.png" alt="健太表情1" class="face-img">
+                                                <img src="images/kitazunasozai/character/kenta/kentaface/2.png" alt="健太表情2" class="face-img">
+                                                <img src="images/kitazunasozai/character/kenta/kentaface/3.png" alt="健太表情3" class="face-img">
+                                                <img src="images/kitazunasozai/character/kenta/kentaface/4.png" alt="健太表情4" class="face-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 雅弘（祖父） -->
+                                <div class="character-asset-section">
+                                    <h5>杉野雅弘（健太の祖父）</h5>
+                                    <div class="asset-grid">
+                                        <div class="asset-subsection">
+                                            <h6>表情バリエーション</h6>
+                                            <div class="face-images-display">
+                                                <img src="images/kitazunasozai/character/masahiro/masahiroface/5.png" alt="雅弘表情1" class="face-img">
+                                                <img src="images/kitazunasozai/character/masahiro/masahiroface/6.png" alt="雅弘表情2" class="face-img">
+                                                <img src="images/kitazunasozai/character/masahiro/masahiroface/7.png" alt="雅弘表情3" class="face-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- なまはげ伝承編タブ -->
+                <div class="tab-pane" id="namahage">
+                    <div class="chapter-section">
+                        <h2 class="section-title">なまはげ伝承編</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">……なるほどな。雅弘の奴、また無茶を言いよる。<span class="emotion">呆</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">ま、あいつらしいと言えばそれまでだが。<span class="emotion">諦</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">スギノオウ……忘れられるもんじゃねぇ。<span class="emotion">憂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">やっぱり本当なんですか？ そのスギノオウって……<span class="emotion">不</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">信じるも信じないも、関係ねぇ。現実ってのはな、信じた奴が動いて作るもんだ。<span class="emotion">厳</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">それで、おじいちゃん。魂の提灯ってどこにあるの？<span class="emotion">好</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">魂の提灯はな、『ナマハゲの祠』だ。<span class="emotion">重</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">その道は険しく、妖怪が出るなんて噂もある。<span class="emotion">警</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">私が行く！ ナマハゲの祠に憧れてたんだ！<span class="emotion">意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">ナギサ！ 祠に向かうのは男だけだ。それが昔からのしきたりだ。<span class="emotion">止</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">そんなの時代遅れだよ！私だって行ける！<span class="emotion">怒</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">源三郎</span>
+                                        <p class="dialogue-text">……健太。お前が行くんだ。雅弘が選んだのはお前だ。<span class="emotion">託</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>ナマハゲの試練</h5>
+                                    <p><strong>タイプ:</strong> 2Dアクション</p>
+                                    <p><strong>内容:</strong> ナマハゲを操作して山道を駆け抜け悪霊を払う</p>
+                                    <p><strong>難易度:</strong> 普通</p>
+                                    <p><strong>報酬:</strong> 魂の提灯（初期）</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナマハゲ</span>
+                                        <p class="dialogue-text">……う、うまい！ なんだこの餅は！ 久しくこんな美味いものを口にしていなかったぞ！<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">清めた餅だから、ナマハゲの力が戻るかなって思って……。<span class="emotion">優</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナマハゲ</span>
+                                        <p class="dialogue-text">令和のこの時代に、まさかお前のような者がいるとはな……。<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナマハゲ</span>
+                                        <p class="dialogue-text">お前の中には、間違いなくナマハゲの精神が宿っている。<span class="emotion">認</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">……でも、私は女なんです。ナマハゲを継ぐなんて許されないんです。<span class="emotion">悲</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナマハゲ</span>
+                                        <p class="dialogue-text">そんなことは関係ない！ お前の中には、まぎれもなくナマハゲの精神がある。<span class="emotion">力</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナマハゲ</span>
+                                        <p class="dialogue-text">これは魂の提灯。スギノオウを封じるための力が込められている。これを託す。<span class="emotion">尊</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">分かった！ 期待しててよ、絶対に応えてみせるから！<span class="emotion">燃</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>源三郎の家</h5>
+                                        <p>囲炉裏、古い写真、なまはげの面が壁に飾られている、湯飲み、座布団</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>祠への道</h5>
+                                        <p>山道、鳥居、石段、松明、不気味な森、霧の演出、妖怪の影</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>ナマハゲの祠</h5>
+                                        <p>大きななまはげ面、護摩餅を供える台、蝋燭、お札、神聖な雰囲気の光</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>ナギサ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="nagisa" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>ナギサ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="nagisa" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>ナギサ（攻撃）</h6>
+                                            <canvas class="character-canvas" data-character="nagisa" data-animation="attack" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>ナギサ（ジャンプ）</h6>
+                                            <canvas class="character-canvas" data-character="nagisa" data-animation="jump" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="nagisa"></div>
+                                </div>
+
+                            </div>
+
+                            <!-- キャラクター素材 -->
+                            <div class="required-assets">
+                                <h4>キャラクター素材</h4>
+
+                                <!-- ナギサ -->
+                                <div class="character-asset-section">
+                                    <h5>ナギサ</h5>
+                                    <div class="asset-grid">
+                                        <div class="asset-subsection">
+                                            <h6>表情バリエーション</h6>
+                                            <div class="face-images-display">
+                                                <img src="images/kitazunasozai/character/nagisa/nagisaface/8.png" alt="ナギサ表情1" class="face-img">
+                                                <img src="images/kitazunasozai/character/nagisa/nagisaface/9.png" alt="ナギサ表情2" class="face-img">
+                                                <img src="images/kitazunasozai/character/nagisa/nagisaface/10.png" alt="ナギサ表情3" class="face-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ナマハゲ -->
+                                <div class="character-asset-section">
+                                    <h5>ナマハゲ</h5>
+                                    <div class="asset-grid">
+                                        <div class="asset-subsection">
+                                            <h6>表情バリエーション</h6>
+                                            <div class="face-images-display">
+                                                <img src="images/kitazunasozai/character/namahage/namahageface/13.png" alt="ナマハゲ表情1" class="face-img">
+                                                <img src="images/kitazunasozai/character/namahage/namahageface/14.png" alt="ナマハゲ表情2" class="face-img">
+                                                <img src="images/kitazunasozai/character/namahage/namahageface/15.png" alt="ナマハゲ表情3" class="face-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 源三郎 -->
+                                <div class="character-asset-section">
+                                    <h5>源三郎（祖父）</h5>
+                                    <div class="asset-grid">
+                                        <div class="asset-subsection">
+                                            <h6>表情バリエーション</h6>
+                                            <div class="face-images-display">
+                                                <img src="images/kitazunasozai/character/genzaburo/genzaburoface/11.png" alt="源三郎表情1" class="face-img">
+                                                <img src="images/kitazunasozai/character/genzaburo/genzaburoface/12.png" alt="源三郎表情2" class="face-img">
+                                            </div>
+                                        </div>
+                                        <div class="asset-subsection">
+                                            <h6>アニメーション</h6>
+                                            <canvas class="animation-canvas" data-character="genzaburo" data-animation="idle" width="200" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 世界基準秋田美人編タブ -->
+                <div class="tab-pane" id="komachi">
+                    <div class="chapter-section">
+                        <h2 class="section-title">世界基準秋田美人編（湯沢編）</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">こんにちはー！ コマチさん、いますかー？<span class="emotion">明</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">あら、いらっしゃいませ♪ それにしてもあなた方は観光客でいらっしゃいますの？<span class="emotion">軽</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">こんな場所に迷い込まれるなんて、逆にセンスがおありですわね！<span class="emotion">情</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">えっと、僕たち、コマチさんに会いに来たんですけど……<span class="emotion">汗</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">ん？ わたくしのこと？ そうですけれど？<span class="emotion">疑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">それにしても、あなた……面白いお目をしていらっしゃいますわね。<span class="emotion">見</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">そのお目、なんだか『絶対に負けませんわ！』といった感じが出ていらっしゃいますのよ〜。<span class="emotion">危</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">まあ、わたくしも昔はそんなお目をしておりましたけれど……今ではお店がこの有様ですわ？<span class="emotion">諦</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">ご覧の通り、ここ『コマチ堂』は骨董品屋なのですけれど〜。<span class="emotion">紹</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">湯沢のこの辺りは、観光客も少のうございますし、地元の方々も骨董品なんてご興味がございませんで、もう全然ダメですのよ。<span class="emotion">恥</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">そんなことない！ コマチさんがずっと培ってきたもの、ちゃんと伝えたらきっと響く人がいるはず！<span class="emotion">熱</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>SNSバズらせ対決</h5>
+                                    <p><strong>タイプ:</strong> インベーダー風シューティング</p>
+                                    <p><strong>内容:</strong> いいねやコメントを弾丸にして炎上コメントを撃退</p>
+                                    <p><strong>難易度:</strong> 易しい</p>
+                                    <p><strong>報酬:</strong> 魂の提灯強化</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">まあ〜！ ご覧になってくださいまし！<span class="emotion">喜</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">『コマチ堂ってオシャレ！』とか『平安美人やばい！』とか、コメントが止まりませんわ！<span class="emotion">歓</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">コマチさん、調子良すぎ！でも、すごいね。この短期間でフォロワーゔ1,000人超えるなんて！<span class="emotion">賛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">でしょう〜？ わたくし、こういうのに向いておりますのよ！SNSって楽しいですわね〜♪<span class="emotion">桌</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">ナギサ、その提灯……なんか光ってるよ！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">すごい！ コマチさんの情熱が伝わって、魂が込められたんだ！<span class="emotion">神</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">本当ですの！？ わたくしの情熱でこんなことになりますの？<span class="emotion">震</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">平安から現代まで頑張ってまいりました甲斐がございましたわ！<span class="emotion">翔</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">魂の提灯、ですのね……。平安の頃からずっと、こんな瞬間をお待ちしていたのかもしれませんわ。<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">さて、次はどんな投稿でバズらせてさしあげましょうかしら♪<span class="emotion">策</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>湯沢市街</h5>
+                                        <p>古い街並み、小野小町の像、観光案内板、閑散とした商店街</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>コマチ堂店内</h5>
+                                        <p>骨董品の棚、平安時代の装飾品、鏡、着物、古い巻物、スマートフォン</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>SNS空間</h5>
+                                        <p>いいねマーク、コメント吹き出し、フォロワー数カウンター、バズる演出エフェクト</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>コマチ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="komachi" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>コマチ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="komachi" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>コマチ（ショップ）</h6>
+                                            <canvas class="character-canvas" data-character="komachi" data-animation="shop" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="komachi"></div>
+                                </div>
+
+                                <!-- コマチの店素材 -->
+                                <div class="standing-art-section">
+                                    <h5>コマチの店素材</h5>
+                                    <div class="standing-art-container" data-character="komachi-shop"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>コマチ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/komachi/komachiface/16.png" alt="コマチ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/komachi/komachiface/17.png" alt="コマチ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/komachi/komachiface/18.png" alt="コマチ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 他の章も同様の構造で作成 -->
+                <!-- 伝統と祭編 -->
+                <div class="tab-pane" id="tradition">
+                    <div class="chapter-section">
+                        <h2 class="section-title">伝統と祭編（稲庭うどんと竿燈）</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">お腹すいたね……どこか食べるところないかな</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">あ、あそこに稲庭うどんのお店があるよ！</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">入ってみよう。でも、ガランとしてるね……</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">イナニワ</span>
+                                        <p class="dialogue-text">……いらっしゃい。</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">稲庭うどん、二つお願いします！</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">(食事中)</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">すごい！この喉越し、今まで食べたうどんで一番美味しい！</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">本当に！こんなに繊細で美しいうどん、初めて！</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">イナニワ</span>
+                                        <p class="dialogue-text">……そうですか。</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">あ、この写真の方は……息子さんですか？<span class="emotion">興</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">息子さんもいらっしゃるなら、このお店も安心ですね！後継者がいて！<span class="emotion">安</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">イナニワ</span>
+                                        <p class="dialogue-text">うるせー！！出ていけ！！</p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">（店を追い出されて）なんだったの、今の……<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">でも、あの写真の青年、竿燈祭りの格好してたよね<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">秋田市に行ってみよう。何か分かるかもしれない<span class="emotion">探</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>中盤の会話（ねぶり流し館）</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">あそこで竿燈の練習をしている人がいるね<span class="emotion">興</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">写真の青年に似てない？行ってみよう<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">うおおおお！（練習に熱中して気づかずに突っ込んでくる）<span class="emotion">集</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太・ナギサ</span>
+                                        <p class="dialogue-text">きゃー！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">おお！すまない！練習に夢中になってしまって……君たちは？<span class="emotion">汗</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">あなたが写真の青年ですね！イナニワさんとはどういう関係なんですか？<span class="emotion">興</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">俺はイナニワの息子、カントだ。稲庭うどんの後継者でもある<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">でも、どうしてここに？<span class="emotion">疑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">俺は今、竿燈の新技の開発に夢中なんだ！<span class="emotion">熱</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">見てくれ！この動き！……でも、何かが足りない<span class="emotion">悩</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">バランスが取れない……技が完成しないんだ<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">稲庭うどんって、とても繊細な技術が必要なんでしょ？<span class="emotion">興</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">そうだ。手延べの技術は本当に繊細で……あれ？<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">竿燈のバランスを取るのも、繊細さが必要ですよね<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">そうか！稲庭うどんの繊細な技術を竿燈に活かせばいいんだ！<span class="emotion">閃</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">うどんを手延べする時の集中力、指先の感覚……それが竿燈のバランス感覚に通じるんだ！<span class="emotion">興</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">親父には理解してもらえないけどな……<span class="emotion">寂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">でも、稲庭うどんの技術って、すごく繊細じゃない？<span class="emotion">察</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">そうだ！その繊細な手先の技術を、竿燈に活かせるんじゃ……<span class="emotion">閃</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>竿燈バランスマスター</h5>
+                                    <p><strong>タイプ:</strong> バランスゲーム</p>
+                                    <p><strong>内容:</strong> 稲庭うどんの繊細な技術を竿燈に応用</p>
+                                    <p><strong>難易度:</strong> 難しい</p>
+                                    <p><strong>報酬:</strong> 新技「脚竿燈」習得</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">やった！ついに完成した！新技『脚竿燈』だ！<span class="emotion">喜</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">稲庭うどんを作る時の、あの繊細な手先の感覚……<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">それを竿燈のバランスに応用したら、できたんだ！<span class="emotion">闃</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">すごい！足だけで竿燈を支えてる！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">稲庭うどんの技術が、竿燈の技を完成させたんですね<span class="emotion">理</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">そうか……俺、分かったよ<span class="emotion">悟</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">竿燈をより良くしていくには、稲庭うどん職人として頑張ることが最も近道なんだ<span class="emotion">明</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">伝統の技術は全て繋がっている<span class="emotion">深</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">親父に謝って、うどん作りも本気で学び直すよ<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">きっとイナニワさんも喜ぶよ！<span class="emotion">希</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">俺は稲庭うどんの伝統を継ぎながら、竿燈の技も磨く<span class="emotion">志</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">カント</span>
+                                        <p class="dialogue-text">両方の伝統を融合させて、新しい価値を生み出すんだ！<span class="emotion">燃</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">伝統と革新の融合……それも秋田の魂なんですね<span class="emotion">理</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">（魂の提灯が光る）<span class="emotion">神</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">見て！魂の提灯に、また新しい力が宿った！<span class="emotion">驚</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>稲庭うどん店</h5>
+                                        <p>ガランとした店内、職人の道具、麺打ち台、乾燥室、若い青年とイナニワの写真、寂しい雰囲気</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>秋田市街〜ねぶり流し館</h5>
+                                        <p>竿燈の練習場、提灯の並び、太鼓、法被、観光客、ねぶり流し館の展示</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>竿燈練習場</h5>
+                                        <p>カントが新技を練習、竿燈のバランス、観客席、伝統と革新が融合する瞬間、光るエフェクト</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>カント（待機）</h6>
+                                            <canvas class="character-canvas" data-character="kanto" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>カント（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="kanto" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>カント（ゲーム待機）</h6>
+                                            <canvas class="character-canvas" data-character="kanto" data-animation="gameidle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>カント（ゲーム歩き）</h6>
+                                            <canvas class="character-canvas" data-character="kanto" data-animation="gamewalk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>イナニワ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="inaniwa" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>イナニワ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="inaniwa" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="kanto"></div>
+                                    <div class="standing-art-container" data-character="inaniwa"></div>
+                                </div>
+
+
+                                <!-- カント絵コンテ・竿燈素材 -->
+                                <div class="standing-art-section">
+                                    <h5>カント絵コンテ・竿燈素材</h5>
+                                    <div class="asset-image-container">
+                                        <img src="/images/kitazunasozai/character/kanto/kantostand/kanto0-4.jpg" alt="カント絵コンテ" class="asset-image">
+                                        <p class="asset-description">カント絵コンテ</p>
+                                    </div>
+                                    <div class="asset-image-container">
+                                        <img src="images/kitazunasozai/character/kanto/kantostand/kantou.png" alt="竿燈" class="asset-image">
+                                        <p class="asset-description">竿燈</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>イナニワ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/inaniwa/inaniwaface/19.png" alt="イナニワ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/inaniwa/inaniwaface/20.png" alt="イナニワ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="character-asset-section">
+                                <h5>カント</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/kanto/kantoface/21.png" alt="カント表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/kanto/kantoface/22.png" alt="カント表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/kanto/kantoface/23.png" alt="カント表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/kanto/kantoface/24.png" alt="カント表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 三湖伝説編 -->
+                <div class="tab-pane" id="lakes">
+                    <div class="chapter-section">
+                        <h2 class="section-title">三湖伝説編</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">うわあ……田沢湖が凍ってる！氷で覆われてるよ！<span class="emotion">驚き</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">こんなに寒々しい湖、初めて見る……何があったの？<span class="emotion">困惑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">ちょー、また人間が来たじゃん。まじでー、私ってば龍になっちゃったんだよね〜。<span class="emotion">困惑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">永遠の美しさを求めてたんだけど〜、気づいたらこんなブサイク姿になっちゃってて〜。やばすぎ〜！<span class="emotion">困惑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">もう何もかもマジでどうでもいいし〜。だから湖も凍らせちゃってんだよね〜。<span class="emotion">困惑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">たつこ……僕だよ、八郎太郎だ。君に話があるんだ。<span class="emotion">決意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">南祖坊</span>
+                                        <p class="dialogue-text">ハハハ！八郎太郎、まだ諦めていなかったのか！<span class="emotion">怒り</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">南祖坊</span>
+                                        <p class="dialogue-text">お前は私に負けたのだ！たつこに近づくなど許さん！<span class="emotion">怒り</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">確かに戦いには負けた……でも、愛する気持ちは負けていない！<span class="emotion">決意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">なるほど……八郎太郎さんの気持ちを、たつこさんに伝えればいいのね！<span class="emotion">決意</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>氷割りアイスブレイカー</h5>
+                                    <p><strong>タイプ:</strong> ブロック崩し（アルカノイド風）</p>
+                                    <p><strong>内容:</strong> 南祖坊の氷の壁を破って八郎太郎をたつこに近づける</p>
+                                    <p><strong>難易度:</strong> 普通</p>
+                                    <p><strong>報酬:</strong> たつこの心を開く</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">たつこ！ようやく君に気持ちを伝えることができた！<span class="emotion">喜び</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">八郎太郎〜、ありがと〜！あんたの言葉で、心がポカポカしちゃったよ〜。<span class="emotion">驚き</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">龍の姿でも、私を愛してくれるんだ〜。マジでー？<span class="emotion">驚き</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">姿なんて関係ない。君の心が美しいんだ。<span class="emotion">決意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">見て！田沢湖の氷が溶けて、美しい湖に戻ってる！<span class="emotion">喜び</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">それで、たつこ……僕と一緒に田沢湖で観光ビジネスを始めないか？<span class="emotion">決意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">この美しい湖を、みんなに知ってもらおう。二人で力を合わせて。<span class="emotion">決意</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">観光ビジネス？チョー面白いじゃん！龍になった経験も活かせちゃうかも〜。<span class="emotion">喜び</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">田沢湖の龍伝説ツアーとか、すごく人気になりそうですね！<span class="emotion">喜び</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">南祖坊</span>
+                                        <p class="dialogue-text">ぐぬぬ……今日のところは退散してやる！<span class="emotion">怒り</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">たつこ</span>
+                                        <p class="dialogue-text">魂の提灯に、愛と希望の力を込めさせてもらっちゃう♪<span class="emotion">驚き</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">八郎太郎</span>
+                                        <p class="dialogue-text">きっと素晴らしい観光地にしてみせるよ、たつこ。<span class="emotion">決意</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>田沢湖畔</h5>
+                                        <p>たつこ像、深い青の湖面、霧の演出、神秘的な光</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>大潟村</h5>
+                                        <p>干拓地、田園風景、八郎潟の名残、水路</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>十和田湖</h5>
+                                        <p>険しい山々、暗い雲、南祖坊の影、嵐の演出</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>タツコ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="tatsuko" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>タツコ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="tatsuko" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>八郎（待機）</h6>
+                                            <canvas class="character-canvas" data-character="hachiro" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>八郎（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="hachiro" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>八郎（攻撃）</h6>
+                                            <canvas class="character-canvas" data-character="hachiro" data-animation="attack" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="tatsuko"></div>
+                                    <div class="standing-art-container" data-character="hachiro"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>タツコ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/tatsuko/tatsukoface/25.png" alt="タツコ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/tatsuko/tatsukoface/26.png" alt="タツコ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/tatsuko/tatsukoface/27.png" alt="タツコ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="character-asset-section">
+                                <h5>ハチロウ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/hachiro/hachiroface/28.png" alt="ハチロウ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/hachiro/hachiroface/29.png" alt="ハチロウ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/hachiro/hachiroface/30.png" alt="ハチロウ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="character-asset-section">
+                                <h5>南祖坊</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/minamisobo/minamisoboface/43.png" alt="南祖坊表情" class="face-img">
+                                        </div>
+                                    </div>
+                                    <div class="asset-subsection">
+                                        <h6>アニメーション</h6>
+                                        <canvas class="animation-canvas" data-character="minamisobo" data-animation="idle" width="200" height="200"></canvas>
+                                        <canvas class="animation-canvas" data-character="minamisobo" data-animation="attack" width="200" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- シン忠犬物語編 -->
+                <div class="tab-pane" id="dog">
+                    <div class="chapter-section">
+                        <h2 class="section-title">シン忠犬物語編（大館編）</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">ここが僕の実家だよ。もう何年も帰ってなかったけど……<span class="emotion">痛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">健太の家、立派じゃん！ でもなんか寂しい感じもするね<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">父さんはいつも酒ばっかり飲んでて……母さんも呆れてるんだ<span class="emotion">憂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">ねえ、この納屋から変な音がしない？<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">え？ ただの古い納屋だよ……って、なにこれ！？<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">すごい！ これ全部ロボット工学の設備じゃない！？<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">『サイボーグAI秋田犬アキタ』……まさか、うちのアキタが？<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">『巨大木造カラクリブリキロボ咲誇』……なんだこれ？<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野ヒロシ（映像）</span>
+                                        <p class="dialogue-text">健康診断の結果が出た。肝機能の数値が……俺はもう長くない<span class="emotion">悲</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野ヒロシ（映像）</span>
+                                        <p class="dialogue-text">アキタ、俺はもうダメだ。でも、お前なら俺の代わりに秋田を守ってくれるよな？<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野ヒロシ（映像）</span>
+                                        <p class="dialogue-text">一白水成の純米大吟醸、それも水のような透明感を持つ酒でなければ復活しない<span class="emotion">決</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>アキタ復活の儀式</h5>
+                                    <p><strong>タイプ:</strong> 探索パズル</p>
+                                    <p><strong>内容:</strong> 一白水成を探して供える</p>
+                                    <p><strong>難易度:</strong> 易しい</p>
+                                    <p><strong>報酬:</strong> アキタが仲間に</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">システム復旧開始...<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">ヒロシ主人の息子...健太様ですね。私はアキタです<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">本当に……アキタなの？<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">お待ちしておりました。お父様は...まだ寝込んでいらっしゃいますか？<span class="emotion">憂</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">実は、時々夜中に起きて研究室にいらっしゃるのを感知していました<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">肝機能の軽度異常を余命宣告と勘違いされたようです<span class="emotion"> 知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">咲誇は、お父様が秋田の最終兵器として開発されたものです<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">秋田杉の温もりと現代ブリキ技術を融合した巨大ロボットです<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">魂の提灯と私が融合することで起動するシステムになっています<span class="emotion">知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野ヒロシ</span>
+                                        <p class="dialogue-text">健太か……俺はもうダメなんだ……<span class="emotion">悲</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">主人、私のセンサーによると、あなたの健康状態は良好です<span class="emotion">安</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野ヒロシ</span>
+                                        <p class="dialogue-text">よし、今夜は一白水成で乾杯だ！ 秋田の未来に！<span class="emotion">喜</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>杉野家外観</h5>
+                                        <p>古い日本家屋、納屋、庭、秋田犬の小屋跡</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>秘密の研究室</h5>
+                                        <p>最先端機器、設計図、モニター、ロボットパーツ、秋田杉の材料</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>アキタ復活の間</h5>
+                                        <p>石像化したアキタ、一白水成を供える台、神秘的な光、起動シーケンス</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>アキタ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="akita" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>アキタ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="akita" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="akita"></div>
+                                    <div class="standing-art-container" data-character="hiroshi"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>アキタ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/akita/akitaface/31.png" alt="アキタ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/akita/akitaface/32.png" alt="アキタ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/akita/akitaface/33.png" alt="アキタ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="character-asset-section">
+                                <h5>ひろし（健太の父）</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/hiroshi/hiroshiface/34.png" alt="ひろし表情1" class="face-img">
+                                            <img src="images/kitazunasozai/character/hiroshi/hiroshiface/35.png" alt="ひろし表情2" class="face-img">
+                                            <img src="images/kitazunasozai/character/hiroshi/hiroshiface/36.png" alt="ひろし表情3" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 究極きりたんぽ編 -->
+                <div class="tab-pane" id="kiritanpo">
+                    <div class="chapter-section">
+                        <h2 class="section-title">究極きりたんぽ編（鹿角編）</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">鹿角市に着いたけど、なんか街の雰囲気が変だね<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">そうね...なんか二手に分かれてるみたい<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">センサーが異常を検知しています。この対立は不自然です<span class="emotion">警</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">きりたんぽがデリシャスなのは、俺たち比内地鶏のおかげなんだぜ！<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">俺たちのディープなコクとテイストがあってこそ、きりたんぽはパーフェクトになるのさ！<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">タンポ</span>
+                                        <p class="dialogue-text">ちょっと待てや！主役は俺だろうが！<span class="emotion">怒</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">タンポ</span>
+                                        <p class="dialogue-text">きりたんぽの美味さは、秋田の美味い米と職人の技術の結晶なんだぜ！<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">ホワット！？ 米だけじゃただのライスじゃないか！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">タンポ</span>
+                                        <p class="dialogue-text">ライスだと！？ これは特別な製法で作られた伝統料理だコラ！<span class="emotion">怒</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">あの...どちらも秋田の宝物じゃないですか？<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">分からないかもしれない。でも、どちらも素晴らしいって思うよ<span class="emotion">優</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>ミニゲーム</h4>
+                                <div class="game-card">
+                                    <h5>究極の料理対決</h5>
+                                    <p><strong>タイプ:</strong> 料理ゲーム</p>
+                                    <p><strong>内容:</strong> 協力してきりたんぽ鍋を作る</p>
+                                    <p><strong>難易度:</strong> 普通</p>
+                                    <p><strong>報酬:</strong> 統合の力</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">これは...すごい！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">今までで一番美味しい！<span class="emotion">喜</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">完璧な調和です。相乗効果が最大化されています<span class="emotion">知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">ディス イズ イット...これがリアルなきりたんぽの味なんだ...<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">タンポ</span>
+                                        <p class="dialogue-text">俺の味を、こんなに引き立ててくれるなんて...<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">二人でメイクすると、こんなにデリシャスになるんだな！<span class="emotion">喜</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">比内地鶏、きりたんぽ、稲庭うどん、日本酒...<span class="emotion">思</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">地域や食材で争うんじゃなくて、秋田全体として世界に発信した方がいいよ<span class="emotion">知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">タンポ</span>
+                                        <p class="dialogue-text">そうだな...俺たち、バラバラよりも一緒の方が強ぇんだ<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">南祖坊</span>
+                                        <p class="dialogue-text">フハハハ！ 美しい友情ごっこだな<span class="emotion">笑</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">トリオ</span>
+                                        <p class="dialogue-text">ホワット！？ 俺はシリアスにタンポをパートナーだと思ってる！<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">南祖坊</span>
+                                        <p class="dialogue-text">く、くそう...統合の力だと...！<span class="emotion">悔</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>鹿角市街</h5>
+                                        <p>二つに分かれた商店街、きりたんぽ店、比内地鶏料理店、対立の旗</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>料理対決会場</h5>
+                                        <p>調理台、食材、審査員席、観客、料理道具</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>統一グルメ会場</h5>
+                                        <p>屋台、協力して料理する人々、笑顔の観光客、統合の象徴</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>タンポ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="tanpo" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>タンポ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="tanpo" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>タンポ（キック）</h6>
+                                            <canvas class="character-canvas" data-character="tanpo" data-animation="kick" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>トリオ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="torio" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>トリオ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="torio" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>トリオ（パンチ）</h6>
+                                            <canvas class="character-canvas" data-character="torio" data-animation="punch" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 立ち絵素材 -->
+                                <div class="standing-art-section">
+                                    <h5>立ち絵素材</h5>
+                                    <div class="standing-art-container" data-character="tanpo"></div>
+                                    <div class="standing-art-container" data-character="torio"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>タンポ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/tanpo/tanpoface/37.png" alt="タンポ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/tanpo/tanpoface/38.png" alt="タンポ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/tanpo/tanpoface/39.png" alt="タンポ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="character-asset-section">
+                                <h5>トリオ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/torio/torioface/40.png" alt="トリオ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/torio/torioface/41.png" alt="トリオ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitazuna'sよ、永遠に編 -->
+                <div class="tab-pane" id="final">
+                    <div class="chapter-section">
+                        <h2 class="section-title">Kitazuna'sよ、永遠に編（最終章）</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>開始時の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">なんだ...この異様な空気は...<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">町の人たちの様子がおかしい...みんな表情が硬いよ<span class="emotion">気</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">センサーが異常を検知しています。県民の創造性指数が急激に低下<span class="emotion">警</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">コマチ</span>
+                                        <p class="dialogue-text">あら...私のSNS投稿にも反応が全然ないわ<span class="emotion">困</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">健太...聞こえるか<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">じいちゃん！？どこにいるんだ！<span class="emotion">驚</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">私は魂の空間にいる。お前が集めた提灯の力で、ようやく通信できた<span class="emotion">愛</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">スギノオウは悪ではない。秋田県民の真面目さが極端に歪んだだけだ<span class="emotion">知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">倒すのではなく、浄化して本来の姿に戻すのだ<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">みんな...最後までついてきてくれてありがとう<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">当たり前でしょ！私たちはチームなんだから<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">スギノオウ</span>
+                                        <p class="dialogue-text">ついに来たか...愚かな者たちよ<span class="emotion">怒</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="minigame-info">
+                                <h4>最終決戦</h4>
+                                <div class="game-card">
+                                    <h5>スギノオウ浄化戦</h5>
+                                    <p><strong>タイプ:</strong> 総合バトル</p>
+                                    <p><strong>内容:</strong> 咲誇に乗って浄化光線を発射</p>
+                                    <p><strong>難易度:</strong> 最高難度</p>
+                                    <p><strong>報酬:</strong> 秋田の平和</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>クリア後の会話</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">アキタ</span>
+                                        <p class="dialogue-text">健太様！スギノオウが強すぎます。咲誇を起動しましょう！<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">咲誇（アキタの声）</span>
+                                        <p class="dialogue-text">システム起動...巨大木造カラクリブリキロボ咲誇、戦闘準備完了<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">スギノオウ！あなたの真面目さを否定するつもりはない！<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">でも、極端になりすぎると、大切なものを失ってしまう<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">咲誇（アキタの声）</span>
+                                        <p class="dialogue-text">浄化光線発射！<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">スギノオウ</span>
+                                        <p class="dialogue-text">この光は...何だ...私の心に...温かいものが...<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">スギノカミ</span>
+                                        <p class="dialogue-text">健太よ...みなさん...そして咲誇よ...ありがとう<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">スギノカミ</span>
+                                        <p class="dialogue-text">真の真面目さとは、責任を持ちながらも心の豊かさを忘れないこと<span class="emotion">知</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">スギノカミ</span>
+                                        <p class="dialogue-text">これからは『スギノカミ』として、秋田の新しい時代を見守ります<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野雅弘</span>
+                                        <p class="dialogue-text">健太...よくやった。お前は立派な『Kitazuna』になった<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">はい！みんなと一緒に、そして父さんの想いと一緒に、秋田の新しい未来を作ります！<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">咲誇（アキタの声）</span>
+                                        <p class="dialogue-text">秋田の平和と発展を、私たちがお守りします<span class="emotion">決</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-composition">
+                                <h4>ステージ構成</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>秋田県庁前</h5>
+                                        <p>異様な空、硬直した人々、重苦しい雰囲気、スギノオウの影</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>太平山登山道</h5>
+                                        <p>険しい山道、仲間たちが集結、魂の提灯が道を照らす</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>太平山頂上</h5>
+                                        <p>巨大化したスギノオウ、咲誇の出現、浄化の光、虹色のエフェクト、最終決戦の舞台</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- キャラクターアニメーション -->
+                                <div class="character-animations">
+                                    <h5>キャラクターアニメーション</h5>
+                                    <div class="asset-grid">
+                                        <div class="character-animation-container">
+                                            <h6>スギノオウ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="suginoo" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>スギノオウ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="suginoo" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>サキホコレ（待機）</h6>
+                                            <canvas class="character-canvas" data-character="sakihokore" data-animation="idle" width="160" height="160"></canvas>
+                                        </div>
+                                        <div class="character-animation-container">
+                                            <h6>サキホコレ（歩き）</h6>
+                                            <canvas class="character-canvas" data-character="sakihokore" data-animation="walk" width="160" height="160"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- キャラクター素材 -->
+                        <div class="required-assets">
+                            <h4>キャラクター素材</h4>
+                            <div class="character-asset-section">
+                                <h5>杉野健太（主人公）</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/kenta/kentaface/1.png" alt="健太表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/kenta/kentaface/2.png" alt="健太表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/kenta/kentaface/3.png" alt="健太表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="character-asset-section">
+                                <h5>ナギサ</h5>
+                                <div class="asset-grid">
+                                    <div class="asset-subsection">
+                                        <h6>表情バリエーション</h6>
+                                        <div class="face-images-display">
+                                            <img src="images/kitazunasozai/character/nagisa/nagisaface/8.png" alt="ナギサ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/nagisa/nagisaface/9.png" alt="ナギサ表情" class="face-img">
+                                            <img src="images/kitazunasozai/character/nagisa/nagisaface/10.png" alt="ナギサ表情" class="face-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- エンディング -->
+                <div class="tab-pane" id="ending">
+                    <div class="chapter-section">
+                        <h2 class="section-title">エンディング</h2>
+                        <div class="chapter-info">
+                            <div class="status-info">
+                                <span class="status-label">進捗状況:</span>
+                                <div class="status-badge planning">企画中</div>
+                            </div>
+                            
+                            <div class="dialogue-section">
+                                <h3>エンディングシーン</h3>
+                                <div class="dialogue-container">
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナレーション</span>
+                                        <p class="dialogue-text">秋田に平和が戻った<span class="emotion">安</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">杉野健太</span>
+                                        <p class="dialogue-text">みんなのおかげで、秋田は新しい時代を迎えることができた<span class="emotion">感</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナギサ</span>
+                                        <p class="dialogue-text">これからも、伝統と革新のバランスを大切にしていこうね<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">全員</span>
+                                        <p class="dialogue-text">秋田の未来に、乾杯！<span class="emotion">喜</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナレーション</span>
+                                        <p class="dialogue-text">こうして、秋田の新たな物語が始まった...<span class="emotion">希</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナレーション</span>
+                                        <p class="dialogue-text">伝統を守りながらも、変化を恐れない<span class="emotion">決</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナレーション</span>
+                                        <p class="dialogue-text">それが、真の『Kitazuna』の精神<span class="emotion">誇</span></p>
+                                    </div>
+                                    <div class="dialogue-item">
+                                        <span class="speaker">ナレーション</span>
+                                        <p class="dialogue-text">秋田よ、永遠に...<span class="emotion">愛</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ending-features">
+                                <h4>エンディング演出</h4>
+                                <div class="stage-details">
+                                    <div class="stage-item">
+                                        <h5>秋田の風景</h5>
+                                        <p>美しい田園、竿燈まつり、田沢湖、なまはげ、きりたんぽ鍋</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>仲間たちの集合</h5>
+                                        <p>全キャラクター集合、笑顔、祝福の雰囲気</p>
+                                    </div>
+                                    <div class="stage-item">
+                                        <h5>エンドロール</h5>
+                                        <p>スタッフクレジット、秋田の四季の風景、感謝のメッセージ</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>必要な素材</h4>
+                                
+                                <!-- 全員の立ち絵 -->
+                                <div class="standing-art-section">
+                                    <h5>全員の立ち絵と絵コンテ</h5>
+                                    <div class="standing-art-container" data-character="all"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ワールドマップ -->
+                <div class="tab-pane" id="worldmap">
+                    <div class="chapter-section">
+                        <h2 class="section-title">ワールドマップアイコン</h2>
+                        <div class="chapter-info">
+                            <div class="chapter-details">
+                                <h3>マップアイコン素材</h3>
+                                <p>各地域を表すアイコンのアニメーション素材です。ワールドマップで使用されます。</p>
+                            </div>
+                            
+                            <div class="required-assets">
+                                <h4>マップアイコン一覧</h4>
+                                <div class="asset-grid">
+                                    <div class="map-icon-container">
+                                        <h5>akitainu（秋田犬）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="akitainu" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>hanabi（花火）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="hanabi" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>hinaididori（雛鯉）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="hinaididori" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>inaniwaudon（稲庭うどん）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="inaniwaudon" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>junsai（じゅんさい）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="junsai" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kamakura（かまくら）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="kamakura" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kiritanpo（きりたんぽ）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="kiritanpo" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>namahage（なまはげ）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="namahage" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>sakura（桜）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="sakura" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>tatsukozou（たつこ像）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="tatsukozou" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>tyokaisan（鳥海山）</h5>
+                                        <canvas class="map-icon-canvas" data-folder="tyokaisan" width="200" height="200"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <h4>その他のマップ素材</h4>
+                                <div class="asset-grid">
+                                    <div class="map-icon-container">
+                                        <h5>akarengakyoudokan（赤れんが郷土館）</h5>
+                                        <img src="images/kitazunasozai/map/other/akarengakyoudokan.png" alt="赤れんが郷土館" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>akitainukaikan（秋田犬会館）</h5>
+                                        <img src="images/kitazunasozai/map/other/akitainukaikan.png" alt="秋田犬会館" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>bukeyashiki（武家屋敷）</h5>
+                                        <img src="images/kitazunasozai/map/other/bukeyashiki.png" alt="武家屋敷" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>bunatree（ブナの木）</h5>
+                                        <img src="images/kitazunasozai/map/other/bunatree.png" alt="ブナの木" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>dakikaerikeikoku（抱返り渓谷）</h5>
+                                        <img src="images/kitazunasozai/map/other/dakikaerikeikoku.png" alt="抱返り渓谷" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>dragoneye（辰子像）</h5>
+                                        <img src="images/kitazunasozai/map/other/dragoneye.png" alt="辰子像" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>goziraiwa（御座石岩）</h5>
+                                        <img src="images/kitazunasozai/map/other/goziraiwa.png" alt="御座石岩" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>hanawabayashi（花輪ばやし）</h5>
+                                        <img src="images/kitazunasozai/map/other/hanawabayashi.png" alt="花輪ばやし" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>hatahata（ハタハタ）</h5>
+                                        <img src="images/kitazunasozai/map/other/hatahata.png" alt="ハタハタ" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kanpuzan（寒風山）</h5>
+                                        <img src="images/kitazunasozai/map/other/kanpuzan.png" alt="寒風山" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kantou（竿燈）</h5>
+                                        <img src="images/kitazunasozai/map/other/kantou.png" alt="竿燈" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kenritsubijutsukan（県立美術館）</h5>
+                                        <img src="images/kitazunasozai/map/other/kenritsubijutsukan.png" alt="県立美術館" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kourakukan（康楽館）</h5>
+                                        <img src="images/kitazunasozai/map/other/kourakukan.png" alt="康楽館" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>kubotajoh（久保田城）</h5>
+                                        <img src="images/kitazunasozai/map/other/kubotajoh.png" alt="久保田城" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>magewappa（曲げわっぱ）</h5>
+                                        <img src="images/kitazunasozai/map/other/magewappa.png" alt="曲げわっぱ" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>namahagekan（なまはげ館）</h5>
+                                        <img src="images/kitazunasozai/map/other/namahagekan.png" alt="なまはげ館" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>nyudousakitoudai（入道埼灯台）</h5>
+                                        <img src="images/kitazunasozai/map/other/nyudousakitoudai2.png" alt="入道埼灯台" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>nyutouonsen（乳頭温泉）</h5>
+                                        <img src="images/kitazunasozai/map/other/nyutouonsen.png" alt="乳頭温泉" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>ooyukanjouresseki（大湯環状列石）</h5>
+                                        <img src="images/kitazunasozai/map/other/ooyukanjouresseki.png" alt="大湯環状列石" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>oyasukyo（小安峡）</h5>
+                                        <img src="images/kitazunasozai/map/other/oyasukyo.png" alt="小安峡" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>reiwakousukeudon（令和稲庭うどん）</h5>
+                                        <img src="images/kitazunasozai/map/other/reiwakousukeudon.png" alt="令和稲庭うどん" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>selion（セリオン）</h5>
+                                        <img src="images/kitazunasozai/map/other/selion.png" alt="セリオン" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>shirakamisanchi（白神山地）</h5>
+                                        <img src="images/kitazunasozai/map/other/shirakamisanchi.png" alt="白神山地" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>sugitree（杉の木）</h5>
+                                        <img src="images/kitazunasozai/map/other/sugitree.png" alt="杉の木" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>tourou（灯籠）</h5>
+                                        <img src="images/kitazunasozai/map/other/tourou.png" alt="灯籠" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                    <div class="map-icon-container">
+                                        <h5>yokotejoh（横手城）</h5>
+                                        <img src="images/kitazunasozai/map/other/yokotejoh.png" alt="横手城" class="map-icon-canvas" width="200" height="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="progress-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 if(DELIC) - KITAZUNA's Project. All rights reserved.</p>
+            <p>キャラクターデザイン: 緒方孝治 | 開発協力: if(塾)</p>
+        </div>
+    </footer>
+
+    <script src="progress.js"></script>
+    <script src="animation.js"></script>
+</body>
+</html>

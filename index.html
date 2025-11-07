@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitazuna: 未来杉の守護者</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Cinzel:wght@400;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- パーティクル背景 -->
+    <div id="particle-container"></div>
+
+    <!-- メインコンテンツ -->
+    <main id="main-content">
+        <!-- ヒーローセクション -->
+        <section id="hero-section" class="hero-container">
+            <video class="video-background" autoplay muted loop playsinline>
+                <source src="videos/topmoviepc.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+            
+            <img src="images/kitazunalogo.png" alt="Kitazuna ロゴ" class="logo">
+            
+            <nav class="navigation-menu">
+                <button class="famicom-button" data-color="#4ecdc4" onclick="scrollToSection('story-section')">ストーリー</button>
+                <button class="famicom-button" data-color="#ff6b6b" onclick="scrollToSection('character-section')">キャラクター</button>
+                <button class="famicom-button" data-color="#ffd700" onclick="scrollToSection('game-section')">ゲーム</button>
+                <button class="famicom-button" data-color="#96ceb4" onclick="scrollToSection('ec-section')">EC</button>
+                <button class="famicom-button" data-color="#e74c3c" onclick="window.location.href='progress.html'">進捗</button>
+            </nav>
+
+            <div class="main-content">
+                <h1 class="game-title">Kitazuna: 未来杉の守護者</h1>
+                <p class="subtitle">伝統と現代が交差する秋田県の物語</p>
+                <button class="cta-button" onclick="scrollToSection('story-section')">物語を始める</button>
+            </div>
+
+            <div class="scroll-indicator" onclick="scrollToSection('story-section')">
+                <span>SCROLL</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ストーリーセクション -->
+        <section id="story-section" class="story-container">
+            <h2 class="section-title">物語の軌跡</h2>
+            
+            <div class="book-container">
+                <div class="page-container">
+                    <div class="book-spine"></div>
+                    
+                    <div id="story-pages">
+                        <!-- ページはJavaScriptで動的に生成 -->
+                    </div>
+                </div>
+
+                <div class="navigation-container">
+                    <button class="nav-button" id="prev-btn" onclick="prevPage()">←</button>
+                    <div class="page-indicator" id="page-dots"></div>
+                    <button class="nav-button" id="next-btn" onclick="nextPage()">→</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- キャラクターセクション -->
+        <section id="character-section" class="character-container">
+            <!-- 秋田県地図の背景 -->
+            <div id="akita-maps"></div>
+            
+            <h2 class="section-title">秋田名物Kitazuna's</h2>
+            
+            <div class="slider-container">
+                <div class="card-wrapper">
+                    <div id="character-card" class="character-card">
+                        <!-- キャラクターカードはJavaScriptで動的に生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-controls">
+                <button class="nav-button" onclick="prevCharacter()">←</button>
+                <div class="card-indicators" id="character-dots"></div>
+                <button class="nav-button" onclick="nextCharacter()">→</button>
+            </div>
+        </section>
+
+        <!-- ゲームセクション -->
+        <section id="game-section" class="game-container">
+            <h2 class="section-title">ゲームの世界</h2>
+
+            <div class="content-section">
+                <div class="game-description">
+                    <p>
+                        内向的な大学生・杉野健太が、祖父からの緊急依頼で秋田を訪れることに。
+                        「スギノオウ」の復活を阻止するため、「魂の提灯」を集める使命を帯びています。
+                    </p>
+                    <br>
+                    <p>
+                        男鹿、湯沢、秋田、三湖、大館、鹿角。秋田県の各地で出会う個性豊かな仲間たちと共に、
+                        伝統と現代、父と子、男と女、人とAIの枠を越えて絆を深めていく感動の物語です。
+                    </p>
+                </div>
+                
+                <div class="game-image"></div>
+            </div>
+
+            <div class="themes-list">
+                <p class="themes-text">伝統と現代の融合、人と人の絆、個人の成長、秋田から世界へ</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4 class="feature-title">緒方孝治氏デザイン</h4>
+                    <p class="feature-description">くにおくんシリーズで知られるキャラクターデザイナーによる魅力的なキャラクター</p>
+                </div>
+                <div class="feature-card">
+                    <h4 class="feature-title">秋田県聖地巡礼</h4>
+                    <p class="feature-description">実在する秋田県の名所や文化を巡る本格的な地域密着型ゲーム体験</p>
+                </div>
+                <div class="feature-card">
+                    <h4 class="feature-title">多言語対応</h4>
+                    <p class="feature-description">世界展開を見据えた多言語対応で秋田の魅力を世界に発信</p>
+                </div>
+                <div class="feature-card">
+                    <h4 class="feature-title">AI×レトロ融合</h4>
+                    <p class="feature-description">最新AIテクノロジーとレトロゲームの魅力を融合した新感覚ゲーム</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ECセクション -->
+        <section id="ec-section" class="ec-container">
+            <h2 class="section-title ec-title">ゲーム内EC・二次創作</h2>
+
+            <video class="background-video" autoplay muted loop playsinline>
+                <source src="videos/komachishopmv.mp4" type="video/mp4">
+            </video>
+
+            <div id="character-image-wrapper" style="display: none;">
+                <img id="ec-character-image" src="" alt="">
+                <div class="character-tab"></div>
+            </div>
+
+            <div class="shop-frame1">
+                <button class="menu-button" onclick="selectFeature(0)">ゲーム内EC機能</button>
+                <button class="menu-button" onclick="selectFeature(1)">二次創作自由化</button>
+                <button class="menu-button" onclick="selectFeature(2)">地域経済循環</button>
+            </div>
+
+            <div class="shop-frame2">
+                <div id="dialogue-area" style="display: none;">
+                    <div id="dialogue-text" class="dialogue-text" onclick="handleNextText()">
+                        <div id="dialogue-content"></div>
+                        <div id="continue-prompt" class="continue-prompt"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロジェクトビジョンセクション -->
+        <section id="vision-section" class="vision-container">
+            <h2 class="section-title">プロジェクトビジョン</h2>
+
+            <div class="content-wrapper">
+                <div class="vision-section">
+                    <h3 class="vision-title">ゲームが繋ぐ世界</h3>
+                    <p class="vision-text">
+                        「ゲームが繋ぐ世界」という理念のもと、秋田県の魅力を世界に発信し、
+                        地域活性化とクリエイティブ産業の発展を同時に実現します。
+                        レトロゲームの温かみとAI技術の先進性を融合させ、
+                        誰もが参加できる新しい形のコンテンツ制作環境を構築していきます。
+                    </p>
+                </div>
+
+                <div class="team-section">
+                    <h4 class="team-title">開発チーム</h4>
+                    
+                    <div class="team-scroll-container">
+                        <div class="team-scroll-track">
+                            <!-- チームメンバーカードは JavaScript で生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 感謝オーバーレイ -->
+            <div id="gratitude-overlay" class="gratitude-overlay" style="display: none;">
+                <div class="heart-container" id="heart-container"></div>
+                <h1 class="gratitude-text">ご覧いただき</h1>
+                <h1 class="gratitude-text">ありがとうございました！</h1>
+                <p class="gratitude-subtext">秋田県の魅力をお楽しみください 🎌</p>
+            </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="footer-container">
+            <div class="game-logo">
+                <h2 class="logo-text">KITAZUNA's</h2>
+                <p class="logo-subtext">ゲームが繋ぐ世界</p>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>プロジェクト</h3>
+                    <a href="#game-section" class="footer-link">ゲーム概要</a>
+                    <a href="#story-section" class="footer-link">ストーリー</a>
+                    <a href="#character-section" class="footer-link">キャラクター</a>
+                    <a href="#ec-section" class="footer-link">EC・二次創作</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>if(DELIC)</h3>
+                    <div class="contact-info">
+                        <p>代表: 高崎翔太</p>
+                        <p>秋田県</p>
+                        <p>Email: info@if-delic.jp</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Twitter">🐦</a>
+                        <a href="#" class="social-link" title="Instagram">📷</a>
+                        <a href="#" class="social-link" title="YouTube">📺</a>
+                        <a href="#" class="social-link" title="Discord">💬</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>パートナー</h3>
+                    <a href="#" class="footer-link">事業パートナー募集</a>
+                    <a href="#" class="footer-link">クリエイター登録</a>
+                    <a href="#" class="footer-link">観光業界の方へ</a>
+                    <a href="#" class="footer-link">教育機関との連携</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>最新情報</h3>
+                    <div class="newsletter">
+                        <p>開発進捗やイベント情報をお届けします</p>
+                        <form onsubmit="handleNewsletterSubmit(event)">
+                            <input type="email" class="newsletter-input" placeholder="メールアドレス" required>
+                            <button type="submit" class="newsletter-button">購読する</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 if(DELIC) - KITAZUNA's Project. All rights reserved.</p>
+                <p>キャラクターデザイン: 緒方孝治 | 開発協力: if(塾)</p>
+            </div>
+        </footer>
+
+        <!-- Back to Top ボタン -->
+        <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
