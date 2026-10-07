@@ -1,3 +1,21 @@
+// ===== 公開先リンク（決まったらここを書き換える。空なら「準備中」を案内） =====
+const LINE_URL = "";      // LINE公式アカウントの友だち追加URL（LINE Studio で作成後に設定）
+const BOOK_URL = "";      // Amazon の予約ページURL（KDP 予約登録後に設定）
+const GAME_URL = "";      // 男鹿編の公開URL（2026-11-11 に設定）
+
+function openLine(event) {
+    if (event) event.preventDefault();
+    if (LINE_URL) { window.open(LINE_URL, "_blank", "noopener"); return false; }
+    alert("LINEの受付は準備中です。もう少しだけお待ちください。");
+    return false;
+}
+function openBook(event) {
+    if (event) event.preventDefault();
+    if (BOOK_URL) { window.open(BOOK_URL, "_blank", "noopener"); return false; }
+    alert("Amazonの予約ページは準備中です。公開されたらLINEでお知らせします。");
+    return false;
+}
+
 // パーティクル生成
 function createParticles() {
     const container = document.getElementById('particle-container');
@@ -38,14 +56,16 @@ const chapters = [
         id: 1,
         number: "プロローグ",
         title: "新幹線での邂逅",
+        status: "2026年11月11日 公開",
         description: "平凡な大学生・杉野健太が、祖父からの謎めいた依頼を受けて秋田へと向かう。車窓に流れる風景を眺めながら、彼はまだ知らない。この旅が、自分の人生を大きく変える冒険の始まりであることを...",
         teaseText: "果たして健太を待ち受ける運命とは？この旅の真の目的とは何なのか？"
     },
     {
         id: 2,
         number: "第一章",
-        title: "男鹿の守護霊",
-        description: "男鹿半島で出会った勇敢な少女ナギサ。彼女には秘められた願いがあった。古くからの伝統に挑戦する彼女の姿に、健太は心を揺さぶられる。神秘的なナマハゲの祠で、二人が目にしたものとは...",
+        title: "男鹿編",
+        status: "2026年11月11日 公開",
+        description: "祖父の戦友・海風源三郎を訪ねて男鹿へ。そこで出会ったのは、ナマハゲになりたいと願う少女ナギサ。本来ナマハゲは男しかなれない。それでも諦めない彼女と共に、健太はナマハゲの祠で「祠の試練」に挑む。太鼓を叩き、祭の中へ...",
         teaseText: "伝統の壁を越えて、ナギサの願いは叶うのか？祠に隠された秘密とは？"
     },
     {
@@ -101,6 +121,7 @@ function renderStoryPage() {
     pagesDiv.innerHTML = `
         <div class="page page-left">
             <div class="chapter-number">${currentChapter.number}</div>
+            <div class="chapter-status ${currentChapter.status ? 'is-open' : ''}">${currentChapter.status || '順次公開'}</div>
             <h3 class="chapter-title">${currentChapter.title}</h3>
             <p class="chapter-description">${currentChapter.description}</p>
             <div class="tease-text">${currentChapter.teaseText}</div>
@@ -163,8 +184,8 @@ const characters = [
     {
         id: 1,
         name: '杉野健太',
+        inOga: true,
         role: '主人公・真のKitazuna',
-        emoji: '🌱',
         description: '内向的な大学生が、秋田での出会いを通じて真のリーダーへと成長する物語の主人公。',
         hasImage: true,
         imageIndex: 0,
@@ -174,8 +195,8 @@ const characters = [
     {
         id: 2,
         name: 'ナギサ',
+        inOga: true,
         role: '真のナマハゲ精神の継承者',
-        emoji: '👹',
         description: '性別の壁を越えてナマハゲの真の精神を習得。伝統を守りながらも革新する勇敢な少女。',
         hasImage: true,
         imageIndex: 1,
@@ -186,7 +207,6 @@ const characters = [
         id: 3,
         name: 'コマチ',
         role: '伝統と現代を繋ぐインフルエンサー',
-        emoji: '🌸',
         description: '小野小町の化身。平安時代からの美の知識をSNSで現代に伝える革新的な存在。',
         hasImage: true,
         imageIndex: 2,
@@ -197,7 +217,6 @@ const characters = [
         id: 4,
         name: 'イナニワ',
         role: '伝統を守る稲庭うどん職人',
-        emoji: '🍜',
         description: '稲庭うどんの老舗店主。息子カントとの世代間の葛藤を乗り越え、伝統と革新の融合を学ぶ。',
         hasImage: true,
         imageIndex: 3,
@@ -208,7 +227,6 @@ const characters = [
         id: 5,
         name: 'カント',
         role: '革新を求める竿燈士',
-        emoji: '🏮',
         description: 'イナニワの息子。父の稲庭うどんの技術を竿燈に活かし、新技「足竿燈」を完成させる。',
         hasImage: true,
         imageIndex: 4,
@@ -219,7 +237,6 @@ const characters = [
         id: 6,
         name: 'タツコ',
         role: '田沢湖の美しき龍神',
-        emoji: '💙',
         description: '美を求めて龍になった田沢湖の守り神。ハチロウとの純愛を通じて真の美しさを知る。',
         hasImage: true,
         imageIndex: 5,
@@ -230,7 +247,6 @@ const characters = [
         id: 7,
         name: 'ハチロウ',
         role: '八郎潟の優しき守護者',
-        emoji: '🌊',
         description: '八郎潟に住む心優しい男性。タツコへの純粋な愛で、凍った田沢湖を溶かす奇跡を起こす。',
         hasImage: true,
         imageIndex: 6,
@@ -241,7 +257,6 @@ const characters = [
         id: 8,
         name: 'アキタ',
         role: '技術と伝統を融合したAI秋田犬',
-        emoji: '🤖',
         description: 'サイボーグ化された秋田犬。最先端技術と忠誠心を兼ね備えた秋田の守護者。',
         hasImage: true,
         imageIndex: 7,
@@ -252,7 +267,6 @@ const characters = [
         id: 9,
         name: 'トリオ',
         role: '比内地鶏の誇り高きギャング',
-        emoji: '🐓',
         description: 'アメリカかぶれのギャング風比内地鶏。タンポとの料理対決を通じて協力の大切さを学ぶ。',
         hasImage: true,
         imageIndex: 9,
@@ -263,7 +277,6 @@ const characters = [
         id: 10,
         name: 'タンポ',
         role: 'きりたんぽ魂を持つヤンキー',
-        emoji: '🍢',
         description: '秋田の米文化を愛するきりたんぽの化身。トリオとの和解により秋田統一への道を開く。',
         hasImage: true,
         imageIndex: 8,
@@ -273,8 +286,8 @@ const characters = [
     {
         id: 11,
         name: '源三郎',
+        inOga: true,
         role: '杉野家の祖父・真のリーダー',
-        emoji: '👴',
         description: '健太の祖父。秋田県の未来を見据え、孫に使命を託す。長年の経験と知恵で導く。',
         hasImage: true,
         imageIndex: 10,
@@ -285,8 +298,8 @@ const characters = [
     {
         id: 12,
         name: 'ナマハゲ',
+        inOga: true,
         role: '男鹿の伝統を守る精霊',
-        emoji: '👺',
         description: '「悪い子はいねがー」の掛け声で知られる男鹿の守護精霊。伝統文化の象徴的存在。',
         hasImage: true,
         imageIndex: 11,
@@ -297,7 +310,6 @@ const characters = [
         id: 13,
         name: 'ひろし',
         role: '杉野健太の父・技術者',
-        emoji: '👨‍💻',
         description: '健太の父。表向きは酒飲みだが、実は最先端技術で秋田を守る重要人物。',
         hasImage: true,
         imageIndex: 12,
@@ -308,7 +320,6 @@ const characters = [
         id: 14,
         name: '南祖坊',
         role: '太平山の守護神',
-        emoji: '⛩️',
         description: '太平山に住む神秘的な存在。山の自然と秋田の精神性を守護する。',
         hasImage: true,
         imageIndex: 13,
@@ -342,11 +353,11 @@ function renderCharacterCard() {
                 const fallbackImage = `images/kitazunasozai/character/${character.folderName}/${character.folderName}face/${character.faceImages[0]}`;
                 imageHtml = `<img class="character-image-display" src="${fallbackImage}" alt="${character.name}">`;
             } else {
-                imageHtml = `<div class="character-emoji">${character.emoji}</div>`;
+                imageHtml = `<div class="character-emoji">${character.name}</div>`;
             }
         }
     } else {
-        imageHtml = `<div class="character-emoji">${character.emoji}</div>`;
+        imageHtml = `<div class="character-emoji">${character.name}</div>`;
     }
 
     // Create face images HTML
@@ -367,6 +378,7 @@ function renderCharacterCard() {
     card.innerHTML = `
         ${imageHtml}
         <h3 class="character-name">${character.name}</h3>
+        <p class="character-badge">${character.inOga ? '第1章 男鹿編に登場' : '続く章で登場'}</p>
         <p class="character-role">${character.role}</p>
         <p class="character-description">${character.description}</p>
         ${faceImagesHtml}
@@ -428,167 +440,12 @@ function generateAkitaMaps() {
 }
 
 // ECセクション
-const features = [
-    {
-        id: 1,
-        title: 'ゲーム内EC機能',
-        description: 'ゲーム内で秋田の特産品を購入できる革新的なシステム',
-        fullText: [
-            'いらっしゃいませ！\nコマチですわ。革新的なゲーム内ECシステムのご案内をいたします。',
-            'ゲームを楽しみながら、秋田の素晴らしい\n特産品をお買い求めいただけますのよ。',
-            '24時間365日、世界中からアクセス可能で、\nリアルタイム在庫管理も完備しておりますわ。',
-            '手ぶらで観光を楽しみ、気に入った商品を\n自宅で受け取る新しいスタイルですの。',
-            '秋田の事業者様にとって、\n前例のない販路拡大の機会となりますわ。'
-        ]
-    },
-    {
-        id: 2,
-        title: '二次創作自由化',
-        description: 'キャラクターを自由に活用したオリジナル商品開発',
-        fullText: [
-            'コマチですわ！素晴らしいお知らせがございます。\nKITAZUNA\'sキャラクターが完全自由化されましたの！',
-            '秋田の事業者の皆様が、独自のオリジナル商品を\n自由に開発・販売できるようになりますわ。',
-            'キャラクター商用利用は完全無料ですのよ！\nプロデザイナー監修のテンプレートもご用意しております。',
-            '最新AIツールによる商品デザイン支援で、\n創造的な商品展開が可能になりますわ。',
-            '地域の子どもたちも商品開発に参加でき、\n次世代が故郷への誇りを持てる素敵な仕組みですの！'
-        ]
-    },
-    {
-        id: 3,
-        title: '地域経済循環',
-        description: '秋田に還元される持続可能な経済システム',
-        fullText: [
-            'コマチですわ。\n地域経済循環システムについてご説明いたしますね。',
-            'KITAZUNA\'sのすべての経済活動が、\n愛する秋田の地に確実に還元されますの。',
-            'ゲーム売上の一定比率を地域事業者に直接還元し、\n広告収益も県内プロモーションに再投資いたしますわ。',
-            '観光客増加により宿泊・飲食・交通業界にも\n大きな波及効果をもたらしますの。',
-            'バーチャル空間から始まる新しい経済が、\n現実の秋田を確実に活気づけるのですわ。'
-        ]
-    }
-];
-
-let selectedFeature = null;
-let currentTextIndex = 0;
-let displayedText = '';
-let isTyping = false;
-let typeInterval = null;
-
-function selectFeature(index) {
-    selectedFeature = features[index];
-    currentTextIndex = 0;
-    displayedText = '';
-    isTyping = false;
-    
-    // キャラクター画像表示
-    const wrapper = document.getElementById('character-image-wrapper');
-    const image = document.getElementById('ec-character-image');
-    const tab = wrapper.querySelector('.character-tab');
-    
-    wrapper.style.display = 'block';
-    image.src = 'images/komachi-shop.png'; // 適切な画像を設定
-    tab.textContent = selectedFeature.title;
-    
-    // 対話エリア表示
-    document.getElementById('dialogue-area').style.display = 'block';
-    
-    typeText(selectedFeature.fullText[0]);
-}
-
-function typeText(text) {
-    if (typeInterval) {
-        clearInterval(typeInterval);
-        typeInterval = null;
-    }
-    
-    isTyping = true;
-    displayedText = '';
-    let index = 0;
-    
-    typeInterval = setInterval(() => {
-        if (index <= text.length) {
-            displayedText = text.substring(0, index);
-            updateDialogueDisplay();
-            index++;
-        } else {
-            clearInterval(typeInterval);
-            typeInterval = null;
-            isTyping = false;
-            updateContinuePrompt();
-        }
-    }, 50);
-}
-
-function updateDialogueDisplay() {
-    const content = document.getElementById('dialogue-content');
-    content.innerHTML = displayedText.split('\n').map(line => `<div>${line || '\u00A0'}</div>`).join('');
-}
-
-function updateContinuePrompt() {
-    const prompt = document.getElementById('continue-prompt');
-    if (!isTyping && currentTextIndex < selectedFeature.fullText.length - 1) {
-        prompt.textContent = '▼ クリックで続きを読む';
-    } else if (!isTyping && currentTextIndex === selectedFeature.fullText.length - 1) {
-        prompt.textContent = '▼ クリックで終了';
-    } else {
-        prompt.textContent = '';
-    }
-}
-
-function handleNextText() {
-    if (isTyping) {
-        // タイピング中なら即座に完了
-        if (typeInterval) {
-            clearInterval(typeInterval);
-            typeInterval = null;
-        }
-        displayedText = selectedFeature.fullText[currentTextIndex];
-        updateDialogueDisplay();
-        isTyping = false;
-        updateContinuePrompt();
-        return;
-    }
-    
-    if (currentTextIndex < selectedFeature.fullText.length - 1) {
-        currentTextIndex++;
-        typeText(selectedFeature.fullText[currentTextIndex]);
-    } else {
-        // 終了
-        document.getElementById('dialogue-area').style.display = 'none';
-        document.getElementById('character-image-wrapper').style.display = 'none';
-        selectedFeature = null;
-        currentTextIndex = 0;
-        displayedText = '';
-    }
-}
-
-// チームメンバー表示
 function renderTeamMembers() {
     const teamMembers = [
-        {
-            icon: '🎨',
-            role: '緒方孝治',
-            description: 'くにおくんシリーズキャラクターデザイナー'
-        },
-        {
-            icon: '👨‍💼',
-            role: '高崎翔太',
-            description: 'if(塾)塾頭、if(DELIC)代表'
-        },
-        {
-            icon: '👥',
-            role: '秋田の高校生',
-            description: 'if(塾)の生徒たち。地域の魅力を発信'
-        },
-        {
-            icon: '🤖',
-            role: 'AI技術',
-            description: 'ストーリー・アニメーション・3D化をサポート'
-        },
-        {
-            icon: '🌍',
-            role: '地域パートナー',
-            description: '秋田県の事業者・自治体との連携'
-        }
+        { icon: '画', role: '緒方孝治', description: 'キャラクターデザイン。くにおくんシリーズのデザイナー' },
+        { icon: '作', role: '高崎翔太', description: '企画・物語・開発。秋田で if(塾) を運営' },
+        { icon: 'AI', role: 'AI（Codex ほか）', description: '台本・背景・効果音・コードの相棒。作り方は公式ファンブックに' },
+        { icon: '塾', role: 'if(塾)の生徒たち', description: 'テストプレイと秋田の取材に協力' },
     ];
     
     const track = document.querySelector('.team-scroll-track');
@@ -621,7 +478,7 @@ function showGratitude() {
             heart.className = 'floating-heart';
             heart.style.left = `${Math.random() * 90 + 5}%`;
             heart.style.animationDelay = `${Math.random() * 2}s`;
-            heart.textContent = '❤️';
+            heart.textContent = '';
             heartContainer.appendChild(heart);
         }
         
@@ -632,7 +489,7 @@ function showGratitude() {
             sparkle.style.left = `${Math.random() * 90 + 5}%`;
             sparkle.style.top = `${Math.random() * 80 + 10}%`;
             sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
-            sparkle.textContent = '✨';
+            sparkle.textContent = '';
             heartContainer.appendChild(sparkle);
         }
         
@@ -641,12 +498,6 @@ function showGratitude() {
             overlay.style.display = 'none';
         }, 5000);
     }, 3000);
-}
-
-// ニュースレター送信
-function handleNewsletterSubmit(event) {
-    event.preventDefault();
-    alert('ニュースレター購読ありがとうございます！');
 }
 
 // モバイル対応

@@ -1744,3 +1744,48 @@ html {
         gap: 1rem;
     }
 }
+
+/* ===== 2026-10 現在の内容に合わせた追加（日本語の読みやすさ・新セクション） ===== */
+html { font-size: 17px; }
+body { line-height: 1.9; letter-spacing: 0.03em; }
+p, li { font-size: 1rem; line-height: 1.9; }
+.subtitle { font-size: 1.25rem; line-height: 1.9; }
+.release-badge {
+    display: inline-block; margin: 0.6rem auto 1.2rem; padding: 0.5rem 1.2rem;
+    border: 2px solid #ffd700; border-radius: 999px; color: #ffd700; font-weight: 700; font-size: 1.05rem;
+    background: rgba(0,0,0,0.45); letter-spacing: 0.05em;
+}
+.hero-cta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+.cta-button { text-decoration: none; display: inline-block; }
+.cta-line { background: #06c755 !important; color: #fff !important; border-color: #06c755 !important; }
+.cta-book { background: #ff9900 !important; color: #1a1a1a !important; border-color: #ff9900 !important; }
+.chapter-status { display: inline-block; margin: 0.2rem 0 0.8rem; padding: 0.15rem 0.8rem; border-radius: 999px; font-size: 0.85rem; background: rgba(0,0,0,0.08); }
+.chapter-status.is-open { background: #ffd700; color: #1a1a1a; font-weight: 700; }
+.character-badge { font-size: 0.9rem; font-weight: 700; color: #c0392b; margin: 0.2rem 0 0.4rem; }
+.character-emoji { font-size: 2rem; font-weight: 700; }
+.book-section { padding: 5rem 1rem; background: #1a1a2e; color: #f5f5f5; }
+.book-layout { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start; justify-content: center; max-width: 1100px; margin: 0 auto; }
+.book-cover { width: min(360px, 90vw); border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.book-text { flex: 1 1 420px; max-width: 600px; }
+.book-title { font-size: 1.5rem; line-height: 1.7; margin-bottom: 0.6rem; }
+.book-date { color: #ffd700; font-weight: 700; margin-bottom: 1rem; }
+.book-list { padding-left: 1.3em; margin-bottom: 1rem; }
+.book-list li { margin-bottom: 0.5rem; }
+.book-note { opacity: 0.85; margin-bottom: 1.4rem; }
+.press-section { margin-top: 3rem; padding: 1.8rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; }
+.press-text { margin-bottom: 1.2rem; }
+.footer-text { font-size: 0.95rem; margin-bottom: 0.8rem; }
+.footer-cta { font-size: 0.95rem; padding: 0.6rem 1.2rem; }
+.floating-heart { width: 18px; height: 18px; background: #ff6b6b; transform: rotate(45deg); border-radius: 2px; }
+.floating-heart::before, .floating-heart::after { content: ""; position: absolute; width: 18px; height: 18px; background: #ff6b6b; border-radius: 50%; }
+.floating-heart::before { left: -9px; top: 0; }
+.floating-heart::after { top: -9px; left: 0; }
+.sparkle-effect { width: 8px; height: 8px; background: #ffd700; border-radius: 50%; box-shadow: 0 0 10px #ffd700; }
+@media (max-width: 768px) {
+    html { font-size: 16px; }
+    .book-layout { gap: 1.5rem; }
+    .press-section { padding: 1.2rem; }
+}
+#author-section.vision-container { height: auto; min-height: 100vh; padding: 4rem 2rem; }
+.character-badge { grid-column: 2; }
+.game-image { background-image: url('images/story1.png'); }
