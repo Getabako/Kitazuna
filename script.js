@@ -1,20 +1,19 @@
 // ===== 公開先リンク（決まったらここを書き換える。空なら「準備中」を案内） =====
 // このサイトの内容は「ゲーム本体（ゲーム/ECRPG の ReleasePlan・Assets）」と「公式ファンブックの原稿（KindleMaker kitazuna-book）」を正とする。
 // サイトの古い記述をもとに書き直さないこと（CONTENT-SOURCES.md 参照）。
-const LINE_URL = "";      // LINE公式アカウントの友だち追加URL（LINE Studio で作成後に設定）
+const NOTE_URL = "https://note.com/ifjuku";      // 最新情報は note で発信（2026-10-19 LINE は使わない判断）
 const BOOK_URL = "https://www.amazon.co.jp/dp/B0HMTVHVN9";      // Amazon の予約ページ（2026-10-13 予約開始・500円・Kindle Unlimited 対象）
 const GAME_URL = "";      // 男鹿編の公開URL（2026-11-11 に設定）
 
-function openLine(event) {
+function openNote(event) {
     if (event) event.preventDefault();
-    if (LINE_URL) { window.open(LINE_URL, "_blank", "noopener"); return false; }
-    alert("LINEの受付は準備中です。もう少しだけお待ちください。");
+    window.open(NOTE_URL, "_blank", "noopener");
     return false;
 }
 function openBook(event) {
     if (event) event.preventDefault();
     if (BOOK_URL) { window.open(BOOK_URL, "_blank", "noopener"); return false; }
-    alert("Amazonの予約ページは準備中です。公開されたらLINEでお知らせします。");
+    alert("Amazonの予約ページは準備中です。公開されたらnoteでお知らせします。");
     return false;
 }
 
