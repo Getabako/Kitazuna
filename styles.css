@@ -1789,3 +1789,33 @@ p, li { font-size: 1rem; line-height: 1.9; }
 #author-section.vision-container { height: auto; min-height: 100vh; padding: 4rem 2rem; }
 .character-badge { grid-column: 2; }
 .game-image { background-image: url('images/story1.png'); }
+
+/* 2026-10-19 実画面ギャラリー・予約表示 */
+.release-sub { margin: 0.4rem 0 1rem; color: #fff; font-size: 1rem; letter-spacing: 0.03em; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+.screens-block { max-width: 1200px; margin: 3.5rem auto 0; text-align: center; }
+.screens-title { color: #ffd700; font-size: 1.6rem; margin-bottom: 0.4rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+.screens-note { color: #e0e0e0; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.screens-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+.screens-grid figure { margin: 0; }
+.screens-grid img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; border: 3px solid #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.45); background: #000; }
+.screens-grid figcaption { color: #e0e0e0; font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5; }
+.screens-next { margin-top: 1.6rem; color: #ffd700; font-weight: 700; font-size: 1.05rem; }
+.book-subtitle { font-size: 1.05rem; opacity: 0.9; margin-bottom: 0.8rem; line-height: 1.7; }
+.book-price { font-weight: 700; margin-bottom: 1rem; }
+@media (max-width: 900px) { .screens-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .screens-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; } }
+/* 2026-10-19 物語の本: 固定高さをやめて文章量に合わせる（章の説明を本の内容に合わせて書き直したため） */
+.page-container { height: auto !important; }
+#story-pages { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+.page-container .page { position: relative; width: auto; height: auto; min-height: 480px; overflow: visible; }
+.chapter-description { font-size: 1rem; line-height: 1.85; letter-spacing: 0.02em; }
+.chapter-description::first-letter { float: none; font-size: inherit; line-height: inherit; padding: 0; margin: 0; font-family: inherit; color: inherit; text-shadow: none; }
+@media (max-width: 768px) {
+    #story-pages { grid-template-columns: 1fr; }
+    .page-container .book-spine { display: none; }
+    .page-container .page { min-height: 0; }
+    .page-container .page-right { order: -1; border-radius: 12px 12px 3px 3px; }
+    .page-container .page-left { border-radius: 3px 3px 12px 12px; }
+    .chapter-description { font-size: 1rem; }
+    .tease-text { font-size: 0.95rem; }
+}
