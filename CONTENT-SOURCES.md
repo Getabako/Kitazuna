@@ -11,3 +11,8 @@
 | キャラクターの設定 | 本の原稿 ＞ `ゲーム/ECRPG/CLAUDE.md`「この作品の背骨」 ＞ このサイトの script.js |
 
 公開: GitHub `Getabako/Kitazuna` の main に push。kitazuna.if-juku.net（Vercel）と getabako.github.io/Kitazuna の両方が main から配信される。
+
+## 緒方孝治氏のキャラクター絵・挿絵について（2026-10-19 本人指示）
+
+- `images/chara*.png`・`images/story*.png` など緒方氏のオリジナル絵は **そのまま残す。差し替えない。**
+- 絵を足す・派生画像を作る場合も、緒方氏のオリジナルを元絵（参照）として扱う。本の漫画の絵で置き換えることはしない。
