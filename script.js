@@ -455,7 +455,8 @@ function generateAkitaMaps() {
 // ECセクション
 function renderTeamMembers() {
     const teamMembers = [
-        { icon: '画', role: '緒方孝治', description: 'キャラクターデザイン。くにおくんシリーズのデザイナー' },
+        { icon: '画', role: '緒方孝治', description: 'キャラクターデザイン（秋田の守り神たち）。くにおくんシリーズのデザイナー' },
+        { icon: '画', role: '手塚屋', description: 'キャラクターデザイン（健太・ヒロシ・雅弘の杉野家）' },
         { icon: '作', role: '高崎翔太', description: '企画・物語・開発。秋田で if(塾) を運営' },
         { icon: 'AI', role: 'AI（Codex ほか）', description: '台本・背景・効果音・コードの相棒。作り方は公式ファンブックに' },
         { icon: '塾', role: 'if(塾)の生徒たち', description: 'テストプレイと秋田の取材に協力' },
