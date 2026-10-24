@@ -905,3 +905,11 @@ body::before {
 .hud-gauge { background: rgba(40, 30, 14, 0.9); }
 .boot-bar { background: var(--night-2); }
 body::before { opacity: 0.13; }
+/* v3.6 太鼓はなまはげ太鼓の絵。カッは縦になぞる */
+.taiko-drum { width: min(300px, 78vw); aspect-ratio: 1; }
+.taiko-img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 16px 24px rgba(0,0,0,0.55)); user-select: none; -webkit-user-select: none; pointer-events: none; transform-origin: 50% 40%; }
+.taiko-drum.is-don .taiko-img { animation: drumDon 0.18s; }
+.taiko-drum.is-ka .taiko-img { animation: drumKa 0.18s; }
+@keyframes drumDon { 0% { transform: scale(0.95); filter: brightness(1.25) drop-shadow(0 16px 24px rgba(0,0,0,0.55)); } 100% { transform: none; } }
+@keyframes drumKa { 0% { transform: translateY(-6px); filter: brightness(1.15) drop-shadow(0 0 18px rgba(255,220,120,0.9)); } 100% { transform: none; } }
+.ico-swipe-v { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }

@@ -96,8 +96,10 @@ const SE = {
     },
     select() { if (this.enabled) this.tone(880, 0.06, "square", 0.05); },
     confirm() { if (this.enabled) { this.tone(660, 0.07, "square", 0.06); this.tone(990, 0.12, "square", 0.06, 0.07); } },
-    don() { this.tone(95, 0.28, "sine", 0.6, 0, -50); this.noise(0.05, 0.25, 400); },
-    ka() { this.noise(0.06, 0.35, 2500); this.tone(1800, 0.04, "triangle", 0.08); },
+    // 太鼓はゲーム本体と同じ音源（audio/don.mp3, ka.mp3）。鳴らせない時は合成音
+    clip(name) { try { const a = new Audio(`audio/${name}.mp3`); a.volume = 0.9; const pr = a.play(); if (pr && pr.catch) pr.catch(() => {}); return true; } catch (e) { return false; } },
+    don() { if (!this.clip("don")) { this.tone(95, 0.28, "sine", 0.6, 0, -50); this.noise(0.05, 0.25, 400); } },
+    ka() { if (!this.clip("ka")) { this.noise(0.06, 0.35, 2500); this.tone(1800, 0.04, "triangle", 0.08); } },
     chain() { [523, 659, 784].forEach((f, i) => this.tone(f, 0.1, "square", 0.07, i * 0.07)); this.noise(0.08, 0.25, 800); },
     item() { if (this.enabled) [523, 659, 784, 1047].forEach((f, i) => this.tone(f, 0.16, "triangle", 0.09, i * 0.09)); },
     namahage() { if (this.enabled) { this.tone(60, 0.5, "sawtooth", 0.25, 0, -30); this.noise(0.3, 0.3, 200); } },
@@ -434,7 +436,8 @@ function setupTaiko() {
         if (combo % 10 === 0) { SE.chain(); document.body.classList.remove("is-quake"); void document.body.offsetWidth; document.body.classList.add("is-quake"); burstSparkles(drum, 14); }
     };
     drum.addEventListener("pointerdown", (e) => { startX = e.clientX; startY = e.clientY; moved = false; drum.setPointerCapture(e.pointerId); });
-    drum.addEventListener("pointermove", (e) => { if (Math.abs(e.clientX - startX) > 28 && Math.abs(e.clientX - startX) > Math.abs(e.clientY - startY)) moved = true; });
+    // ゲーム本体と同じ: 指が画面高さの 2.5% 以上動けばカッ（縦になぞる）、動かなければドン
+    drum.addEventListener("pointermove", (e) => { if (Math.hypot(e.clientX - startX, e.clientY - startY) > window.innerHeight * 0.025) moved = true; });
     drum.addEventListener("pointerup", (e) => { hit(moved ? "ka" : "don", e.clientX, e.clientY); });
     drum.addEventListener("keydown", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); const r = drum.getBoundingClientRect(); hit(e.key === "Enter" ? "ka" : "don", r.left + r.width / 2, r.top); } });
 }
