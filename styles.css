@@ -1037,3 +1037,42 @@ body::before {
     opacity: 0.14;
 }
 @media (max-width: 600px) { body::before { background-size: auto, auto, 640px 640px; } }
+
+/* ===================== キタズナーズ（スクロール連動のカード） ===================== */
+.kz-track { height: calc(11 * 60vh + 100vh); margin: 0 -16px 1.5rem; position: relative; }
+.kz-stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4.2rem 16px 2rem; overflow: hidden; }
+.kz-kicker { font-family: var(--font-dot); letter-spacing: 0.4em; color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.6rem; }
+.kz-cards { position: relative; width: min(340px, 100%); flex: 1; max-height: 560px; }
+.kz-card {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center;
+    border-radius: 18px; border: 3px solid var(--gold); padding: 1rem 1rem 1.1rem; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 35%, rgba(255, 207, 74, 0.28), rgba(40, 30, 14, 0.96) 70%);
+    box-shadow: var(--shadow), 0 0 30px rgba(255, 207, 74, 0.25); opacity: 0; transform: scale(0.6); pointer-events: none; visibility: hidden;
+}
+.kz-card.is-active { opacity: 1; transform: none; visibility: visible; }
+.kz-card.is-burst { animation: kzBurst 0.55s cubic-bezier(.2,1.5,.3,1) both; }
+@keyframes kzBurst {
+    0% { opacity: 0; transform: scale(1.8) rotate(var(--spin, 10deg)); filter: brightness(3); }
+    35% { opacity: 1; transform: scale(0.92) rotate(calc(var(--spin, 10deg) * -0.4)); filter: brightness(1.6); }
+    55% { transform: scale(1.06) rotate(calc(var(--spin, 10deg) * 0.15)); }
+    75% { transform: scale(0.98); }
+    100% { transform: none; filter: none; }
+}
+.kz-card::before { content: ""; position: absolute; inset: -60%; background: conic-gradient(from 0deg, transparent 0 20deg, rgba(255, 240, 180, 0.12) 20deg 40deg, transparent 40deg 60deg, rgba(255, 240, 180, 0.12) 60deg 80deg, transparent 80deg 100deg, rgba(255, 240, 180, 0.12) 100deg 120deg, transparent 120deg 140deg, rgba(255, 240, 180, 0.12) 140deg 160deg, transparent 160deg 180deg, rgba(255, 240, 180, 0.12) 180deg 200deg, transparent 200deg 220deg, rgba(255, 240, 180, 0.12) 220deg 240deg, transparent 240deg 260deg, rgba(255, 240, 180, 0.12) 260deg 280deg, transparent 280deg 300deg, rgba(255, 240, 180, 0.12) 300deg 320deg, transparent 320deg 340deg, rgba(255, 240, 180, 0.12) 340deg 360deg); animation: kzRays 14s linear infinite; }
+@keyframes kzRays { to { transform: rotate(360deg); } }
+.kz-stand { position: relative; width: auto; height: 68%; max-width: 100%; object-fit: contain; filter: drop-shadow(0 14px 18px rgba(0,0,0,0.6)); margin-bottom: 0.4rem; }
+.kz-card.is-active .kz-stand { animation: spriteBob 1.8s ease-in-out infinite alternate; }
+.kz-no { position: absolute; top: 0.7rem; left: 0.9rem; font-family: var(--font-dot); letter-spacing: 0.2em; color: var(--gold); font-size: 0.9rem; }
+.kz-place { position: absolute; top: 0.6rem; right: 0.9rem; font-family: var(--font-dot); letter-spacing: 0.1em; color: var(--ink); background: var(--gold); border-radius: 999px; padding: 0.05rem 0.6rem; font-size: 0.85rem; }
+.kz-name { position: relative; font-family: var(--font-head); font-weight: 400; font-size: 2rem; letter-spacing: 0.15em; color: #fff; text-shadow: 3px 3px 0 var(--ink), 0 0 18px rgba(255, 207, 74, 0.6); line-height: 1.2; }
+.kz-role { position: relative; color: var(--gold); font-size: 1rem; max-width: 100%; }
+.kz-credit { background: radial-gradient(ellipse at 50% 30%, rgba(95, 242, 255, 0.22), rgba(40, 30, 14, 0.96) 70%); border-color: var(--cyan); }
+.kz-all { position: relative; width: 100%; height: 38%; object-fit: cover; object-position: center; border-radius: 10px; border: 2px solid var(--gold-2); }
+.kz-artist { position: relative; width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); margin: 0.8rem auto 0.4rem; box-shadow: 0 0 24px rgba(255, 207, 74, 0.5); }
+.kz-hint { margin-top: 0.6rem; font-family: var(--font-dot); letter-spacing: 0.15em; color: var(--muted); font-size: 0.9rem; }
+.kz-hint .ico { color: var(--cyan); }
+@media (min-width: 720px) { .kz-track { margin: 0 0 1.5rem; } .kz-cards { width: 420px; max-height: 640px; } .kz-name { font-size: 2.4rem; } }
+@media (prefers-reduced-motion: reduce) { .kz-card.is-burst { animation: none; } .kz-card::before { animation: none; } }
+.kz-credit { justify-content: center; }
+.kz-all { height: auto; flex: 0 1 46%; min-height: 0; object-fit: contain; background: #fff; margin-top: 1.6rem; }
+.kz-credit .kz-name { margin-top: 0.6rem; }

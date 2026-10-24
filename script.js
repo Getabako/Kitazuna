@@ -447,6 +447,56 @@ function prevCharacter() { currentCharacterIndex = (currentCharacterIndex - 1 + 
 function goToCharacter(i) { currentCharacterIndex = i; renderCharacterCard(); }
 
 // ---------------------------------------------------------------------
+// キタズナーズ: スクロール連動のカード（緒方孝治氏デザインの 10 体 ＋ 絵師のクレジット）
+// ---------------------------------------------------------------------
+const KITAZUNAS = [
+    { key: "nagisa", name: "ナギサ", role: "女のナマハゲ", place: "男鹿" }, { key: "komachi", name: "コマチ", role: "平安のインフルエンサー", place: "湯沢" },
+    { key: "inaniwa", name: "イナニワ", role: "稲庭うどんの職人", place: "湯沢" }, { key: "kanto", name: "カント", role: "革新の竿燈士", place: "秋田" },
+    { key: "tatsuko", name: "タツコ", role: "田沢湖の龍神", place: "三湖" }, { key: "hachiro", name: "ハチロウ", role: "八郎潟の守護者", place: "三湖" },
+    { key: "akita", name: "アキタ", role: "AI 秋田犬", place: "大館" }, { key: "tanpo", name: "タンポ", role: "きりたんぽの化身", place: "鹿角" },
+    { key: "torio", name: "トリオ", role: "比内地鶏のギャング", place: "鹿角" }, { key: "suginoo", name: "スギノオウ", role: "老木の精霊", place: "太平山" },
+];
+function setupKitazunas() {
+    const track = document.getElementById("kz-track"); const wrap = document.getElementById("kz-cards"); if (!track || !wrap) return;
+    const cards = KITAZUNAS.map((k, i) => `
+        <div class="kz-card" data-i="${i}">
+            <img class="kz-stand" src="images/stand/${k.key}.png" alt="${k.name}" loading="lazy">
+            <span class="kz-no">${String(i + 1).padStart(2, "0")} / 10</span>
+            <span class="kz-place">${k.place}</span>
+            <h3 class="kz-name">${k.name}</h3>
+            <p class="kz-role one">${k.role}</p>
+        </div>`).join("");
+    const credit = `
+        <div class="kz-card kz-credit" data-i="${KITAZUNAS.length}">
+            <img class="kz-all" src="images/kitazunasozai/character/all/allstand.jpg" alt="秋田の守り神たち" loading="lazy">
+            <img class="kz-artist" src="images/site/ogata.jpg" alt="" onerror="this.remove()">
+            <span class="kz-no">CHARACTER DESIGN</span>
+            <h3 class="kz-name">緒方孝治</h3>
+            <p class="kz-role one">秋田の守り神たちの絵</p>
+        </div>`;
+    wrap.innerHTML = cards + credit;
+    const els = Array.from(wrap.children); const total = els.length;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let current = -1;
+    const show = (i) => {
+        if (i === current) return; current = i;
+        els.forEach((el, k) => { el.classList.toggle("is-active", k === i); el.classList.toggle("is-past", k < i); });
+        const el = els[i]; if (!el) return;
+        if (!reduce) { el.classList.remove("is-burst"); void el.offsetWidth; el.classList.add("is-burst"); el.style.setProperty("--spin", (Math.random() * 30 - 15).toFixed(1) + "deg"); }
+        if (i === total - 1) { if (SE.enabled) SE.item(); } else SE.select();
+    };
+    const onScroll = () => {
+        const r = track.getBoundingClientRect(); const vh = window.innerHeight;
+        const scrollable = r.height - vh; if (scrollable <= 0) { show(0); return; }
+        const p = Math.min(1, Math.max(0, -r.top / scrollable));
+        show(Math.min(total - 1, Math.floor(p * total)));
+    };
+    let ticking = false;
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+    onScroll();
+}
+
+// ---------------------------------------------------------------------
 // 太鼓の試し打ち: タップで「ドン」、横になぞって「カッ」。連鎖の節目で派手に
 // ---------------------------------------------------------------------
 function setupTaiko() {
@@ -545,6 +595,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMessageWindow();
     renderMapPins();
     renderStoryPage();
+    setupKitazunas();
     renderPartyRoster();
     renderCharacterCard();
     setupTaiko();

@@ -152,6 +152,15 @@
         <section id="character-section" class="screen party-screen">
             <h2 class="screen-title reveal"><span>仲間</span><small>PARTY</small></h2>
 
+            <!-- キタズナーズ: スクロールに合わせて 10 体のカードが荒ぶって登場し、その場で切り替わる。最後に絵師のクレジット -->
+            <div class="kz-track" id="kz-track">
+                <div class="kz-stage" id="kz-stage">
+                    <p class="kz-kicker">KITAZUNAS</p>
+                    <div class="kz-cards" id="kz-cards"></div>
+                    <p class="kz-hint"><i class="ico ico-swipe-v"></i>スクロールで次へ</p>
+                </div>
+            </div>
+
             <div class="party-roster reveal" id="party-roster" role="list">
                 <!-- 顔アイコンは JavaScript で生成 -->
             </div>
