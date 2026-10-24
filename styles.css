@@ -633,3 +633,201 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-even
     box-shadow: var(--shadow), 0 0 22px rgba(95, 242, 255, 0.25);
 }
 .cinema-bg { inset: -22% 0; height: 144%; }
+
+/* =====================================================================
+   2026-10-24 v3 「一行・アイコン・文字は最小限」（スマホ 390px 基準）
+   - 各項目はスマホで一行に収める（.one = nowrap + ellipsis）
+   - 説明文は details（▶ あらすじ／くわしく）に畳み、見えるのは絵と短い語だけ
+   - 操作はアイコンで示す（触れる・なぞる・叩く・読む・鍵）
+   ===================================================================== */
+.one { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+/* 追加アイコン（SVG マスク） */
+.ico-se-on { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9H4z'/%3E%3Cpath d='M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-se-off { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9H4z'/%3E%3Cpath d='M16 9l5 6M21 9l-5 6' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-flag { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 3v18' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M6 4h12l-3 4 3 4H6z'/%3E%3C/svg%3E"); }
+.ico-calendar { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='5' width='18' height='16' rx='2' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-play { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4l13 8-13 8z'/%3E%3C/svg%3E"); }
+.ico-book { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.ico-note { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 20V4h4l1 3h7v13z' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M9 11h6M9 15h6' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-lock { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='10' width='14' height='11' rx='2'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"); }
+.ico-lantern { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 3h6M9 21h6' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M12 5c4 0 6 3 6 7s-2 7-6 7-6-3-6-7 2-7 6-7z'/%3E%3C/svg%3E"); }
+.ico-drum { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='8' rx='8' ry='3.5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M4 8v8c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V8' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M12 11.5v8' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"); }
+.ico-manga { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M3 12h18M12 3v9M8 12v9' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"); }
+.ico-brush { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4l-9 9' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M11 13c-3 0-4 2-4 4s-2 3-4 3c3 1 7 0 8-3 .5-1.5 0-4 0-4z'/%3E%3C/svg%3E"); }
+.ico-yen { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4l5 7 5-7M12 11v9M8 14h8M8 17h8' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-kindle { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='2' width='14' height='20' rx='2' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M8 7h8M8 10h8M8 13h5' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-cart { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 4h3l2 11h10l2-7H7' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='19' r='1.6'/%3E%3Ccircle cx='17' cy='19' r='1.6'/%3E%3C/svg%3E"); }
+.ico-youtube { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='5' width='20' height='14' rx='4'/%3E%3Cpath d='M10 9v6l5-3z' fill='%23fff'/%3E%3C/svg%3E"); }
+.ico-x { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 3h4l12 18h-4zM20 3l-6.5 7.5M4 21l6.5-7.5' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-instagram { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='18' height='18' rx='5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='17.3' cy='6.7' r='1.3'/%3E%3C/svg%3E"); }
+
+/* ---------- HUD: 効果音はスピーカーのアイコン ---------- */
+.hud-se { width: 40px; height: 34px; display: flex; align-items: center; justify-content: center; padding: 0; }
+.hud-se .ico { margin: 0; width: 1.25rem; height: 1.25rem; }
+
+/* ---------- タイトル ---------- */
+.title-screen { padding-bottom: 3.2rem; }
+.title-logo { margin-bottom: 0.5rem; }
+.title-tagline { font-size: 1.1rem; margin-bottom: 0.6rem; max-width: 100%; }
+.title-badges { flex-wrap: nowrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+.title-badges li { font-size: 0.9rem; padding: 0.25rem 0.75rem; white-space: nowrap; }
+.title-badges .ico { margin-right: 0.3em; }
+
+.quest-bar { position: relative; z-index: 3; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 1rem; font-family: var(--font-dot); letter-spacing: 0.06em; width: min(620px, 100%); }
+.quest-bar > span { display: inline-flex; align-items: center; white-space: nowrap; border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.95rem; }
+.quest-bar .ico { margin-right: 0.3em; }
+.quest-chip { flex: 1; justify-content: center; }
+.quest-date { background: var(--glass); border: 1px solid var(--glass-border); color: var(--washi); }
+.quest-bar .quest-count { padding: 0.3rem 0.8rem; }
+
+.title-menu { gap: 0.55rem; margin-bottom: 1rem; }
+.menu-item { padding: 0.55rem 0.8rem 0.55rem 2.1rem; gap: 0.7rem; }
+.menu-shot { width: 44px; height: 44px; object-fit: contain; image-rendering: pixelated; border-radius: 10px; background: var(--night-3); padding: 3px; }
+.menu-shot-book { object-fit: cover; image-rendering: auto; padding: 0; }
+.menu-title { flex: 1; font-size: 1.45rem; letter-spacing: 0.12em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.menu-chip { font-family: var(--font-dot); font-size: 0.85rem; letter-spacing: 0.08em; color: var(--gold); border: 1px solid rgba(255, 207, 74, 0.5); border-radius: 999px; padding: 0.15rem 0.6rem; white-space: nowrap; display: inline-flex; align-items: center; }
+.menu-chip .ico { margin-right: 0.3em; }
+
+.tab-bar { position: relative; z-index: 3; width: min(620px, 100%); display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; margin-bottom: 1rem; }
+.tab-bar button { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; padding: 0.45rem 0.2rem 0.35rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--washi); font-family: var(--font-dot); font-size: 0.85rem; letter-spacing: 0.05em; }
+.tab-bar button:hover, .tab-bar button:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+.tab-bar img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
+.tab-bar img.is-photo { object-fit: cover; image-rendering: auto; border-radius: 4px; }
+.tab-bar span { white-space: nowrap; }
+.press-start { font-size: 1.3rem; }
+
+/* ---------- 物語 ---------- */
+.msg-window { padding: 0.9rem 0.9rem 1.2rem; gap: 0.8rem; }
+.msg-face { width: 64px; height: 64px; }
+.msg-text { min-height: 3.6em; font-size: 1rem; line-height: 1.8; }
+.legend { list-style: none; display: flex; gap: 0.9rem; justify-content: center; font-family: var(--font-dot); font-size: 0.9rem; letter-spacing: 0.08em; color: var(--muted); white-space: nowrap; }
+.legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend .map-pin-dot { width: 14px; height: 14px; }
+.legend .map-pin-dot.is-open { background: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 10px var(--gold); }
+.legend .map-pin-dot.is-soon { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+@media (min-width: 720px) { .legend { flex-direction: column; align-items: flex-start; gap: 0.5rem; } }
+
+.chapter-window { padding: 0; overflow: hidden; min-height: 0; }
+.chapter-visual { position: relative; }
+.chapter-image { border: 0; border-radius: 0; aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+.chapter-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,34,0.1), rgba(10,14,34,0.05) 50%, rgba(10,14,34,0.95)); }
+.chapter-head { position: absolute; top: 0.7rem; left: 0.8rem; right: 0.8rem; z-index: 1; display: flex; justify-content: space-between; align-items: center; margin: 0; }
+.chapter-number { background: rgba(10,14,34,0.75); border-radius: 999px; padding: 0.1rem 0.7rem; font-size: 0.9rem; }
+.chapter-status { background: rgba(10,14,34,0.75); display: inline-flex; align-items: center; gap: 0.3rem; }
+.chapter-status .ico { margin: 0; }
+.chapter-sprites { position: absolute; left: 0.6rem; bottom: 0.4rem; z-index: 1; margin: 0; }
+.chapter-sprites img { width: 56px; height: 56px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6)); }
+.chapter-title { position: absolute; left: 0.8rem; right: 0.8rem; bottom: 0.7rem; z-index: 1; margin: 0; font-size: 1.3rem; text-align: right; }
+.chapter-body { padding: 0.7rem 1rem 1rem; }
+.chapter-body details.more { margin: 0; }
+.chapter-body details.more > p { margin-top: 0.7rem; }
+.chapter-tease { margin-top: 0.7rem; }
+.chapter-locked { margin-top: 0.6rem; }
+
+/* ---------- 仲間 ---------- */
+.party-roster { grid-template-columns: repeat(5, 1fr); gap: 0.45rem; }
+.party-slot { padding: 3px; }
+.status-window { padding: 0; }
+.status-hero { margin: 0; }
+.status-hero img { max-height: 260px; }
+.status-hero img.is-pixel { max-height: 220px; }
+.status-body { padding: 0.8rem 1rem 1rem; }
+.status-head { flex-wrap: nowrap; align-items: center; gap: 0.6rem; }
+.status-name { font-size: 1.6rem; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.status-badge { flex: none; }
+.status-role { margin: 0.2rem 0 0.4rem; font-size: 0.98rem; }
+.status-faces { margin-top: 0.7rem; }
+.status-faces h4 { display: none; }
+.face-row { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.face-row::-webkit-scrollbar { display: none; }
+.face-row img { width: 56px; height: 56px; flex: none; }
+.status-body details.more { margin: 0.3rem 0 0; }
+.status-body details.more > p { margin-top: 0.6rem; }
+
+/* ---------- 遊び方 ---------- */
+.cinema { min-height: 200px; }
+.cinema-text { padding: 1rem 1.1rem; max-width: 100%; }
+.cinema-text h3 { font-size: clamp(1.35rem, 5.4vw, 2.1rem); }
+.cinema-text p .ico { color: var(--gold); }
+.route-stop small .ico { color: var(--muted); margin: 0; width: 1em; height: 1em; vertical-align: -0.15em; }
+.route-stop.is-open small { color: var(--cyan); }
+.howto { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 0 0 1.2rem; }
+.howto li { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.8rem 0.3rem 0.6rem; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-border); text-align: center; white-space: nowrap; }
+.howto .ico { width: 2rem; height: 2rem; margin: 0 0 0.3rem; color: var(--cyan); }
+.howto b { font-family: var(--font-head); font-weight: 400; font-size: 1.1rem; letter-spacing: 0.1em; color: #fff; }
+.howto small { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
+.taiko-stage { margin-top: 1rem; }
+.taiko-label { display: inline-flex; align-items: center; }
+.taiko-help { gap: 1.4rem; margin-top: 0.8rem; }
+.taiko-help span { display: inline-flex; align-items: center; font-family: var(--font-dot); font-size: 1.05rem; letter-spacing: 0.12em; color: var(--washi); }
+.taiko-help .ico { color: var(--cyan); width: 1.4rem; height: 1.4rem; }
+.bento { grid-auto-rows: 130px; }
+.bento-cap { display: block; padding: 0.6rem 0.75rem; font-family: var(--font-head); font-size: 1rem; letter-spacing: 0.06em; text-shadow: 0 1px 0 var(--ink); }
+.bento-cap .ico { color: var(--cyan); }
+.sub-note { font-family: var(--font-dot); letter-spacing: 0.2em; }
+.sub-note .ico { vertical-align: -0.2em; }
+.big-btn .ico { margin-right: 0.4em; vertical-align: -0.18em; }
+.big-btn { padding: 0.9rem 1.8rem; }
+
+/* ---------- 本 ---------- */
+.item-get-text { font-size: 1.05rem; max-width: 100%; }
+.book-chips { flex-wrap: nowrap; }
+.chip { display: inline-flex; align-items: center; white-space: nowrap; font-size: 0.88rem; }
+.chip .ico { margin-right: 0.3em; }
+.layer b { white-space: nowrap; }
+.layer small { white-space: nowrap; }
+.book-subtitle { font-size: 0.95rem; margin: 0.6rem 0 0; }
+
+/* ---------- 掲示板 ---------- */
+.poster { padding: 1.1rem 0.7rem 0.8rem; }
+.poster-label { display: inline-flex; align-items: center; }
+.poster-label .ico { margin-right: 0.3em; width: 1em; height: 1em; }
+.poster-title { max-width: 100%; }
+
+/* ---------- 作者 ---------- */
+.vision-title { font-size: 1.35rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0.5rem; }
+.vision-quote { font-size: 1rem; line-height: 1.8; }
+.team-grid { grid-template-columns: repeat(5, 1fr); gap: 0.4rem; margin-top: 1.4rem; }
+.team-card { padding: 0.6rem 0.2rem 0.5rem; gap: 0.25rem; border-radius: 12px; }
+.team-icon { width: 48px; height: 48px; }
+.team-card h5 { font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.team-card p { font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.press-line { margin-top: 1.2rem; max-width: 100%; }
+
+/* ---------- セーブ画面 ---------- */
+.save-q { font-size: 1.15rem; }
+.save-yes, .save-alt { display: flex; align-items: center; }
+.save-yes .ico, .save-alt .ico { margin-left: auto; width: 1.2em; height: 1.2em; }
+.save-sns { justify-content: center; gap: 0.7rem; margin-top: 1rem; }
+.save-sns a { border: 2px solid var(--glass-border); border-radius: 12px; width: 52px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--glass); color: var(--washi); }
+.save-sns a:hover { border-color: var(--gold); color: var(--gold); }
+.save-sns .ico { margin: 0; width: 1.4rem; height: 1.4rem; }
+.footer-nav { flex-wrap: nowrap; gap: 0.9rem; font-size: 0.98rem; }
+.credits p { display: flex; justify-content: center; gap: 0.8rem; }
+.credits p span { color: var(--muted); font-family: var(--font-dot); letter-spacing: 0.08em; }
+.credits p span:empty { display: none; }
+.credits p.credits-title, .credits p.credits-thanks, .credits p.copyright { display: block; }
+.copyright { font-size: 0.8rem; }
+
+/* ---------- 隠し ---------- */
+.namahage-pop p { font-size: 1.1rem; white-space: nowrap; }
+
+@media (max-width: 420px) {
+    .menu-title { font-size: 1.3rem; }
+    .menu-shot { width: 40px; height: 40px; }
+    .quest-bar > span { font-size: 0.88rem; padding: 0.28rem 0.65rem; }
+    .msg-face { width: 56px; height: 56px; }
+    .team-card h5 { font-size: 0.78rem; }
+}
+@media (min-width: 720px) {
+    .party-roster { grid-template-columns: repeat(8, 1fr); }
+    .team-grid { grid-template-columns: repeat(5, 1fr); max-width: 640px; }
+    .bento { grid-auto-rows: 190px; }
+    .howto { max-width: 560px; margin-left: auto; margin-right: auto; }
+}
+
+/* 作者: 立ち絵のはみ出しで横スクロールが出ないように */
+.scroll-screen { overflow: hidden; }
+.team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.team-card, .howto li, .tab-bar button, .party-slot { min-width: 0; }

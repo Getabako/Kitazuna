@@ -26,18 +26,18 @@
             <p class="boot-title">秋田の豆知識</p>
             <p class="boot-trivia" id="boot-trivia"></p>
             <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar-fill"></div></div>
-            <p class="boot-hint">よみこみ中… <span class="boot-skip">（タップでスキップ）</span></p>
+            <p class="boot-hint">NOW LOADING <span class="boot-skip">TAP TO SKIP</span></p>
         </div>
     </div>
 
-    <!-- 画面上部の HUD: 魂の提灯ゲージ（スクロール進行）と効果音の切替 -->
+    <!-- HUD: 魂の提灯ゲージ（スクロール進行）と効果音の切替 -->
     <header class="hud" id="hud">
         <div class="hud-lantern" aria-hidden="true"><span class="hud-flame"></span></div>
         <div class="hud-gauge" aria-label="ページの進み">
             <div class="hud-gauge-fill" id="hud-gauge-fill"></div>
             <span class="hud-gauge-label" id="hud-gauge-label">タイトル</span>
         </div>
-        <button class="hud-se" id="se-toggle" type="button" aria-pressed="false" title="効果音の切替">SE OFF</button>
+        <button class="hud-se" id="se-toggle" type="button" aria-pressed="false" aria-label="効果音の切替"><i class="ico ico-se-off"></i></button>
     </header>
 
     <main>
@@ -60,57 +60,53 @@
 
             <img src="images/kitazunalogo.png" alt="Kitazuna 未来杉の守護者" class="title-logo" id="title-logo">
 
-            <p class="title-tagline">秋田の守り神たちと、太鼓で祭に入るRPG。</p>
+            <p class="title-tagline one">太鼓で祭に入る、秋田のRPG</p>
             <ul class="title-badges" aria-label="特徴">
-                <li><i class="ico ico-phone"></i>スマホで開くだけ</li>
+                <li><i class="ico ico-phone"></i>スマホ</li>
                 <li><i class="ico ico-free"></i>無料</li>
-                <li><i class="ico ico-noinstall"></i>インストール不要</li>
+                <li><i class="ico ico-noinstall"></i>DL不要</li>
             </ul>
 
-            <div class="quest-panel" id="quest-panel">
-                <span class="quest-chip" id="release-badge">第1章 男鹿編　2026年11月11日（きりたんぽの日）公開</span>
-                <span class="quest-count" id="countdown">公開まで あと -- 日</span>
+            <!-- クエスト: 一行の帯（章・公開日・残り日数） -->
+            <div class="quest-bar" id="quest-panel">
+                <span class="quest-chip" id="release-badge"><i class="ico ico-flag"></i>第1章 男鹿編</span>
+                <span class="quest-date" id="release-date"><i class="ico ico-calendar"></i>11.11</span>
+                <span class="quest-count" id="countdown">あと -- 日</span>
             </div>
 
-            <!-- タイトルメニュー（ゲーム本体の「はじめから／つづきから」と同じ並び） -->
+            <!-- タイトルメニュー: 一行ずつ -->
             <nav class="title-menu" id="title-menu" aria-label="メインメニュー">
                 <a class="menu-item is-primary" id="hero-game-banner" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)" data-se="confirm">
                     <span class="menu-cursor" aria-hidden="true"></span>
-                    <img class="menu-shot" src="images/screens/title.jpg" alt="">
-                    <span class="menu-body">
-                        <span class="menu-tag" id="game-banner-tag">開発版を先行体験（ブラウザ）</span>
-                        <span class="menu-title" id="game-banner-title">はじめる</span>
-                        <span class="menu-sub" id="game-banner-sub">いますぐブラウザで遊ぶ</span>
-                    </span>
+                    <img class="menu-shot" src="images/kitazunasozai/character/kenta/kentawalk/kentawalk1.png" alt="">
+                    <span class="menu-title" id="game-banner-title">はじめる</span>
+                    <span class="menu-chip" id="game-banner-tag"><i class="ico ico-play"></i>ブラウザ</span>
                 </a>
                 <a class="menu-item" id="hero-book-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" onclick="return openBook(event)" data-se="confirm">
                     <span class="menu-cursor" aria-hidden="true"></span>
                     <img class="menu-shot menu-shot-book" src="images/book_vol1.jpg" alt="">
-                    <span class="menu-body">
-                        <span class="menu-title">つづきを読む</span>
-                        <span class="menu-sub">公式ファンブック 500円・Kindle Unlimited</span>
-                    </span>
+                    <span class="menu-title">つづきを読む</span>
+                    <span class="menu-chip"><i class="ico ico-book"></i>500円</span>
                 </a>
                 <a class="menu-item" id="hero-note-link" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm">
                     <span class="menu-cursor" aria-hidden="true"></span>
-                    <img class="menu-shot menu-shot-icon" src="images/kitazunasozai/map/kamakura/kamakura1.png" alt="">
-                    <span class="menu-body">
-                        <span class="menu-title">おしらせ</span>
-                        <span class="menu-sub">最新情報は note で</span>
-                    </span>
+                    <img class="menu-shot" src="images/kitazunasozai/map/kamakura/kamakura1.png" alt="">
+                    <span class="menu-title">おしらせ</span>
+                    <span class="menu-chip"><i class="ico ico-note"></i>note</span>
                 </a>
             </nav>
 
-            <nav class="chapter-tabs" aria-label="ページ内の移動">
-                <button type="button" onclick="scrollToSection('story-section')" data-se="select">物語</button>
-                <button type="button" onclick="scrollToSection('character-section')" data-se="select">仲間</button>
-                <button type="button" onclick="scrollToSection('game-section')" data-se="select">遊び方</button>
-                <button type="button" onclick="scrollToSection('book-section')" data-se="select">本</button>
-                <button type="button" onclick="scrollToSection('author-section')" data-se="select">作者</button>
+            <!-- 画面内の移動: アイコンのタブ（ゲームの下メニュー） -->
+            <nav class="tab-bar" aria-label="ページ内の移動">
+                <button type="button" onclick="scrollToSection('story-section')" data-se="select"><img src="images/kitazunasozai/map/other/tourou.png" alt=""><span>物語</span></button>
+                <button type="button" onclick="scrollToSection('character-section')" data-se="select"><img src="images/kitazunasozai/character/nagisa/nagisaface/8.png" alt=""><span>仲間</span></button>
+                <button type="button" onclick="scrollToSection('game-section')" data-se="select"><img src="images/kitazunasozai/map/other/kantou.png" alt=""><span>遊び方</span></button>
+                <button type="button" onclick="scrollToSection('book-section')" data-se="select"><img src="images/book_vol1.jpg" alt="" class="is-photo"><span>本</span></button>
+                <button type="button" onclick="scrollToSection('author-section')" data-se="select"><img src="images/kitazunasozai/character/kenta/kentaface/1.png" alt=""><span>作者</span></button>
             </nav>
 
             <button class="press-start" type="button" onclick="scrollToSection('story-section')" aria-label="下へ進む">
-                <span class="blink">▼ 下へ進む</span>
+                <span class="blink">▼</span>
             </button>
         </section>
 
@@ -134,23 +130,26 @@
                     <div class="map-fog" aria-hidden="true"></div>
                     <!-- 章のピンは JavaScript で生成 -->
                 </div>
-                <p class="map-hint"><i class="ico ico-tap"></i>印に触れると章が開く。いまは男鹿だけ</p>
+                <ul class="legend" aria-label="印の意味">
+                    <li><span class="map-pin-dot is-open"></span>公開</li>
+                    <li><span class="map-pin-dot is-soon"></span>12月</li>
+                    <li><span class="map-pin-dot"></span>未開放</li>
+                </ul>
             </div>
 
             <div class="chapter-window reveal" id="chapter-window">
                 <!-- 章カードは JavaScript で生成 -->
             </div>
             <div class="chapter-nav">
-                <button class="pixel-btn" id="prev-btn" type="button" onclick="prevPage()" data-se="select">◀ 前の章</button>
+                <button class="pixel-btn" id="prev-btn" type="button" onclick="prevPage()" data-se="select" aria-label="前の章">◀</button>
                 <div class="chapter-dots" id="page-dots"></div>
-                <button class="pixel-btn" id="next-btn" type="button" onclick="nextPage()" data-se="select">次の章 ▶</button>
+                <button class="pixel-btn" id="next-btn" type="button" onclick="nextPage()" data-se="select" aria-label="次の章">▶</button>
             </div>
         </section>
 
         <!-- ===== 仲間: パーティ編成 ===== -->
         <section id="character-section" class="screen party-screen">
             <h2 class="screen-title reveal"><span>仲間</span><small>PARTY</small></h2>
-            <p class="screen-lead reveal"><i class="ico ico-tap"></i>顔に触れると、くわしく</p>
 
             <div class="party-roster reveal" id="party-roster" role="list">
                 <!-- 顔アイコンは JavaScript で生成 -->
@@ -160,13 +159,13 @@
                 <!-- ステータス窓は JavaScript で生成 -->
             </div>
             <div class="chapter-nav">
-                <button class="pixel-btn" type="button" onclick="prevCharacter()" data-se="select">◀</button>
+                <button class="pixel-btn" type="button" onclick="prevCharacter()" data-se="select" aria-label="前の仲間">◀</button>
                 <div class="chapter-dots" id="character-dots"></div>
-                <button class="pixel-btn" type="button" onclick="nextCharacter()" data-se="select">▶</button>
+                <button class="pixel-btn" type="button" onclick="nextCharacter()" data-se="select" aria-label="次の仲間">▶</button>
             </div>
         </section>
 
-        <!-- ===== 遊び方: 太鼓の試し打ち ＋ 実画面 ===== -->
+        <!-- ===== 遊び方: 順路 ＋ 太鼓の試し打ち ＋ 実画面 ===== -->
         <section id="game-section" class="screen play-screen">
             <h2 class="screen-title reveal"><span>遊び方</span><small>HOW TO PLAY</small></h2>
 
@@ -175,23 +174,30 @@
                 <div class="cinema-shade"></div>
                 <div class="cinema-text">
                     <span class="cinema-kicker">PROLOGUE</span>
-                    <h3>祖父の依頼で、秋田へ。</h3>
-                    <p>守り神と絆を結び、「魂の提灯」を集める旅。</p>
+                    <h3 class="one">祖父の依頼で、秋田へ。</h3>
+                    <p class="one"><i class="ico ico-lantern"></i>魂の提灯を集める旅</p>
                 </div>
             </div>
             <div class="route reveal" aria-label="旅の順路">
                 <span class="route-stop is-open"><img src="images/kitazunasozai/map/namahage_map/namahage1.png" alt=""><b>男鹿</b><small>11/11</small></span>
                 <span class="route-stop"><img src="images/kitazunasozai/map/inaniwaudon/inaniwaudon1.png" alt=""><b>湯沢</b><small>12/11</small></span>
-                <span class="route-stop"><img src="images/kitazunasozai/map/other/kantou.png" alt=""><b>秋田</b></span>
-                <span class="route-stop"><img src="images/kitazunasozai/map/tatsukozou/tatsukozou1.png" alt=""><b>三湖</b></span>
-                <span class="route-stop"><img src="images/kitazunasozai/map/akitainu/akitainu1.png" alt=""><b>大館</b></span>
-                <span class="route-stop"><img src="images/kitazunasozai/map/kiritanpo/kiritanpo1.png" alt=""><b>鹿角</b></span>
+                <span class="route-stop"><img src="images/kitazunasozai/map/other/kantou.png" alt=""><b>秋田</b><small><i class="ico ico-lock"></i></small></span>
+                <span class="route-stop"><img src="images/kitazunasozai/map/tatsukozou/tatsukozou1.png" alt=""><b>三湖</b><small><i class="ico ico-lock"></i></small></span>
+                <span class="route-stop"><img src="images/kitazunasozai/map/akitainu/akitainu1.png" alt=""><b>大館</b><small><i class="ico ico-lock"></i></small></span>
+                <span class="route-stop"><img src="images/kitazunasozai/map/kiritanpo/kiritanpo1.png" alt=""><b>鹿角</b><small><i class="ico ico-lock"></i></small></span>
             </div>
+
+            <!-- 操作: 絵で示す 3 つ -->
+            <ul class="howto reveal" aria-label="操作">
+                <li><i class="ico ico-tap"></i><b>触れる</b><small>健太が歩く</small></li>
+                <li><i class="ico ico-drum"></i><b>叩く</b><small>太鼓で祭</small></li>
+                <li><i class="ico ico-manga"></i><b>読む</b><small>動く漫画</small></li>
+            </ul>
 
             <!-- 太鼓の試し打ち -->
             <div class="taiko-stage reveal" id="taiko-stage">
                 <div class="taiko-hud">
-                    <span class="taiko-label">祠の試練・試し打ち</span>
+                    <span class="taiko-label one"><i class="ico ico-drum"></i>祠の試練</span>
                     <span class="taiko-combo" id="taiko-combo">0 連鎖</span>
                 </div>
                 <div class="taiko-drum" id="taiko-drum" role="button" tabindex="0" aria-label="太鼓を叩く。タップでドン、横になぞってカッ">
@@ -200,57 +206,56 @@
                     <div class="taiko-mitsudomoe" aria-hidden="true"></div>
                     <div class="taiko-judge" id="taiko-judge" aria-live="polite"></div>
                 </div>
-                <p class="taiko-help"><span class="taiko-key">タップ</span>ドン　<span class="taiko-key">横になぞる</span>カッ</p>
+                <p class="taiko-help"><span><i class="ico ico-tap"></i>ドン</span><span><i class="ico ico-swipe"></i>カッ</span></p>
             </div>
 
             <div class="bento reveal">
                 <a class="bento-tile bento-wide" href="#" onclick="return openGame(event)" data-se="confirm">
                     <img src="images/screens/play-6.jpg" alt="">
-                    <span class="bento-cap"><b>触れた場所へ、健太が歩く</b><small>スマホの縦画面・インストール不要</small></span>
+                    <span class="bento-cap one"><i class="ico ico-tap"></i>触れた場所へ、健太が歩く</span>
                 </a>
                 <div class="bento-tile">
                     <img src="images/story1.png" alt="">
-                    <span class="bento-cap"><b>動く漫画で始まる</b><small>本と同じコマが動く</small></span>
+                    <span class="bento-cap one"><i class="ico ico-manga"></i>動く漫画</span>
                 </div>
                 <div class="bento-tile bento-taiko">
                     <img src="images/screens/play-4.jpg" alt="">
-                    <span class="bento-cap"><b>太鼓で祭に入る</b><small>祠の試練</small></span>
+                    <span class="bento-cap one"><i class="ico ico-drum"></i>太鼓で祭</span>
                 </div>
                 <div class="bento-tile bento-tall">
                     <img src="images/site/allstand-wide.jpg" alt="" class="bento-cast">
-                    <span class="bento-cap"><b>二人の絵師</b><small>守り神は緒方孝治、杉野家は手塚屋</small></span>
+                    <span class="bento-cap one"><i class="ico ico-brush"></i>絵: 緒方孝治 ／ 手塚屋</span>
                 </div>
             </div>
 
             <!-- 実画面: スマホの枠の中で横に送る -->
             <div class="screens-block reveal">
-                <h3 class="sub-title">実際の画面</h3>
-                <p class="sub-note"><i class="ico ico-swipe"></i>横にスワイプ</p>
+                <p class="sub-note one"><i class="ico ico-swipe"></i>SCREENS</p>
                 <div class="phone-frame">
                     <div class="phone-notch" aria-hidden="true"></div>
                     <div class="phone-screen" id="phone-screen">
-                        <figure><img src="images/screens/title.jpg" alt="タイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+                        <figure><img src="images/screens/title.jpg" alt="タイトル画面" loading="lazy"><figcaption>タイトル</figcaption></figure>
                         <figure><img src="images/screens/play-1.jpg" alt="新幹線で秋田へ向かう健太" loading="lazy"><figcaption>新幹線で秋田へ</figcaption></figure>
-                        <figure><img src="images/screens/play-3.jpg" alt="祖父・雅弘の依頼" loading="lazy"><figcaption>祖父・雅弘の依頼</figcaption></figure>
-                        <figure><img src="images/screens/play-4.jpg" alt="真面目の国の子ども" loading="lazy"><figcaption>真面目の国の子ども</figcaption></figure>
+                        <figure><img src="images/screens/play-3.jpg" alt="祖父・雅弘の依頼" loading="lazy"><figcaption>祖父の依頼</figcaption></figure>
+                        <figure><img src="images/screens/play-4.jpg" alt="真面目の国の子ども" loading="lazy"><figcaption>真面目の国</figcaption></figure>
                         <figure><img src="images/screens/play-5.jpg" alt="真面目の国の大人" loading="lazy"><figcaption>真面目の国の大人</figcaption></figure>
-                        <figure><img src="images/screens/play-6.jpg" alt="秋田県のマップ" loading="lazy"><figcaption>秋田県のマップ。章ごとに土地がひらく</figcaption></figure>
+                        <figure><img src="images/screens/play-6.jpg" alt="秋田県のマップ" loading="lazy"><figcaption>秋田のマップ</figcaption></figure>
                     </div>
                     <div class="phone-dots" id="phone-dots" aria-hidden="true"></div>
                 </div>
                 <div class="center-row">
-                    <a class="big-btn big-btn-play" id="screens-play-link" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)" data-se="confirm">この画面を実際に触ってみる</a>
-                    <p class="sub-note" id="screens-play-note">開発版。正式公開は 2026年11月11日</p>
+                    <a class="big-btn big-btn-play one" id="screens-play-link" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)" data-se="confirm"><i class="ico ico-play"></i>ブラウザで遊ぶ</a>
+                    <p class="sub-note one" id="screens-play-note">開発版・11/11 正式公開</p>
                 </div>
             </div>
         </section>
 
         <!-- ===== 本: アイテム入手 ===== -->
         <section id="book-section" class="screen item-screen">
-            <h2 class="screen-title reveal"><span>公式ファンブック</span><small>ITEM</small></h2>
+            <h2 class="screen-title reveal"><span>ファンブック</span><small>ITEM</small></h2>
 
             <div class="item-get" id="item-get">
-                <p class="item-get-text" id="item-get-text">公式ファンブック 第1巻 男鹿編 を みつけた！</p>
+                <p class="item-get-text one" id="item-get-text">ファンブック1巻 を みつけた！</p>
                 <div class="item-sparkles" aria-hidden="true"></div>
             </div>
 
@@ -259,79 +264,76 @@
                     <img src="images/book_vol1.jpg" alt="Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編 表紙" class="book-cover" id="book-cover">
                 </div>
                 <div class="rpg-window book-text">
-                    <h3 class="book-title">Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編</h3>
-                    <p class="book-subtitle">ナギサとナマハゲが語る秋田の文化と、AIゲーム開発の手引き</p>
+                    <h3 class="book-title one">公式ファンブック 1 男鹿編</h3>
                     <div class="book-chips">
-                        <span class="chip chip-gold">Kindle　11月11日 発売</span>
-                        <span class="chip">500円</span>
-                        <span class="chip">Kindle Unlimited 対象</span>
+                        <span class="chip chip-gold"><i class="ico ico-calendar"></i>11.11</span>
+                        <span class="chip"><i class="ico ico-yen"></i>500円</span>
+                        <span class="chip"><i class="ico ico-kindle"></i>Unlimited</span>
                     </div>
                     <div class="layers" aria-label="各章の3層">
-                        <div class="layer"><img src="images/story2.png" alt=""><b>漫画</b><small>扉＋7コマ</small></div>
-                        <div class="layer"><img src="images/kitazunasozai/map/kiritanpo/kiritanpo1.png" alt="" class="is-pixel"><b>秋田の文化</b><small>キャラが語る</small></div>
-                        <div class="layer"><img src="images/kitazunasozai/character/akita/akitaface/31.png" alt="" class="is-pixel"><b>AIで作る手引き</b><small>制作の裏側</small></div>
+                        <div class="layer"><img src="images/story2.png" alt=""><b>漫画</b><small>7コマ</small></div>
+                        <div class="layer"><img src="images/kitazunasozai/map/kiritanpo/kiritanpo1.png" alt="" class="is-pixel"><b>文化</b><small>秋田の話</small></div>
+                        <div class="layer"><img src="images/kitazunasozai/character/akita/akitaface/31.png" alt="" class="is-pixel"><b>作り方</b><small>AIの裏側</small></div>
                     </div>
                     <details class="more">
-                        <summary>収録内容をみる</summary>
+                        <summary>収録内容</summary>
+                        <p class="book-subtitle">ナギサとナマハゲが語る秋田の文化と、AIゲーム開発の手引き</p>
                         <ul class="book-list">
                             <li>ストーリー編: 真面目の国に、影が目覚める／来たっすな、秋田／ナギサの幼い日、ナマハゲへの憧れ／祠の試練／ナマハゲとの対話</li>
                             <li>ゲーム作り編: AIとMCPで作る、秋田のゲーム／AIでキャラクターを作る（緒方さんの原案を、AIでどう動く姿にしたか）</li>
                             <li>第2巻は「湯沢編＋プログラミング編」。巻はゲームの章と一緒に進みます</li>
                         </ul>
                     </details>
-                    <a class="big-btn big-btn-book" id="book-amazon-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" data-se="confirm">Amazonで予約する</a>
+                    <a class="big-btn big-btn-book one" id="book-amazon-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" data-se="confirm"><i class="ico ico-cart"></i>Amazonで予約</a>
                 </div>
             </div>
         </section>
 
         <!-- ===== 最新情報: クエスト掲示板 ===== -->
         <section id="follow-section" class="screen board-screen">
-            <h2 class="screen-title reveal"><span>最新情報・制作の裏側</span><small>QUEST BOARD</small></h2>
-                        <div class="board-grid reveal">
+            <h2 class="screen-title reveal"><span>最新情報</span><small>QUEST BOARD</small></h2>
+            <div class="board-grid reveal">
                 <a class="poster poster-youtube" id="follow-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener" data-se="confirm">
                     <span class="poster-pin" aria-hidden="true"></span>
                     <img class="poster-art" src="images/kitazunasozai/map/hanabi/hanabi1.png" alt="">
-                    <span class="poster-label">YouTube</span>
-                    <span class="poster-title">ショート動画</span>
-                    <span class="poster-desc">毎晩更新</span>
+                    <span class="poster-label"><i class="ico ico-youtube"></i>YouTube</span>
+                    <span class="poster-title one">ショート動画</span>
                 </a>
                 <a class="poster poster-x" id="follow-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener" data-se="confirm">
                     <span class="poster-pin" aria-hidden="true"></span>
                     <img class="poster-art" src="images/kitazunasozai/map/other/kantou.png" alt="">
-                    <span class="poster-label">X</span>
-                    <span class="poster-title">@kitazunaakita</span>
-                    <span class="poster-desc">お知らせが一番早い</span>
+                    <span class="poster-label"><i class="ico ico-x"></i>X</span>
+                    <span class="poster-title one">おしらせ</span>
                 </a>
                 <a class="poster poster-note" id="follow-note" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm">
                     <span class="poster-pin" aria-hidden="true"></span>
                     <img class="poster-art" src="images/kitazunasozai/map/other/tourou.png" alt="">
-                    <span class="poster-label">note</span>
-                    <span class="poster-title">制作の裏側</span>
-                    <span class="poster-desc">AIでどう作っているか</span>
+                    <span class="poster-label"><i class="ico ico-note"></i>note</span>
+                    <span class="poster-title one">制作の裏側</span>
                 </a>
                 <a class="poster poster-instagram" id="follow-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener" data-se="confirm">
                     <span class="poster-pin" aria-hidden="true"></span>
                     <img class="poster-art" src="images/kitazunasozai/map/sakura/sakura1.png" alt="">
-                    <span class="poster-label">Instagram</span>
-                    <span class="poster-title">場面と絵</span>
-                    <span class="poster-desc">漫画の先出し</span>
+                    <span class="poster-label"><i class="ico ico-instagram"></i>Instagram</span>
+                    <span class="poster-title one">場面と絵</span>
                 </a>
             </div>
         </section>
 
         <!-- ===== 作者: 巻物 ===== -->
         <section id="author-section" class="screen scroll-screen">
-            <h2 class="screen-title reveal"><span>なぜ、これを作ったか</span><small>AUTHOR</small></h2>
+            <h2 class="screen-title reveal"><span>作者</span><small>AUTHOR</small></h2>
 
             <div class="author-stage reveal">
                 <img class="author-nagisa parallax" data-depth="0.1" src="images/site/nagisa-stand.png" alt="ナギサ。作者の自画像でもある">
                 <div class="makimono">
                     <div class="makimono-roll makimono-top" aria-hidden="true"></div>
                     <div class="makimono-paper">
-                        <h3 class="vision-title">秋田へのラブレターであり、<br>守護者としての僕の物語</h3>
-                        <p class="vision-quote">既存の枠から弾かれても、本物の自分の形を作って出す。<br>ナギサは女のナマハゲ。それがこの物語の核であり、僕自身の話でもあります。</p>
+                        <h3 class="vision-title">秋田へのラブレター</h3>
+                        <p class="vision-quote">ナギサは女のナマハゲ。僕自身の話でもあります。</p>
                         <details class="more more-paper">
                             <summary>つづきを読む</summary>
+                            <p>既存の枠から弾かれても、本物の自分の形を作って出す。それがこの物語の核です。</p>
                             <p>Kitazuna は、僕が作りたいから作っているゲームです。衰退に向かうと言われる秋田の象徴たちが束になって、未来を守る。それを形にしたかった。</p>
                             <p>最初に仲間になるナギサは、女のナマハゲです。本来、ナマハゲは男しかなれません。それでも諦めず、自分なりの正解、新しいナマハゲの形を作って世に出していく。</p>
                             <p>秋田の守り神たちは緒方孝治さんが、健太と杉野家の人々は手塚屋さんが描いてくださいました。残りのほとんどは、僕一人とAIで作っています。その作り方は、公式ファンブックにそのまま書いています。</p>
@@ -341,46 +343,46 @@
                 </div>
             </div>
 
-            <h4 class="sub-title reveal">つくっている人</h4>
             <div class="team-grid reveal" id="team-grid">
                 <!-- JavaScript で生成 -->
             </div>
 
-            <p class="press-line reveal"><i class="ico ico-press"></i>取材・掲載: ロゴ・画像・スクリーンショットは紹介目的で自由にどうぞ</p>
+            <p class="press-line one reveal"><i class="ico ico-press"></i>取材・画像利用は紹介目的で自由</p>
         </section>
 
         <!-- ===== フッター: セーブ画面 ===== -->
         <footer class="screen save-screen" id="footer">
             <div class="save-window reveal">
-                <p class="save-q">ここまでの冒険を きろくしますか？</p>
+                <p class="save-q one">冒険を きろくしますか？</p>
                 <div class="save-choices">
-                    <a class="save-yes" id="footer-note" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>はい（noteをフォロー）</a>
-                    <a class="save-alt" href="#" onclick="return openGame(event)" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>ゲームへ行く</a>
+                    <a class="save-yes one" id="footer-note" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>はい<i class="ico ico-note"></i></a>
+                    <a class="save-alt one" href="#" onclick="return openGame(event)" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>ゲームへ<i class="ico ico-play"></i></a>
                 </div>
                 <div class="save-sns">
-                    <a id="footer-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">YouTube</a>
-                    <a id="footer-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">X（@kitazunaakita）</a>
-                    <a id="footer-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">Instagram</a>
+                    <a id="footer-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener" aria-label="YouTube"><i class="ico ico-youtube"></i></a>
+                    <a id="footer-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener" aria-label="X"><i class="ico ico-x"></i></a>
+                    <a id="footer-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener" aria-label="Instagram"><i class="ico ico-instagram"></i></a>
+                    <a id="footer-note2" href="https://note.com/ifjuku" target="_blank" rel="noopener" aria-label="note"><i class="ico ico-note"></i></a>
                 </div>
             </div>
 
-            <nav class="footer-nav reveal" aria-label="サイト内">
-                <a href="#" onclick="return openGame(event)">ブラウザで遊ぶ</a>
+            <nav class="footer-nav one reveal" aria-label="サイト内">
                 <a href="#story-section">物語</a>
                 <a href="#character-section">仲間</a>
                 <a href="#game-section">遊び方</a>
-                <a href="#book-section">公式ファンブック</a>
-                <a href="#follow-section">最新情報</a>
+                <a href="#book-section">本</a>
+                <a href="#follow-section">情報</a>
                 <a href="#author-section">作者</a>
             </nav>
 
             <div class="credits reveal">
                 <p class="credits-title">STAFF</p>
-                <p>高崎翔太（企画・物語・開発）</p>
-                <p>キャラクターデザイン: 緒方孝治（秋田の守り神）／手塚屋（健太・杉野家）</p>
-                <p>秋田県</p>
+                <p class="one"><span>企画・物語・開発</span>高崎翔太</p>
+                <p class="one"><span>守り神デザイン</span>緒方孝治</p>
+                <p class="one"><span>健太・杉野家</span>手塚屋</p>
+                <p class="one"><span></span>秋田県</p>
                 <p class="credits-thanks" id="credits-thanks">THANK YOU FOR PLAYING</p>
-                <p class="copyright">&copy; 2026 Shota Takasaki / Kitazuna Project. All rights reserved.</p>
+                <p class="copyright one">&copy; 2026 Shota Takasaki / Kitazuna Project</p>
             </div>
         </footer>
 
@@ -392,7 +394,7 @@
         <!-- 隠し要素: ナマハゲが現れた！ -->
         <div class="namahage-pop" id="namahage-pop" aria-hidden="true">
             <img src="images/kitazunasozai/map/namahage_map/namahage1.png" alt="">
-            <p>ナマハゲが あらわれた！<br><small>泣く子はいねがー</small></p>
+            <p>ナマハゲが あらわれた！</p>
         </div>
 
         <button class="back-to-top" id="back-to-top" type="button" onclick="scrollToTop()" aria-label="タイトルへ戻る">▲<small>TITLE</small></button>

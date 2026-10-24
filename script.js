@@ -48,26 +48,21 @@ function applyLinksAndReleaseState() {
     const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
     ["hero-game-banner", "screens-play-link"].forEach(id => setHref(id, GAME_URL));
     ["hero-book-link", "book-amazon-link"].forEach(id => setHref(id, BOOK_URL));
-    ["hero-note-link", "follow-note", "footer-note"].forEach(id => setHref(id, NOTE_URL));
+    ["hero-note-link", "follow-note", "footer-note", "footer-note2"].forEach(id => setHref(id, NOTE_URL));
     setHref("follow-youtube", L.YOUTUBE_URL); setHref("footer-youtube", L.YOUTUBE_URL);
     setHref("follow-x", L.X_URL); setHref("footer-x", L.X_URL);
     setHref("follow-instagram", L.INSTAGRAM_URL); setHref("footer-instagram", L.INSTAGRAM_URL);
 
+    const releaseDate = document.getElementById("release-date");
+    const countdown = document.getElementById("countdown");
     if (isGameReleased()) {
-        setText("release-badge", "第1章 男鹿編　公開中（ブラウザで遊べます）");
-        setText("countdown", "第1章 公開中");
-        setText("game-banner-tag", "第1章 男鹿編・公開中");
-        setText("game-banner-title", "はじめる");
-        setText("game-banner-sub", "いますぐブラウザで遊ぶ。スマホの縦画面で開くだけ");
-        setText("screens-play-link", "ブラウザで遊ぶ");
-        setText("screens-play-note", "第1章 男鹿編を公開中。スマホの縦画面で開いてください。");
+        if (countdown) countdown.textContent = "公開中";
+        if (releaseDate) releaseDate.innerHTML = '<i class="ico ico-play"></i>公開中';
+        const tag = document.getElementById("game-banner-tag"); if (tag) tag.innerHTML = '<i class="ico ico-play"></i>公開中';
+        setText("screens-play-note", "第1章 男鹿編 公開中");
     } else {
         const d = daysUntilRelease();
-        setText("release-badge", "第1章 男鹿編　2026年11月11日（きりたんぽの日）公開");
-        setText("countdown", d === 0 ? "本日 公開" : `公開まで あと ${d} 日`);
-        setText("game-banner-tag", "開発版を先行体験（ブラウザ）");
-        setText("game-banner-title", "はじめる");
-        setText("game-banner-sub", "いますぐブラウザで遊ぶ。スマホの縦画面で開くだけ");
+        if (countdown) countdown.textContent = d === 0 ? "本日 公開" : `あと ${d} 日`;
     }
 }
 
@@ -110,7 +105,7 @@ const SE = {
 function setupSeToggle() {
     const btn = document.getElementById("se-toggle"); if (!btn) return;
     try { SE.enabled = localStorage.getItem("kitazuna.se") === "on"; } catch (e) { /* 無視 */ }
-    const paint = () => { btn.textContent = SE.enabled ? "SE ON" : "SE OFF"; btn.setAttribute("aria-pressed", String(SE.enabled)); };
+    const paint = () => { btn.innerHTML = `<i class="ico ${SE.enabled ? "ico-se-on" : "ico-se-off"}"></i>`; btn.setAttribute("aria-pressed", String(SE.enabled)); btn.title = SE.enabled ? "効果音 ON" : "効果音 OFF"; };
     paint();
     btn.addEventListener("click", () => {
         SE.enabled = !SE.enabled; SE.init(); paint();
@@ -227,11 +222,11 @@ function setupReveal() {
 // ナギサのメッセージ窓（文字送り・タップで次へ）
 // ---------------------------------------------------------------------
 const MESSAGES = [
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "来たっすな。秋田へようこそ。ここは『Kitazuna 未来杉の守護者』の公式サイトだ。" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/9.png", text: "私はナギサ。ナマハゲに憧れて、自分で面を作った。「男だけ」の掟に阻まれても、諦めない。" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/10.png", text: "第1章は男鹿編。2026年11月11日、スマホのブラウザで遊べるようになる。下の地図から、章のあらすじを見てみて。" },
-    { name: "健太", face: "images/kitazunasozai/character/kenta/kentaface/1.png", text: "……祖父さんから「魂の提灯」と紹介状を預かって、秋田に来たばかりなんだ。本当に守り神なんているのか？" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "信じた奴が動いて作る。源三郎さんの口癖だ。まずは男鹿へ。祠の試練が待っている。" },
+    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "来たっすな。ここは Kitazuna の公式サイトだ。" },
+    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/9.png", text: "私はナギサ。女のナマハゲ。面は自分で作った。" },
+    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/10.png", text: "第1章は男鹿編。11月11日、ブラウザで遊べる。" },
+    { name: "健太", face: "images/kitazunasozai/character/kenta/kentaface/1.png", text: "……守り神なんて、本当にいるのか？" },
+    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "信じた奴が動いて作る。まずは男鹿へ。" },
 ];
 let msgIndex = 0, msgTimer = null, msgTyping = false;
 function showMessage(i) {
@@ -268,13 +263,13 @@ function setupMessageWindow() {
 // 物語: 章データ（文面は従来どおり）と秋田マップのピン
 // ---------------------------------------------------------------------
 const chapters = [
-    { id: 1, number: "プロローグ", place: "秋田へ", pin: { x: 30, y: 66 }, state: "open", title: "真面目の国に、影が目覚める", status: "2026年11月11日 公開",
+    { id: 1, number: "プロローグ", place: "秋田へ", pin: { x: 30, y: 66 }, state: "open", title: "真面目の国に、影が目覚める", status: "11/11",
       description: "秋田の子どもは真面目に学び、大人は真面目に働く。それ自体はこの土地の誇り。けれど度を越した真面目さが黒い念となって杉山へ吸い込まれ、封印の祠の縄が千切れる。かつて秋田を消滅の危機に落とした老木の精霊「スギノオウ」が目を覚ます。その頃、内向的な大学生・杉野健太は祖父・雅弘から「魂の提灯」と一通の紹介状を託され、新幹線で秋田へ向かっていた。",
       teaseText: "紹介状に記された名は「男鹿・海風源三郎」。行けば、答えが見つかる。" },
-    { id: 2, number: "第一章", place: "男鹿", pin: { x: 17, y: 36 }, state: "open", title: "男鹿編 ── ナギサと祠の試練", status: "2026年11月11日 公開",
+    { id: 2, number: "第一章", place: "男鹿", pin: { x: 17, y: 36 }, state: "open", title: "男鹿編 ── ナギサと祠の試練", status: "11/11",
       description: "男鹿で健太を迎えるのは、祖父の戦友・海風源三郎と、ナマハゲに憧れて自分で面を作った少女ナギサ。祠へ向かうのは「男だけ」の掟。それでもナギサは健太の代わりに参道を登る。真山神社の奥、ナマハゲの祠で待つのは、太鼓を叩いて祭に入る「祠の試練」。護摩餅のもてなしと口上の意味を知り、ナギサは最初の魂の提灯を受け取る。",
       teaseText: "そのものになれなくても、伝えられる。女のナマハゲ、ここに立つ。" },
-    { id: 3, number: "第二章", place: "湯沢", pin: { x: 52, y: 87 }, state: "soon", title: "湯沢編 ── コマチ堂とバズる平安美人", status: "12月11日 公開予定",
+    { id: 3, number: "第二章", place: "湯沢", pin: { x: 52, y: 87 }, state: "soon", title: "湯沢編 ── コマチ堂とバズる平安美人", status: "12/11",
       description: "雪と温泉の町、湯沢。閑古鳥が鳴く骨董品店「コマチ堂」で、小野小町の化身コマチと出会う。平安から続く美意識を、ナギサの提案でSNSという現代の手段につなぐ。古い価値に新しい居場所を作る物語。",
       teaseText: "二つ目の魂が目を覚ます。千年の美意識は、今の秋田に届くのか。" },
     { id: 4, number: "第三章", place: "秋田", pin: { x: 34, y: 52 }, state: "locked", title: "秋田編 ── 令和耕助と足竿燈",
@@ -314,22 +309,24 @@ function renderStoryPage() {
         ? `<img src="images/dotchara${currentPage}a.png" alt=""><img src="images/dotchara${currentPage}b.png" alt="">`
         : `<img src="images/dotchara${currentPage}.png" alt="">`;
     const statusClass = c.state === "open" ? "is-open" : c.state === "soon" ? "is-soon" : "";
+    const statusHtml = c.state === "locked" ? '<i class="ico ico-lock"></i>' : c.status;
     win.innerHTML = `
-        <div class="chapter-head">
-            <span class="chapter-number">${c.number}</span>
-            <span class="chapter-status ${statusClass}">${c.status || "順次公開"}</span>
-        </div>
-        <h3 class="chapter-title">${c.title}</h3>
-        <div class="chapter-grid">
-            <div>
-                <img class="chapter-image" src="images/story${currentPage}.png" alt="${c.title}" loading="lazy">
-                <div class="chapter-sprites">${sprites}</div>
+        <div class="chapter-visual">
+            <img class="chapter-image" src="images/story${currentPage}.png" alt="${c.title}" loading="lazy">
+            <div class="chapter-head">
+                <span class="chapter-number">${c.number}</span>
+                <span class="chapter-status ${statusClass}">${statusHtml}</span>
             </div>
-            <div>
+            <div class="chapter-sprites">${sprites}</div>
+            <h3 class="chapter-title one">${c.title}</h3>
+        </div>
+        <div class="chapter-body">
+            <details class="more">
+                <summary>あらすじ</summary>
                 <p class="chapter-description">${c.description}</p>
                 <p class="chapter-tease">${c.teaseText}</p>
-                ${c.state === "locked" ? `<p class="chapter-locked">この土地はまだひらいていません。章ごとに順次公開</p>` : ""}
-            </div>
+                ${c.state === "locked" ? `<p class="chapter-locked"><i class="ico ico-lock"></i>順次公開</p>` : ""}
+            </details>
         </div>`;
     win.classList.remove("is-flash"); void win.offsetWidth; win.classList.add("is-flash");
     renderDots("page-dots", chapters.length, currentPage, goToPage);
@@ -385,13 +382,15 @@ function renderCharacterCard() {
     const card = document.getElementById("character-card"); const c = characters[currentCharacterIndex]; const hero = heroImage(c);
     card.innerHTML = `
         <div class="status-hero"><img class="${hero.pixel ? "is-pixel" : ""}" src="${hero.src}" alt="${c.name}" onerror="this.onerror=null;this.src='${facePath(c, c.faceImages[0])}'"></div>
-        <div class="status-head">
-            <h3 class="status-name">${c.name}</h3>
-            <span class="status-badge ${c.inOga ? "is-oga" : ""}">${c.inOga ? "第1章 男鹿編に登場" : "続く章で登場"}</span>
-        </div>
-        <p class="status-role">${c.role}</p>
-        <p class="status-desc">${c.description}</p>
-        <div class="status-faces"><h4>表情</h4><div class="face-row">${c.faceImages.map(f => `<img src="${facePath(c, f)}" alt="${c.name} の表情" loading="lazy">`).join("")}</div></div>`;
+        <div class="status-body">
+            <div class="status-head">
+                <h3 class="status-name">${c.name}</h3>
+                <span class="status-badge ${c.inOga ? "is-oga" : ""}">${c.inOga ? "1章" : '<i class="ico ico-lock"></i>'}</span>
+            </div>
+            <p class="status-role one">${c.role}</p>
+            <div class="status-faces"><div class="face-row">${c.faceImages.map(f => `<img src="${facePath(c, f)}" alt="${c.name} の表情" loading="lazy">`).join("")}</div></div>
+            <details class="more"><summary>くわしく</summary><p class="status-desc">${c.description}</p></details>
+        </div>`;
     card.classList.remove("is-flash"); void card.offsetWidth; card.classList.add("is-flash");
     renderDots("character-dots", characters.length, currentCharacterIndex, goToCharacter);
     document.querySelectorAll(".party-slot").forEach((s, i) => s.classList.toggle("is-active", i === currentCharacterIndex));
@@ -541,11 +540,11 @@ function renderTeam() {
     const grid = document.getElementById("team-grid"); if (!grid) return;
     const F = "images/kitazunasozai/character/";
     const team = [
-        { face: F + "namahage/namahageface/13.png", role: "緒方孝治", description: "守り神たちの絵" },
-        { face: F + "kenta/kentaface/1.png", role: "手塚屋", description: "健太と杉野家の絵" },
-        { face: F + "nagisa/nagisaface/8.png", role: "高崎翔太", description: "企画・物語・開発" },
-        { face: F + "akita/akitaface/31.png", role: "AI", description: "台本・背景・音・コード" },
-        { face: F + "tanpo/tanpoface/37.png", role: "if(塾)の生徒", description: "テストプレイ・取材" },
+        { face: F + "namahage/namahageface/13.png", role: "緒方孝治", description: "守り神の絵" },
+        { face: F + "kenta/kentaface/1.png", role: "手塚屋", description: "杉野家の絵" },
+        { face: F + "nagisa/nagisaface/8.png", role: "高崎翔太", description: "企画・開発" },
+        { face: F + "akita/akitaface/31.png", role: "AI", description: "台本・音・コード" },
+        { face: F + "tanpo/tanpoface/37.png", role: "if(塾)の生徒", description: "テスト" },
     ];
     grid.innerHTML = team.map(t => `<div class="team-card"><div class="team-icon"><img src="${t.face}" alt="" loading="lazy"></div><div><h5>${t.role}</h5><p>${t.description}</p></div></div>`).join("");
 }
