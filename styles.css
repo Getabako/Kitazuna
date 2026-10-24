@@ -1076,3 +1076,6 @@ body::before {
 .kz-credit { justify-content: center; }
 .kz-all { height: auto; flex: 0 1 46%; min-height: 0; object-fit: contain; background: #fff; margin-top: 1.6rem; }
 .kz-credit .kz-name { margin-top: 0.6rem; }
+/* v3.12 稲穂: 大小をばらけさせ、重ならない配置 */
+body::before { background-size: auto, auto, 1000px 1000px; }
+@media (max-width: 600px) { body::before { background-size: auto, auto, 760px 760px; } }
