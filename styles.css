@@ -1021,3 +1021,10 @@ details.more[open] summary { box-shadow: 0 1px 0 #1a1206; transform: translateY(
 .gauge-full-sub { margin-top: 0.3rem; }
 .parade img { animation-duration: 8s; }
 @keyframes paradeWalk { from { transform: translateX(0); } to { transform: translateX(calc(-100vw - 80px)); } }
+/* v3.10 稲穂の模様: 一本ずつ同じ向き（右上へしなる）。穂先が重ならないよう 1 タイル 1 本 */
+body::before {
+    background:
+        radial-gradient(ellipse at 50% 110%, rgba(255, 200, 80, 0.35), transparent 60%),
+        radial-gradient(ellipse at 15% 0%, rgba(255, 207, 74, 0.10), transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='260' viewBox='0 0 140 260'%3E%3Cpath d='M30 255 C 36 190, 46 140, 78 70' fill='none' stroke='%23ffcf4a' stroke-width='2' stroke-linecap='round'/%3E%3Cg fill='%23ffcf4a'%3E%3Cellipse cx='84' cy='56' rx='4.5' ry='9' transform='rotate(-30 84 56)'/%3E%3Cellipse cx='74' cy='70' rx='4.5' ry='9' transform='rotate(-30 74 70)'/%3E%3Cellipse cx='90' cy='72' rx='4.5' ry='9' transform='rotate(-30 90 72)'/%3E%3Cellipse cx='68' cy='86' rx='4.5' ry='9' transform='rotate(-30 68 86)'/%3E%3Cellipse cx='84' cy='88' rx='4.5' ry='9' transform='rotate(-30 84 88)'/%3E%3Cellipse cx='62' cy='102' rx='4.5' ry='9' transform='rotate(-30 62 102)'/%3E%3Cellipse cx='78' cy='104' rx='4.5' ry='9' transform='rotate(-30 78 104)'/%3E%3Cellipse cx='57' cy='118' rx='4.5' ry='9' transform='rotate(-30 57 118)'/%3E%3Cellipse cx='72' cy='120' rx='4.5' ry='9' transform='rotate(-30 72 120)'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 140px 260px repeat;
+}
