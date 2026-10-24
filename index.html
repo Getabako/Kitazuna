@@ -2,184 +2,235 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitazuna: 未来杉の守護者｜秋田の守り神たちと巡るRPG</title>
-    <meta name="description" content="秋田ご当地RPG『Kitazuna 未来杉の守護者』公式サイト。ブラウザで遊べる第一章（男鹿編）、公式ファンブック、最新情報はここから。">
-    <link rel="canonical" href="https://kitazuna.if-juku.net/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kitazuna 未来杉の守護者 | 秋田の守り神たちと、太鼓で祭に入るRPG</title>
+    <meta name="description" content="秋田ご当地RPG『Kitazuna 未来杉の守護者』公式サイト。スマホのブラウザでURLを開くだけで遊べます。第1章 男鹿編は2026年11月11日公開。公式ファンブック第1巻も同日発売。">
+    <meta name="theme-color" content="#0b1020">
+    <meta property="og:title" content="Kitazuna 未来杉の守護者">
+    <meta property="og:description" content="秋田の守り神たちと、太鼓で祭に入るRPG。スマホでURLを開くだけで遊べます。">
+    <meta property="og:image" content="https://kitazuna.if-juku.net/images/concept.png">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Kitazuna 未来杉の守護者">
-    <meta property="og:title" content="Kitazuna: 未来杉の守護者｜秋田の守り神たちと巡るRPG">
-    <meta property="og:description" content="スマホのブラウザで遊べる秋田ご当地RPG。第一章 男鹿編は 2026年11月11日 公開。公式ファンブックは Amazon で予約受付中。">
     <meta property="og:url" content="https://kitazuna.if-juku.net/">
-    <meta property="og:image" content="https://kitazuna.if-juku.net/images/screens/title.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@kitazunaakita">
+    <link rel="icon" href="images/kitazunasozai/logo/logo1.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DotGothic16&family=Reggae+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Cinzel:wght@400;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- パーティクル背景 -->
-    <div id="particle-container"></div>
+    <!-- 読み込み画面（ゲーム本体と同じ「秋田の豆知識」） -->
+    <div id="boot-screen" class="boot-screen" role="dialog" aria-label="読み込み中">
+        <div class="boot-inner">
+            <p class="boot-title">秋田の豆知識</p>
+            <p class="boot-trivia" id="boot-trivia"></p>
+            <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar-fill"></div></div>
+            <p class="boot-hint">よみこみ中… <span class="boot-skip">（タップでスキップ）</span></p>
+        </div>
+    </div>
 
-    <!-- メインコンテンツ -->
-    <main id="main-content">
-        <!-- ヒーローセクション -->
-        <section id="hero-section" class="hero-container">
-            <video class="video-background" autoplay muted loop playsinline>
+    <!-- 画面上部の HUD: 魂の提灯ゲージ（スクロール進行）と効果音の切替 -->
+    <header class="hud" id="hud">
+        <div class="hud-lantern" aria-hidden="true"><span class="hud-flame"></span></div>
+        <div class="hud-gauge" aria-label="ページの進み">
+            <div class="hud-gauge-fill" id="hud-gauge-fill"></div>
+            <span class="hud-gauge-label" id="hud-gauge-label">タイトル</span>
+        </div>
+        <button class="hud-se" id="se-toggle" type="button" aria-pressed="false" title="効果音の切替">SE OFF</button>
+    </header>
+
+    <main>
+        <!-- ===== タイトル画面 ===== -->
+        <section id="hero-section" class="screen title-screen">
+            <video class="title-video" autoplay muted loop playsinline>
                 <source src="videos/topmoviepc.mp4" type="video/mp4">
             </video>
-            <div class="video-overlay"></div>
-            
-            <img src="images/kitazunalogo.png" alt="Kitazuna ロゴ" class="logo">
-            
-            <nav class="navigation-menu">
-                <button class="famicom-button famicom-play" data-color="#ffd700" onclick="openGame(event)">遊ぶ</button>
-                <button class="famicom-button" data-color="#4ecdc4" onclick="scrollToSection('story-section')">ストーリー</button>
-                <button class="famicom-button" data-color="#ff6b6b" onclick="scrollToSection('character-section')">キャラクター</button>
-                <button class="famicom-button" data-color="#ffd700" onclick="scrollToSection('game-section')">遊び方</button>
-                <button class="famicom-button" data-color="#96ceb4" onclick="scrollToSection('book-section')">本</button>
-                <button class="famicom-button" data-color="#e74c3c" onclick="scrollToSection('author-section')">作者</button>
+            <div class="title-shade"></div>
+            <div class="lantern-field" id="lantern-field" aria-hidden="true"></div>
+
+            <img src="images/kitazunalogo.png" alt="Kitazuna 未来杉の守護者" class="title-logo" id="title-logo">
+
+            <p class="title-tagline">秋田の守り神たちと、太鼓で祭に入るRPG。<br>スマホでURLを開くだけ。インストール不要・無料。</p>
+
+            <div class="quest-panel" id="quest-panel">
+                <span class="quest-chip" id="release-badge">第1章 男鹿編　2026年11月11日（きりたんぽの日）公開</span>
+                <span class="quest-count" id="countdown">公開まで あと -- 日</span>
+            </div>
+
+            <!-- タイトルメニュー（ゲーム本体の「はじめから／つづきから」と同じ並び） -->
+            <nav class="title-menu" id="title-menu" aria-label="メインメニュー">
+                <a class="menu-item is-primary" id="hero-game-banner" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)" data-se="confirm">
+                    <span class="menu-cursor" aria-hidden="true"></span>
+                    <img class="menu-shot" src="images/screens/title.jpg" alt="">
+                    <span class="menu-body">
+                        <span class="menu-tag" id="game-banner-tag">開発版を先行体験（ブラウザ）</span>
+                        <span class="menu-title" id="game-banner-title">はじめる</span>
+                        <span class="menu-sub" id="game-banner-sub">いますぐブラウザで遊ぶ。スマホの縦画面で開くだけ</span>
+                    </span>
+                </a>
+                <a class="menu-item" id="hero-book-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" onclick="return openBook(event)" data-se="confirm">
+                    <span class="menu-cursor" aria-hidden="true"></span>
+                    <span class="menu-body">
+                        <span class="menu-title">つづきを読む</span>
+                        <span class="menu-sub">公式ファンブック第1巻 男鹿編を Amazon で予約（500円・Kindle Unlimited）</span>
+                    </span>
+                </a>
+                <a class="menu-item" id="hero-note-link" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm">
+                    <span class="menu-cursor" aria-hidden="true"></span>
+                    <span class="menu-body">
+                        <span class="menu-title">おしらせ</span>
+                        <span class="menu-sub">最新情報・制作の裏側は note で</span>
+                    </span>
+                </a>
             </nav>
 
-            <div class="main-content">
-                <h1 class="game-title">Kitazuna: 未来杉の守護者</h1>
-                <p class="subtitle">秋田の守り神たちと、太鼓で祭に入るRPG。<br>スマホでURLを開くだけで遊べます。</p>
-                <p class="release-badge" id="release-badge">第1章 男鹿編　2026年11月11日（きりたんぽの日）公開</p>
+            <nav class="chapter-tabs" aria-label="ページ内の移動">
+                <button type="button" onclick="scrollToSection('story-section')" data-se="select">物語</button>
+                <button type="button" onclick="scrollToSection('character-section')" data-se="select">仲間</button>
+                <button type="button" onclick="scrollToSection('game-section')" data-se="select">遊び方</button>
+                <button type="button" onclick="scrollToSection('book-section')" data-se="select">本</button>
+                <button type="button" onclick="scrollToSection('author-section')" data-se="select">作者</button>
+            </nav>
 
-                <a class="game-banner" id="hero-game-banner" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)">
-                    <img class="game-banner-shot" src="images/screens/title.jpg" alt="Kitazuna タイトル画面">
-                    <div class="game-banner-body">
-                        <span class="game-banner-tag" id="game-banner-tag">開発版を先行体験（ブラウザ）</span>
-                        <span class="game-banner-title" id="game-banner-title">いますぐ遊ぶ</span>
-                        <span class="game-banner-sub" id="game-banner-sub">スマホの縦画面で開くだけ。インストール不要・無料</span>
+            <button class="press-start" type="button" onclick="scrollToSection('story-section')" aria-label="下へ進む">
+                <span class="blink">▼ 下へ進む</span>
+            </button>
+        </section>
+
+        <!-- ===== 物語: ナギサの案内 → 秋田マップのチャプターセレクト ===== -->
+        <section id="story-section" class="screen story-screen">
+            <h2 class="screen-title reveal"><span>物語</span><small>CHAPTER SELECT</small></h2>
+
+            <div class="msg-window reveal" id="msg-window" role="group" aria-label="ナギサの案内">
+                <img class="msg-face" id="msg-face" src="images/kitazunasozai/character/nagisa/nagisaface/8.png" alt="ナギサ">
+                <div class="msg-body">
+                    <span class="msg-name" id="msg-name">ナギサ</span>
+                    <p class="msg-text" id="msg-text"></p>
+                    <span class="msg-next blink" id="msg-next" aria-hidden="true">▼</span>
+                </div>
+                <button class="msg-tap" type="button" id="msg-tap" aria-label="次のメッセージ"></button>
+            </div>
+
+            <div class="map-stage reveal">
+                <div class="akita-map" id="akita-map">
+                    <img src="images/akitapref.png" alt="秋田県の地図" class="akita-map-img">
+                    <div class="map-fog" aria-hidden="true"></div>
+                    <!-- 章のピンは JavaScript で生成 -->
+                </div>
+                <p class="map-hint">地図の印に触れると、その章のあらすじが開きます。ひらいている土地は男鹿だけ。章ごとに土地がひらいていきます。</p>
+            </div>
+
+            <div class="chapter-window reveal" id="chapter-window">
+                <!-- 章カードは JavaScript で生成 -->
+            </div>
+            <div class="chapter-nav">
+                <button class="pixel-btn" id="prev-btn" type="button" onclick="prevPage()" data-se="select">◀ 前の章</button>
+                <div class="chapter-dots" id="page-dots"></div>
+                <button class="pixel-btn" id="next-btn" type="button" onclick="nextPage()" data-se="select">次の章 ▶</button>
+            </div>
+        </section>
+
+        <!-- ===== 仲間: パーティ編成 ===== -->
+        <section id="character-section" class="screen party-screen">
+            <h2 class="screen-title reveal"><span>仲間</span><small>PARTY</small></h2>
+            <p class="screen-lead reveal">秋田の守り神たちと、杉野家の人々。顔に触れると、くわしく見られます。</p>
+
+            <div class="party-roster reveal" id="party-roster" role="list">
+                <!-- 顔アイコンは JavaScript で生成 -->
+            </div>
+
+            <div class="status-window reveal" id="character-card" aria-live="polite">
+                <!-- ステータス窓は JavaScript で生成 -->
+            </div>
+            <div class="chapter-nav">
+                <button class="pixel-btn" type="button" onclick="prevCharacter()" data-se="select">◀</button>
+                <div class="chapter-dots" id="character-dots"></div>
+                <button class="pixel-btn" type="button" onclick="nextCharacter()" data-se="select">▶</button>
+            </div>
+        </section>
+
+        <!-- ===== 遊び方: 太鼓の試し打ち ＋ 実画面 ===== -->
+        <section id="game-section" class="screen play-screen">
+            <h2 class="screen-title reveal"><span>遊び方</span><small>HOW TO PLAY</small></h2>
+
+            <div class="rpg-window reveal">
+                <p>内向的な大学生・杉野健太が、祖父からの依頼で秋田へ。「スギノオウ」の復活を止めるため、各地の守り神たちと絆を結び、「魂の提灯」を集めていきます。</p>
+                <p>第1章は男鹿編。ナマハゲの祠で待つ「祠の試練」は、太鼓を叩いて祭に入るリズムアクションです。物語は章ごとに公開していきます。湯沢、秋田、三湖、大館、鹿角へと旅は続きます。</p>
+            </div>
+
+            <!-- 太鼓の試し打ち -->
+            <div class="taiko-stage reveal" id="taiko-stage">
+                <div class="taiko-hud">
+                    <span class="taiko-label">祠の試練・試し打ち</span>
+                    <span class="taiko-combo" id="taiko-combo">0 連鎖</span>
+                </div>
+                <div class="taiko-drum" id="taiko-drum" role="button" tabindex="0" aria-label="太鼓を叩く。タップでドン、横になぞってカッ">
+                    <div class="taiko-rim"></div>
+                    <div class="taiko-skin"></div>
+                    <div class="taiko-mitsudomoe" aria-hidden="true"></div>
+                    <div class="taiko-judge" id="taiko-judge" aria-live="polite"></div>
+                </div>
+                <p class="taiko-help">タップで「ドン」、横になぞって「カッ」。ナマハゲの太鼓に合わせて叩いているうちに、祭の中にいる感覚になります。本番はゲームの中で。</p>
+            </div>
+
+            <div class="feature-grid reveal">
+                <div class="feature-card">
+                    <h4>スマホでURLを開くだけ</h4>
+                    <p>縦画面のブラウザ版。インストールは要りません。画面の行きたい場所を触れば、健太がそこまで歩きます</p>
+                </div>
+                <div class="feature-card">
+                    <h4>動く漫画で始まる物語</h4>
+                    <p>冒頭は、公式ファンブックと同じ漫画がコマごとに動いて進みます。読み込みの間は秋田の豆知識が一枚ずつ</p>
+                </div>
+                <div class="feature-card">
+                    <h4>二人の絵師によるキャラクター</h4>
+                    <p>秋田の守り神たちは、くにおくんシリーズで知られる緒方孝治氏。主人公の健太と杉野家の人々は手塚屋氏が描いた</p>
+                </div>
+                <div class="feature-card">
+                    <h4>守護者であること、居場所をあげること</h4>
+                    <p>秋田の象徴たちが束になって未来を守る物語</p>
+                </div>
+            </div>
+
+            <!-- 実画面: スマホの枠の中で横に送る -->
+            <div class="screens-block reveal">
+                <h3 class="sub-title">実際の画面</h3>
+                <p class="sub-note">開発中のブラウザ版から。公開時の画面とは細部が変わることがあります。横にスワイプで送れます。</p>
+                <div class="phone-frame">
+                    <div class="phone-notch" aria-hidden="true"></div>
+                    <div class="phone-screen" id="phone-screen">
+                        <figure><img src="images/screens/title.jpg" alt="タイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+                        <figure><img src="images/screens/play-1.jpg" alt="新幹線で秋田へ向かう健太" loading="lazy"><figcaption>新幹線で秋田へ</figcaption></figure>
+                        <figure><img src="images/screens/play-3.jpg" alt="祖父・雅弘の依頼" loading="lazy"><figcaption>祖父・雅弘の依頼</figcaption></figure>
+                        <figure><img src="images/screens/play-4.jpg" alt="真面目の国の子ども" loading="lazy"><figcaption>真面目の国の子ども</figcaption></figure>
+                        <figure><img src="images/screens/play-5.jpg" alt="真面目の国の大人" loading="lazy"><figcaption>真面目の国の大人</figcaption></figure>
+                        <figure><img src="images/screens/play-6.jpg" alt="秋田県のマップ" loading="lazy"><figcaption>秋田県のマップ。章ごとに土地がひらく</figcaption></figure>
                     </div>
-                    <span class="game-banner-arrow" aria-hidden="true">PLAY</span>
-                </a>
-
-                <div class="hero-cta-row">
-                    <a class="cta-button cta-book" id="hero-book-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" onclick="return openBook(event)">公式ファンブックを予約する</a>
-                    <a class="cta-button cta-note" id="hero-note-link" href="https://note.com/ifjuku" target="_blank" rel="noopener">最新情報はnoteで</a>
+                    <div class="phone-dots" id="phone-dots" aria-hidden="true"></div>
                 </div>
-                <p class="release-sub">公式ファンブック 第1巻 男鹿編　2026年11月11日 発売　Amazonで予約受付中（500円・Kindle Unlimited対象）</p>
-            </div>
-
-            <div class="scroll-indicator" onclick="scrollToSection('story-section')">
-                <span>SCROLL</span>
-                <div class="scroll-arrow"></div>
-            </div>
-        </section>
-
-        <!-- ストーリーセクション -->
-        <section id="story-section" class="story-container">
-            <h2 class="section-title">物語の軌跡</h2>
-            
-            <div class="book-container">
-                <div class="page-container">
-                    <div class="book-spine"></div>
-                    
-                    <div id="story-pages">
-                        <!-- ページはJavaScriptで動的に生成 -->
-                    </div>
-                </div>
-
-                <div class="navigation-container">
-                    <button class="nav-button" id="prev-btn" onclick="prevPage()">←</button>
-                    <div class="page-indicator" id="page-dots"></div>
-                    <button class="nav-button" id="next-btn" onclick="nextPage()">→</button>
+                <p class="sub-note">男鹿編のあとは、第二章「湯沢編」を12月11日に公開予定。</p>
+                <div class="center-row">
+                    <a class="big-btn big-btn-play" id="screens-play-link" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)" data-se="confirm">この画面を実際に触ってみる</a>
+                    <p class="sub-note" id="screens-play-note">開発中のブラウザ版をそのまま開きます。正式公開は 2026年11月11日。</p>
                 </div>
             </div>
         </section>
 
-        <!-- キャラクターセクション -->
-        <section id="character-section" class="character-container">
-            <!-- 秋田県地図の背景 -->
-            <div id="akita-maps"></div>
-            
-            <h2 class="section-title">秋田名物Kitazuna's</h2>
-            
-            <div class="slider-container">
-                <div class="card-wrapper">
-                    <div id="character-card" class="character-card">
-                        <!-- キャラクターカードはJavaScriptで動的に生成 -->
-                    </div>
-                </div>
-            </div>
-            
-            <div class="navigation-controls">
-                <button class="nav-button" onclick="prevCharacter()">←</button>
-                <div class="card-indicators" id="character-dots"></div>
-                <button class="nav-button" onclick="nextCharacter()">→</button>
-            </div>
-        </section>
+        <!-- ===== 本: アイテム入手 ===== -->
+        <section id="book-section" class="screen item-screen">
+            <h2 class="screen-title reveal"><span>公式ファンブック</span><small>ITEM</small></h2>
 
-        <!-- 遊び方セクション -->
-        <section id="game-section" class="game-container">
-            <h2 class="section-title">遊び方</h2>
-
-            <div class="content-section">
-                <div class="game-description">
-                    <p>
-                        内向的な大学生・杉野健太が、祖父からの依頼で秋田へ。
-                        「スギノオウ」の復活を止めるため、各地の守り神たちと絆を結び、「魂の提灯」を集めていきます。
-                    </p>
-                    <br>
-                    <p>
-                        第1章は男鹿編。ナマハゲの祠で待つ「祠の試練」は、太鼓を叩いて祭に入るリズムアクションです。
-                        物語は章ごとに公開していきます。湯沢、秋田、三湖、大館、鹿角へと旅は続きます。
-                    </p>
-                </div>
-                
-                <div class="game-image"></div>
+            <div class="item-get" id="item-get">
+                <p class="item-get-text" id="item-get-text">公式ファンブック 第1巻 男鹿編 を みつけた！</p>
+                <div class="item-sparkles" aria-hidden="true"></div>
             </div>
 
-            <div class="themes-list">
-                <p class="themes-text">守護者であること、居場所をあげること。秋田の象徴たちが束になって未来を守る物語。</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4 class="feature-title">スマホでURLを開くだけ</h4>
-                    <p class="feature-description">縦画面のブラウザ版。インストールは要りません。画面の行きたい場所を触れば、健太がそこまで歩きます</p>
+            <div class="book-layout reveal">
+                <div class="book-cover-wrap">
+                    <img src="images/book_vol1.jpg" alt="Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編 表紙" class="book-cover" id="book-cover">
                 </div>
-                <div class="feature-card">
-                    <h4 class="feature-title">太鼓で祭に入る「祠の試練」</h4>
-                    <p class="feature-description">タップで「ドン」、払って「カッ」。ナマハゲの太鼓に合わせて叩いているうちに、祭の中にいる感覚になります</p>
-                </div>
-                <div class="feature-card">
-                    <h4 class="feature-title">動く漫画で始まる物語</h4>
-                    <p class="feature-description">冒頭は、公式ファンブックと同じ漫画がコマごとに動いて進みます。読み込みの間は秋田の豆知識が一枚ずつ</p>
-                </div>
-                <div class="feature-card">
-                    <h4 class="feature-title">二人の絵師によるキャラクター</h4>
-                    <p class="feature-description">秋田の守り神たちは、くにおくんシリーズで知られる緒方孝治氏。主人公の健太と杉野家の人々は手塚屋氏が描いた</p>
-                </div>
-            </div>
-
-            <div class="screens-block">
-                <h3 class="screens-title">実際の画面</h3>
-                <p class="screens-note">開発中のブラウザ版から。公開時の画面とは細部が変わることがあります。</p>
-                <div class="screens-grid">
-                    <figure><img src="images/screens/title.jpg" alt="タイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
-                    <figure><img src="images/screens/play-1.jpg" alt="新幹線で秋田へ向かう健太" loading="lazy"><figcaption>新幹線で秋田へ</figcaption></figure>
-                    <figure><img src="images/screens/play-3.jpg" alt="祖父・雅弘の依頼" loading="lazy"><figcaption>祖父・雅弘の依頼</figcaption></figure>
-                    <figure><img src="images/screens/play-4.jpg" alt="真面目の国の子ども" loading="lazy"><figcaption>真面目の国の子ども</figcaption></figure>
-                    <figure><img src="images/screens/play-5.jpg" alt="真面目の国の大人" loading="lazy"><figcaption>真面目の国の大人</figcaption></figure>
-                    <figure><img src="images/screens/play-6.jpg" alt="秋田県のマップ" loading="lazy"><figcaption>秋田県のマップ。章ごとに土地がひらく</figcaption></figure>
-                </div>
-                <p class="screens-next">男鹿編のあとは、第二章「湯沢編」を12月11日に公開予定。</p>
-                <div class="play-row">
-                    <a class="cta-button cta-play" id="screens-play-link" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)">この画面を実際に触ってみる</a>
-                    <p class="play-note" id="screens-play-note">開発中のブラウザ版をそのまま開きます。正式公開は 2026年11月11日。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 本セクション -->
-        <section id="book-section" class="book-section">
-            <h2 class="section-title">公式ファンブック</h2>
-            <div class="book-layout">
-                <img src="images/book_vol1.jpg" alt="Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編 表紙" class="book-cover">
-                <div class="book-text">
+                <div class="rpg-window book-text">
                     <h3 class="book-title">Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編</h3>
                     <p class="book-subtitle">ナギサとナマハゲが語る秋田の文化と、AIゲーム開発の手引き</p>
                     <p class="book-date">Kindle版　2026年11月11日 発売（ゲームの公開と同じ日）　Amazonで予約受付中</p>
@@ -190,134 +241,117 @@
                         <li>ゲーム作り編: AIとMCPで作る、秋田のゲーム／AIでキャラクターを作る（緒方さんの原案を、AIでどう動く姿にしたか）</li>
                     </ul>
                     <p class="book-note">巻は、ゲームの章と一緒に進みます。第2巻は「湯沢編＋プログラミング編」。</p>
-                    <a class="cta-button cta-book" id="book-amazon-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener">Amazonで予約する</a>
+                    <a class="big-btn big-btn-book" id="book-amazon-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" data-se="confirm">Amazonで予約する</a>
                 </div>
             </div>
         </section>
 
-        <!-- フォロー・最新情報セクション（2026-10-24 玄関化: 動画・SNS・note へここから往復できるように） -->
-        <section id="follow-section" class="follow-container">
-            <h2 class="section-title">最新情報・制作の裏側</h2>
-            <p class="follow-lead">ショート動画、制作記録、告知。それぞれの場所でKitazunaを追いかけられます。</p>
-            <div class="follow-grid">
-                <a class="follow-card follow-youtube" id="follow-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">
-                    <span class="follow-label">YouTube</span>
-                    <span class="follow-title">ショート動画で世界観を</span>
-                    <span class="follow-desc">キャラクターが語る秋田の民話と、ゲームの実画面。毎晩更新</span>
+        <!-- ===== 最新情報: クエスト掲示板 ===== -->
+        <section id="follow-section" class="screen board-screen">
+            <h2 class="screen-title reveal"><span>最新情報・制作の裏側</span><small>QUEST BOARD</small></h2>
+            <p class="screen-lead reveal">ショート動画、制作記録、告知。それぞれの場所でKitazunaを追いかけられます。</p>
+            <div class="board-grid reveal">
+                <a class="poster poster-youtube" id="follow-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener" data-se="confirm">
+                    <span class="poster-pin" aria-hidden="true"></span>
+                    <span class="poster-label">YouTube</span>
+                    <span class="poster-title">ショート動画で世界観を</span>
+                    <span class="poster-desc">キャラクターが語る秋田の民話と、ゲームの実画面。毎晩更新</span>
                 </a>
-                <a class="follow-card follow-x" id="follow-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">
-                    <span class="follow-label">X</span>
-                    <span class="follow-title">@kitazunaakita</span>
-                    <span class="follow-desc">公開日・章の追加・不具合のお知らせはここが一番早い</span>
+                <a class="poster poster-x" id="follow-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener" data-se="confirm">
+                    <span class="poster-pin" aria-hidden="true"></span>
+                    <span class="poster-label">X</span>
+                    <span class="poster-title">@kitazunaakita</span>
+                    <span class="poster-desc">公開日・章の追加・不具合のお知らせはここが一番早い</span>
                 </a>
-                <a class="follow-card follow-note" id="follow-note" href="https://note.com/ifjuku" target="_blank" rel="noopener">
-                    <span class="follow-label">note</span>
-                    <span class="follow-title">制作の裏側を毎日</span>
-                    <span class="follow-desc">AIでどう作っているか、秋田の文化をどう物語にしたかの記録</span>
+                <a class="poster poster-note" id="follow-note" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm">
+                    <span class="poster-pin" aria-hidden="true"></span>
+                    <span class="poster-label">note</span>
+                    <span class="poster-title">制作の裏側を毎日</span>
+                    <span class="poster-desc">AIでどう作っているか、秋田の文化をどう物語にしたかの記録</span>
                 </a>
-                <a class="follow-card follow-instagram" id="follow-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">
-                    <span class="follow-label">Instagram</span>
-                    <span class="follow-title">キャラクターと場面の画像</span>
-                    <span class="follow-desc">守り神たちのビジュアルと、本の漫画の一部を先出し</span>
+                <a class="poster poster-instagram" id="follow-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener" data-se="confirm">
+                    <span class="poster-pin" aria-hidden="true"></span>
+                    <span class="poster-label">Instagram</span>
+                    <span class="poster-title">キャラクターと場面の画像</span>
+                    <span class="poster-desc">守り神たちのビジュアルと、本の漫画の一部を先出し</span>
                 </a>
             </div>
         </section>
 
-        <!-- 作者セクション -->
-        <section id="author-section" class="vision-container">
-            <h2 class="section-title">なぜ、これを作ったか</h2>
+        <!-- ===== 作者: 巻物 ===== -->
+        <section id="author-section" class="screen scroll-screen">
+            <h2 class="screen-title reveal"><span>なぜ、これを作ったか</span><small>AUTHOR</small></h2>
 
-            <div class="content-wrapper">
-                <div class="vision-section">
+            <div class="makimono reveal">
+                <div class="makimono-roll makimono-top" aria-hidden="true"></div>
+                <div class="makimono-paper">
                     <h3 class="vision-title">秋田へのラブレターであり、守護者としての僕の物語</h3>
-                    <p class="vision-text">
-                        Kitazuna は、僕が作りたいから作っているゲームです。
-                        衰退に向かうと言われる秋田の象徴たちが束になって、未来を守る。それを形にしたかった。
-                    </p>
-                    <p class="vision-text">
-                        最初に仲間になるナギサは、女のナマハゲです。本来、ナマハゲは男しかなれません。
-                        それでも諦めず、自分なりの正解、新しいナマハゲの形を作って世に出していく。
-                        既存の枠から弾かれても、本物の自分の形を作って出す。それがこの物語の核であり、僕自身の話でもあります。
-                    </p>
-                    <p class="vision-text">
-                        秋田の守り神たちは緒方孝治さんが、健太と杉野家の人々は手塚屋さんが描いてくださいました。残りのほとんどは、僕一人とAIで作っています。
-                        その作り方は、公式ファンブックにそのまま書いています。
-                    </p>
+                    <p>Kitazuna は、僕が作りたいから作っているゲームです。衰退に向かうと言われる秋田の象徴たちが束になって、未来を守る。それを形にしたかった。</p>
+                    <p>最初に仲間になるナギサは、女のナマハゲです。本来、ナマハゲは男しかなれません。それでも諦めず、自分なりの正解、新しいナマハゲの形を作って世に出していく。既存の枠から弾かれても、本物の自分の形を作って出す。それがこの物語の核であり、僕自身の話でもあります。</p>
+                    <p>秋田の守り神たちは緒方孝治さんが、健太と杉野家の人々は手塚屋さんが描いてくださいました。残りのほとんどは、僕一人とAIで作っています。その作り方は、公式ファンブックにそのまま書いています。</p>
                 </div>
+                <div class="makimono-roll makimono-bottom" aria-hidden="true"></div>
+            </div>
 
-                <div class="team-section">
-                    <h4 class="team-title">つくっている人</h4>
-                    <div class="team-scroll-container">
-                        <div class="team-scroll-track">
-                            <!-- カードは JavaScript で生成 -->
-                        </div>
-                    </div>
-                </div>
+            <h4 class="sub-title reveal">つくっている人</h4>
+            <div class="team-grid reveal" id="team-grid">
+                <!-- JavaScript で生成 -->
+            </div>
 
-                <div class="press-section">
-                    <h4 class="team-title">取材・掲載をご希望の方へ</h4>
-                    <p class="press-text">
-                        ロゴ・キャラクター画像・スクリーンショットは報道・紹介の目的で自由にお使いいただけます。
-                        事前体験用のURL、取材のご相談は下記の連絡先までどうぞ。
-                    </p>
-                </div>
+            <div class="rpg-window press reveal">
+                <h4 class="sub-title">取材・掲載をご希望の方へ</h4>
+                <p>ロゴ・キャラクター画像・スクリーンショットは報道・紹介の目的で自由にお使いいただけます。事前体験用のURL、取材のご相談は下記の連絡先までどうぞ。</p>
             </div>
         </section>
 
-            <div id="gratitude-overlay" class="gratitude-overlay" style="display: none;">
-                <div class="heart-container" id="heart-container"></div>
-                <h1 class="gratitude-text">ご覧いただき</h1>
-                <h1 class="gratitude-text">ありがとうございました</h1>
-                <p class="gratitude-subtext">秋田でお待ちしています</p>
-            </div>
-        <!-- フッター -->
-        <footer class="footer-container">
-            <div class="game-logo">
-                <h2 class="logo-text">KITAZUNA</h2>
-                <p class="logo-subtext">未来杉の守護者</p>
-            </div>
-
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>このサイト</h3>
-                    <a href="#" class="footer-link footer-link-play" onclick="return openGame(event)">ブラウザで遊ぶ</a>
-                    <a href="#story-section" class="footer-link">ストーリー</a>
-                    <a href="#character-section" class="footer-link">キャラクター</a>
-                    <a href="#game-section" class="footer-link">遊び方</a>
-                    <a href="#book-section" class="footer-link">公式ファンブック</a>
-                    <a href="#follow-section" class="footer-link">最新情報</a>
-                    <a href="#author-section" class="footer-link">作者</a>
+        <!-- ===== フッター: セーブ画面 ===== -->
+        <footer class="screen save-screen" id="footer">
+            <div class="save-window reveal">
+                <p class="save-q">ここまでの冒険を きろくしますか？</p>
+                <div class="save-choices">
+                    <a class="save-yes" id="footer-note" href="https://note.com/ifjuku" target="_blank" rel="noopener" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>はい（noteをフォロー）</a>
+                    <a class="save-alt" href="#" onclick="return openGame(event)" data-se="confirm"><span class="menu-cursor" aria-hidden="true"></span>ゲームへ行く</a>
                 </div>
-
-                <div class="footer-section">
-                    <h3>公開の知らせを受け取る</h3>
-                    <p class="footer-text">続く章の公開、本の発売、動画の更新。それぞれの場所で発信しています。</p>
-                    <div class="footer-sns">
-                        <a class="footer-link" id="footer-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">YouTube</a>
-                        <a class="footer-link" id="footer-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">X（@kitazunaakita）</a>
-                        <a class="footer-link" id="footer-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">Instagram</a>
-                    </div>
-                    <a class="cta-button cta-note footer-cta" id="footer-note" href="https://note.com/ifjuku" target="_blank" rel="noopener">noteをフォローする</a>
-                </div>
-
-                <div class="footer-section">
-                    <h3>つくっている人</h3>
-                    <div class="contact-info">
-                        <p>高崎翔太（企画・物語・開発）</p>
-                        <p>キャラクターデザイン: 緒方孝治（秋田の守り神）／手塚屋（健太・杉野家）</p>
-                        <p>秋田県</p>
-                    </div>
+                <p class="save-note">続く章の公開、本の発売、動画の更新は、それぞれの場所で発信しています。</p>
+                <div class="save-sns">
+                    <a id="footer-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">YouTube</a>
+                    <a id="footer-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">X（@kitazunaakita）</a>
+                    <a id="footer-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">Instagram</a>
                 </div>
             </div>
 
-            <div class="copyright">
-                <p>&copy; 2026 Shota Takasaki / Kitazuna Project. All rights reserved.</p>
-                <p>キャラクターデザイン: 緒方孝治 ／ 手塚屋</p>
+            <nav class="footer-nav reveal" aria-label="サイト内">
+                <a href="#" onclick="return openGame(event)">ブラウザで遊ぶ</a>
+                <a href="#story-section">物語</a>
+                <a href="#character-section">仲間</a>
+                <a href="#game-section">遊び方</a>
+                <a href="#book-section">公式ファンブック</a>
+                <a href="#follow-section">最新情報</a>
+                <a href="#author-section">作者</a>
+            </nav>
+
+            <div class="credits reveal">
+                <p class="credits-title">STAFF</p>
+                <p>高崎翔太（企画・物語・開発）</p>
+                <p>キャラクターデザイン: 緒方孝治（秋田の守り神）／手塚屋（健太・杉野家）</p>
+                <p>秋田県</p>
+                <p class="credits-thanks" id="credits-thanks">THANK YOU FOR PLAYING</p>
+                <p class="copyright">&copy; 2026 Shota Takasaki / Kitazuna Project. All rights reserved.</p>
             </div>
         </footer>
 
-        <!-- Back to Top ボタン -->
-        <button class="back-to-top" onclick="scrollToTop()">↑</button>
+        <!-- 画面の下を歩く健太（スクロールの進みに合わせて進む） -->
+        <div class="walker" id="walker" aria-hidden="true">
+            <img src="images/kitazunasozai/character/kenta/kentawalk/kentawalk1.png" alt="" id="walker-img">
+        </div>
+
+        <!-- 隠し要素: ナマハゲが現れた！ -->
+        <div class="namahage-pop" id="namahage-pop" aria-hidden="true">
+            <img src="images/kitazunasozai/map/namahage_map/namahage1.png" alt="">
+            <p>ナマハゲが あらわれた！<br><small>泣く子はいねがー</small></p>
+        </div>
+
+        <button class="back-to-top" id="back-to-top" type="button" onclick="scrollToTop()" aria-label="タイトルへ戻る">▲<small>TITLE</small></button>
     </main>
 
     <script src="links.js"></script>
