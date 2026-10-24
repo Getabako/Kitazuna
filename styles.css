@@ -840,3 +840,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-even
 .hud-lantern { width: auto; height: 40px; border-radius: 0; background: none; box-shadow: none; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 190, 90, 0.75)); animation: lanternSway 2.4s ease-in-out infinite alternate; transform-origin: 50% 0; }
 .hud-lantern::before, .hud-lantern::after { display: none; }
 @keyframes lanternSway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+/* v3.3: 読み込み画面に豆知識の絵（ゲーム本体と同じ画像） */
+.boot-screen { align-items: center; padding-bottom: 6vh; }
+.boot-pic { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; border: 2px solid rgba(255, 207, 74, 0.5); box-shadow: var(--shadow); margin-bottom: 1rem; opacity: 0; transform: scale(0.97); transition: opacity 0.5s, transform 0.5s; background: var(--night-2); }
+.boot-pic.is-in { opacity: 1; transform: none; }
+.boot-trivia { min-height: 4.5em; }
+.boot-pic { aspect-ratio: 9 / 16; width: auto; max-width: 100%; height: min(44vh, 420px); margin-left: auto; margin-right: auto; }
+.boot-inner { display: flex; flex-direction: column; align-items: center; }
+.boot-trivia, .boot-bar { width: 100%; }

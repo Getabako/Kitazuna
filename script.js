@@ -145,7 +145,11 @@ function runBootScreen() {
     let seen = false; try { seen = sessionStorage.getItem("kitazuna.boot") === "1"; } catch (e) { /* 無視 */ }
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (seen || reduce) { boot.remove(); return; }
-    document.getElementById("boot-trivia").textContent = TRIVIA[Math.floor(Math.random() * TRIVIA.length)];
+    const ti = Math.floor(Math.random() * TRIVIA.length);
+    document.getElementById("boot-trivia").textContent = TRIVIA[ti];
+    // ゲーム本体と同じ、豆知識ごとの絵（Resources/LoadingTrivia/trivia_NN と同じ順）
+    const pic = document.getElementById("boot-pic");
+    if (pic) { pic.src = `images/trivia/trivia_${String(ti).padStart(2, "0")}.jpg`; pic.onload = () => pic.classList.add("is-in"); }
     const fill = document.getElementById("boot-bar-fill");
     const total = 2200; const start = performance.now(); let done = false;
     const finish = () => {
