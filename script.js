@@ -226,11 +226,11 @@ function setupReveal() {
 // ナギサのメッセージ窓（文字送り・タップで次へ）
 // ---------------------------------------------------------------------
 const MESSAGES = [
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "来たっすな。ここは Kitazuna の公式サイトだ。" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/9.png", text: "私はナギサ。女のナマハゲ。面は自分で作った。" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/10.png", text: "第1章は男鹿編。11月11日、ブラウザで遊べる。" },
-    { name: "健太", face: "images/kitazunasozai/character/kenta/kentaface/1.png", text: "……守り神なんて、本当にいるのか？" },
-    { name: "ナギサ", face: "images/kitazunasozai/character/nagisa/nagisaface/8.png", text: "信じた奴が動いて作る。まずは男鹿へ。" },
+    { name: "ナギサ", face: "images/faces/6.jpg", text: "来たっすな。ここは Kitazuna の公式サイトだ。" },
+    { name: "ナギサ", face: "images/faces/7.jpg", text: "私はナギサ。女のナマハゲ。面は自分で作った。" },
+    { name: "ナギサ", face: "images/faces/8.jpg", text: "第1章は男鹿編。11月11日、ブラウザで遊べる。" },
+    { name: "健太", face: "images/faces/1.jpg", text: "……守り神なんて、本当にいるのか？" },
+    { name: "ナギサ", face: "images/faces/6.jpg", text: "信じた奴が動いて作る。まずは男鹿へ。" },
 ];
 let msgIndex = 0, msgTimer = null, msgTyping = false;
 function showMessage(i) {
@@ -309,9 +309,13 @@ function renderMapPins() {
 }
 function renderStoryPage() {
     const win = document.getElementById("chapter-window"); const c = chapters[currentPage];
-    const sprites = [3, 4, 6, 7].includes(currentPage)
-        ? `<img src="images/dotchara${currentPage}a.png" alt=""><img src="images/dotchara${currentPage}b.png" alt="">`
-        : `<img src="images/dotchara${currentPage}.png" alt="">`;
+    const K = "images/kitazunasozai/character/";
+    const CHAPTER_SPRITES = [
+        [K + "kenta/kentaidle/kentaidle1.png"], [K + "nagisa/nagisaidle/nagisaidle1.png"], [K + "komachi/komachiidle/komachiidle1.png"],
+        [K + "inaniwa/inaniwaidle/inaniwaidle1.png", K + "kanto/kantoidle/kantoidle1.png"], [K + "tatsuko/tatsukoidle/tatsukoidle1.png", K + "hachiro/hachiroidle/hachiroidle1.png"],
+        [K + "akita/akitaidle/akitaidle1.png"], [K + "tanpo/tanpoidle/tanpoidle1.png", K + "torio/torioidle/torioidle1.png"], [K + "suginoo/suginooidle/suginooidle1.png"],
+    ];
+    const sprites = CHAPTER_SPRITES[currentPage].map(src => `<img src="${src}" alt="">`).join("");
     const statusClass = c.state === "open" ? "is-open" : c.state === "soon" ? "is-soon" : "";
     const statusHtml = c.state === "locked" ? '<i class="ico ico-lock"></i>' : `<i class="ico ico-calendar"></i>${c.status} 公開`;
     const shortTitle = c.title.replace(" ── ", "　");
@@ -351,27 +355,31 @@ function goToPage(i) { currentPage = i; renderStoryPage(); }
 // 仲間: パーティ編成（文面は従来どおり）
 // ---------------------------------------------------------------------
 const characters = [
-    { name: "杉野健太", inOga: true, role: "主人公・平凡な大学生", description: "祖父・雅弘から「魂の提灯」と紹介状を託され、秋田へ。信じ切れないまま動くところから、守り神たちとの絆が始まる。", imageIndex: 0, folderName: "kenta", faceImages: ["1.png", "2.png", "3.png", "4.png"] },
-    { name: "ナギサ", inOga: true, role: "女のナマハゲ・最初の仲間", description: "ナマハゲに憧れ、自分で面を作った少女。「男だけ」の掟に阻まれても諦めず、新しいナマハゲの形を作って世に出す。青い面が目印。作者の自画像でもある。", imageIndex: 1, folderName: "nagisa", faceImages: ["8.png", "9.png", "10.png"] },
-    { name: "源三郎", inOga: true, role: "男鹿の漁師・祖父の戦友", description: "海風源三郎。健太が最初に訪ねる男。真山神社へ続く参道と、ナマハゲの祠への道を示す。「信じた奴が動いて作る」が口癖。", imageIndex: 10, folderName: "genzaburo", faceImages: ["11.png", "12.png"], idleImage: "genzaburoidle/genzaburoidle1.png" },
-    { name: "ナマハゲ", inOga: true, role: "男鹿の来訪神", description: "祠の試練で待つ赤い面のナマハゲ。口上の意味、赤と青の面、護摩餅のもてなしを語り、ナギサに最初の魂の提灯を渡す。", imageIndex: 11, folderName: "namahage", faceImages: ["13.png", "14.png", "15.png"] },
-    { name: "杉野雅弘", inOga: true, role: "健太の祖父", description: "健太に「魂の提灯」と、男鹿・海風源三郎への紹介状を託す。スギノオウの封印が弱まっていることを、誰より早く察していた。", imageIndex: 14, folderName: "masahiro", faceImages: ["5.png", "6.png", "7.png"] },
-    { name: "コマチ", role: "伝統と現代を繋ぐインフルエンサー", description: "小野小町の化身。平安時代からの美の知識をSNSで現代に伝える革新的な存在。", imageIndex: 2, folderName: "komachi", faceImages: ["16.png", "17.png", "18.png"] },
-    { name: "イナニワ", role: "伝統を守る稲庭うどん職人", description: "稲庭うどんの老舗店主。息子カントとの世代間の葛藤を乗り越え、伝統と革新の融合を学ぶ。", imageIndex: 3, folderName: "inaniwa", faceImages: ["19.png", "20.png"] },
-    { name: "カント", role: "革新を求める竿燈士", description: "イナニワの息子。父の稲庭うどんの技術を竿燈に活かし、新技「足竿燈」を完成させる。", imageIndex: 4, folderName: "kanto", faceImages: ["21.png", "22.png", "23.png", "24.png"] },
-    { name: "タツコ", role: "田沢湖の美しき龍神", description: "美を求めて龍になった田沢湖の守り神。ハチロウとの純愛を通じて真の美しさを知る。", imageIndex: 5, folderName: "tatsuko", faceImages: ["25.png", "26.png", "27.png"] },
-    { name: "ハチロウ", role: "八郎潟の優しき守護者", description: "八郎潟に住む心優しい男性。タツコへの純粋な愛で、凍った田沢湖を溶かす奇跡を起こす。", imageIndex: 6, folderName: "hachiro", faceImages: ["28.png", "29.png", "30.png"] },
-    { name: "南祖坊", role: "十和田湖の南祖坊", description: "三湖物語でタツコとハチロウを試す存在。秋田に伝わる辰子姫・八郎太郎・南祖坊の伝説が、第四章の土台になる。", imageIndex: 13, folderName: "minamisobo", faceImages: ["43.png"] },
-    { name: "アキタ", role: "技術と伝統を融合したAI秋田犬", description: "サイボーグ化された秋田犬。最先端技術と忠誠心を兼ね備えた秋田の守護者。", imageIndex: 7, folderName: "akita", faceImages: ["31.png", "32.png", "33.png"] },
-    { name: "ひろし", role: "杉野健太の父・技術者", description: "健太の父。表向きは酒飲みだが、実は最先端技術で秋田を守る重要人物。", imageIndex: 12, folderName: "hiroshi", faceImages: ["34.png", "35.png", "36.png"] },
-    { name: "トリオ", role: "比内地鶏の誇り高きギャング", description: "アメリカかぶれのギャング風比内地鶏。タンポとの料理対決を通じて協力の大切さを学ぶ。", imageIndex: 9, folderName: "torio", faceImages: ["40.png", "41.png"] },
-    { name: "タンポ", role: "きりたんぽ魂を持つヤンキー", description: "秋田の米文化を愛するきりたんぽの化身。トリオとの和解により秋田統一への道を開く。", imageIndex: 8, folderName: "tanpo", faceImages: ["37.png", "38.png", "39.png"] },
+    { name: "杉野健太", inOga: true, role: "主人公・平凡な大学生", description: "祖父・雅弘から「魂の提灯」と紹介状を託され、秋田へ。信じ切れないまま動くところから、守り神たちとの絆が始まる。", imageIndex: 0, folderName: "kenta", faceImages: [1, 2, 3, 4] },
+    { name: "ナギサ", inOga: true, role: "女のナマハゲ・最初の仲間", description: "ナマハゲに憧れ、自分で面を作った少女。「男だけ」の掟に阻まれても諦めず、新しいナマハゲの形を作って世に出す。青い面が目印。作者の自画像でもある。", imageIndex: 1, folderName: "nagisa", faceImages: [6, 7, 8, 9] },
+    { name: "源三郎", inOga: true, role: "男鹿の漁師・祖父の戦友", description: "海風源三郎。健太が最初に訪ねる男。真山神社へ続く参道と、ナマハゲの祠への道を示す。「信じた奴が動いて作る」が口癖。", imageIndex: 10, folderName: "genzaburo", faceImages: [10, 11] },
+    { name: "ナマハゲ", inOga: true, role: "男鹿の来訪神", description: "祠の試練で待つ赤い面のナマハゲ。口上の意味、赤と青の面、護摩餅のもてなしを語り、ナギサに最初の魂の提灯を渡す。", imageIndex: 11, folderName: "namahage", faceImages: [12] },
+    { name: "杉野雅弘", inOga: true, role: "健太の祖父", description: "健太に「魂の提灯」と、男鹿・海風源三郎への紹介状を託す。スギノオウの封印が弱まっていることを、誰より早く察していた。", imageIndex: 14, folderName: "masahiro", faceImages: [5] },
+    { name: "コマチ", role: "伝統と現代を繋ぐインフルエンサー", description: "小野小町の化身。平安時代からの美の知識をSNSで現代に伝える革新的な存在。", imageIndex: 2, folderName: "komachi", faceImages: [13, 14, 15, 16] },
+    { name: "イナニワ", role: "伝統を守る稲庭うどん職人", description: "稲庭うどんの老舗店主。息子カントとの世代間の葛藤を乗り越え、伝統と革新の融合を学ぶ。", imageIndex: 3, folderName: "inaniwa", faceImages: [17, 18] },
+    { name: "カント", role: "革新を求める竿燈士", description: "イナニワの息子。父の稲庭うどんの技術を竿燈に活かし、新技「足竿燈」を完成させる。", imageIndex: 4, folderName: "kanto", faceImages: [19, 20, 21, 22] },
+    { name: "タツコ", role: "田沢湖の美しき龍神", description: "美を求めて龍になった田沢湖の守り神。ハチロウとの純愛を通じて真の美しさを知る。", imageIndex: 5, folderName: "tatsuko", faceImages: [23, 24, 25, 26] },
+    { name: "ハチロウ", role: "八郎潟の優しき守護者", description: "八郎潟に住む心優しい男性。タツコへの純粋な愛で、凍った田沢湖を溶かす奇跡を起こす。", imageIndex: 6, folderName: "hachiro", faceImages: [27, 28, 29, 30] },
+    { name: "南祖坊", role: "十和田湖の南祖坊", description: "三湖物語でタツコとハチロウを試す存在。秋田に伝わる辰子姫・八郎太郎・南祖坊の伝説が、第四章の土台になる。", imageIndex: 13, folderName: "minamisobo", faceImages: [48, 49, 50] },
+    { name: "アキタ", role: "技術と伝統を融合したAI秋田犬", description: "サイボーグ化された秋田犬。最先端技術と忠誠心を兼ね備えた秋田の守護者。", imageIndex: 7, folderName: "akita", faceImages: [31, 32, 33, 34] },
+    { name: "ひろし", role: "杉野健太の父・技術者", description: "健太の父。表向きは酒飲みだが、実は最先端技術で秋田を守る重要人物。", imageIndex: 12, folderName: "hiroshi", faceImages: [35, 36, 37] },
+    { name: "トリオ", role: "比内地鶏の誇り高きギャング", description: "アメリカかぶれのギャング風比内地鶏。タンポとの料理対決を通じて協力の大切さを学ぶ。", imageIndex: 9, folderName: "torio", faceImages: [42, 43, 44] },
+    { name: "タンポ", role: "きりたんぽ魂を持つヤンキー", description: "秋田の米文化を愛するきりたんぽの化身。トリオとの和解により秋田統一への道を開く。", imageIndex: 8, folderName: "tanpo", faceImages: [38, 39, 40, 41] },
 ];
 let currentCharacterIndex = 0;
-function facePath(c, f) { return `images/kitazunasozai/character/${c.folderName}/${c.folderName}face/${f}`; }
+function facePath(c, f) { return `images/faces/${f}.jpg`; }
+// 大きな絵: ゲーム本体の立ち絵（緒方氏の設定画）。健太はオープニングの絵、立ち絵が無い人物はドット絵の待機ポーズ
+const STANDS = ["nagisa","komachi","inaniwa","kanto","tatsuko","hachiro","akita","tanpo","torio"];
 function heroImage(c) {
-    if (c.idleImage) return { src: `images/kitazunasozai/character/${c.folderName}/${c.idleImage}`, pixel: true };
-    if (c.imageIndex < 10) { const n = c.imageIndex === 9 ? "chara8" : c.imageIndex === 8 ? "chara9" : `chara${c.imageIndex}`; return { src: `images/${n}.png`, pixel: false }; }
+    if (c.folderName === "kenta") return { src: "images/stand/kenta.jpg", pixel: false };
+    if (STANDS.includes(c.folderName)) return { src: `images/stand/${c.folderName}.png`, pixel: false, stand: true };
+    if (c.folderName === "genzaburo") return { src: "images/kitazunasozai/character/genzaburo/genzaburo_idle_0.png", pixel: true };
+    if (c.folderName === "minamisobo") return { src: "images/kitazunasozai/character/minamisobo/minamisoboidle/minamisoboidle1.png", pixel: true };
     return { src: facePath(c, c.faceImages[0]), pixel: false };
 }
 function renderPartyRoster() {
@@ -386,7 +394,7 @@ function renderPartyRoster() {
 function renderCharacterCard() {
     const card = document.getElementById("character-card"); const c = characters[currentCharacterIndex]; const hero = heroImage(c);
     card.innerHTML = `
-        <div class="status-hero"><img class="${hero.pixel ? "is-pixel" : ""}" src="${hero.src}" alt="${c.name}" onerror="this.onerror=null;this.src='${facePath(c, c.faceImages[0])}'"></div>
+        <div class="status-hero ${hero.stand ? "is-stand" : ""}"><img class="${hero.pixel ? "is-pixel" : ""}" src="${hero.src}" alt="${c.name}" onerror="this.onerror=null;this.src='${facePath(c, c.faceImages[0])}'"></div>
         <div class="status-body">
             <div class="status-head">
                 <h3 class="status-name">${c.name}</h3>
@@ -545,11 +553,11 @@ function renderTeam() {
     const grid = document.getElementById("team-grid"); if (!grid) return;
     const F = "images/kitazunasozai/character/";
     const team = [
-        { face: F + "namahage/namahageface/13.png", role: "緒方孝治", description: "守り神の絵" },
-        { face: F + "kenta/kentaface/1.png", role: "手塚屋", description: "杉野家の絵" },
-        { face: F + "nagisa/nagisaface/8.png", role: "高崎翔太", description: "企画・開発" },
-        { face: F + "akita/akitaface/31.png", role: "AI", description: "台本・音・コード" },
-        { face: F + "tanpo/tanpoface/37.png", role: "if(塾)の生徒", description: "テスト" },
+        { face: "images/faces/12.jpg", role: "緒方孝治", description: "守り神の絵" },
+        { face: "images/faces/1.jpg", role: "手塚屋", description: "杉野家の絵" },
+        { face: "images/faces/6.jpg", role: "高崎翔太", description: "企画・開発" },
+        { face: "images/faces/31.jpg", role: "AI", description: "台本・音・コード" },
+        { face: "images/faces/38.jpg", role: "if(塾)の生徒", description: "テスト" },
     ];
     grid.innerHTML = team.map(t => `<div class="team-card"><div class="team-icon"><img src="${t.face}" alt="" loading="lazy"></div><div><h5>${t.role}</h5><p>${t.description}</p></div></div>`).join("");
 }

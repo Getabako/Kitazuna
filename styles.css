@@ -848,3 +848,60 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-even
 .boot-pic { aspect-ratio: 9 / 16; width: auto; max-width: 100%; height: min(44vh, 420px); margin-left: auto; margin-right: auto; }
 .boot-inner { display: flex; flex-direction: column; align-items: center; }
 .boot-trivia, .boot-bar { width: 100%; }
+/* v3.4: ゲーム本体の現行素材（顔 52 枚・立ち絵）に差し替え。立ち絵は全身が見えるように contain */
+.status-hero.is-stand { background: radial-gradient(ellipse at 50% 70%, rgba(95,242,255,0.18), var(--night-3) 70%); }
+.status-hero.is-stand img { max-height: 340px; object-fit: contain; object-position: center bottom; padding: 0.6rem 0.6rem 0; }
+.status-hero img.is-pixel { max-height: 200px; }
+/* ページャーは一行（点を小さく・折り返さない） */
+.chapter-nav { flex-wrap: nowrap; gap: 0.5rem; }
+.chapter-dots { flex: 1; flex-wrap: nowrap; justify-content: center; gap: 0.3rem; min-width: 0; }
+.chapter-dots button { width: 9px; height: 9px; flex: none; }
+.chapter-nav .pixel-btn { flex: none; padding: 0.45rem 0.8rem; }
+/* 画面下の健太: ゲームの歩きスプライトは左向きなので、右へ進むときは反転 */
+.walker img { transform: scaleX(-1); }
+.walker.is-flip img { transform: none; }
+
+/* =====================================================================
+   v3.5 背景を「実りの稲穂」の暖色に（紺の暗さをやめる。内容の邪魔はしない）
+   - 色変数を暖かい夜の金茶に寄せる。窓・カードも同系の濃い色
+   - 固定の背景層: 下から昇る金の光 ＋ うっすら稲穂の模様（SVG・低い不透明度）
+   ===================================================================== */
+:root {
+    --night: #2a2010;
+    --night-2: #382b14;
+    --night-3: #4a3a1c;
+    --win-bg: rgba(40, 30, 14, 0.88);
+    --glass: rgba(62, 48, 22, 0.55);
+    --glass-border: rgba(255, 220, 140, 0.2);
+    --muted: #cdbb96;
+}
+body { background: linear-gradient(180deg, #2a2010 0%, #3a2c12 45%, #4a3814 100%); }
+body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 110%, rgba(255, 200, 80, 0.35), transparent 60%),
+        radial-gradient(ellipse at 15% 0%, rgba(255, 207, 74, 0.10), transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='220' viewBox='0 0 160 220'%3E%3Cg fill='none' stroke='%23ffcf4a' stroke-width='2' stroke-linecap='round' opacity='0.9'%3E%3Cpath d='M40 215 C 44 150, 52 110, 70 60'/%3E%3Cpath d='M120 218 C 118 160, 112 120, 96 70'/%3E%3C/g%3E%3Cg fill='%23ffcf4a'%3E%3Cellipse cx='64' cy='70' rx='5' ry='9' transform='rotate(-25 64 70)'/%3E%3Cellipse cx='74' cy='58' rx='5' ry='9' transform='rotate(-25 74 58)'/%3E%3Cellipse cx='58' cy='84' rx='5' ry='9' transform='rotate(-25 58 84)'/%3E%3Cellipse cx='70' cy='82' rx='5' ry='9' transform='rotate(-25 70 82)'/%3E%3Cellipse cx='54' cy='98' rx='5' ry='9' transform='rotate(-25 54 98)'/%3E%3Cellipse cx='80' cy='46' rx='5' ry='9' transform='rotate(-25 80 46)'/%3E%3Cellipse cx='102' cy='80' rx='5' ry='9' transform='rotate(25 102 80)'/%3E%3Cellipse cx='92' cy='68' rx='5' ry='9' transform='rotate(25 92 68)'/%3E%3Cellipse cx='108' cy='94' rx='5' ry='9' transform='rotate(25 108 94)'/%3E%3Cellipse cx='96' cy='92' rx='5' ry='9' transform='rotate(25 96 92)'/%3E%3Cellipse cx='112' cy='108' rx='5' ry='9' transform='rotate(25 112 108)'/%3E%3Cellipse cx='86' cy='56' rx='5' ry='9' transform='rotate(25 86 56)'/%3E%3C/g%3E%3C/svg%3E") center / 160px 220px repeat;
+    opacity: 0.16;
+}
+.boot-screen { background: radial-gradient(ellipse at 50% 30%, #4a3814 0%, #2a2010 70%); }
+.title-shade { background: linear-gradient(180deg, rgba(42, 32, 16, 0.2) 0%, rgba(42, 32, 16, 0.5) 45%, rgba(42, 32, 16, 0.96) 100%); }
+.hud { background: linear-gradient(180deg, rgba(42, 32, 16, 0.92), rgba(42, 32, 16, 0)); }
+.story-screen { background: radial-gradient(ellipse at 50% 0%, rgba(255, 207, 74, 0.10), transparent 60%); }
+.party-screen { background: radial-gradient(ellipse at 50% 20%, rgba(255, 170, 60, 0.10), transparent 60%); }
+.play-screen { background: radial-gradient(ellipse at 80% 20%, rgba(224, 70, 47, 0.12), transparent 55%), radial-gradient(ellipse at 10% 80%, rgba(255, 207, 74, 0.10), transparent 55%); }
+.item-screen { background: radial-gradient(ellipse at 50% 30%, rgba(255, 207, 74, 0.14), transparent 60%); }
+.board-screen { background: linear-gradient(180deg, transparent, rgba(255, 190, 80, 0.08) 50%, transparent); }
+.map-fog { background: radial-gradient(circle at 20% 38%, transparent 0 14%, rgba(42, 32, 16, 0) 15%, rgba(42, 32, 16, 0.5) 40%); }
+.akita-map { background: rgba(20, 15, 6, 0.6); border-radius: 12px; }
+.cinema-shade { background: linear-gradient(180deg, rgba(42,32,16,0) 20%, rgba(42,32,16,0.9) 100%), linear-gradient(90deg, rgba(42,32,16,0.55), transparent 60%); }
+.bento-tile::after { background: linear-gradient(180deg, rgba(42,32,16,0) 35%, rgba(42,32,16,0.92) 100%); }
+.chapter-visual::after { background: linear-gradient(180deg, rgba(40,30,14,0.1), rgba(40,30,14,0) 60%, rgba(40,30,14,0.55)); }
+.status-hero::after { background: linear-gradient(180deg, transparent 55%, rgba(40, 30, 14, 0.95)); }
+.phone-frame { background: #1c1408; border-color: #5a4a2a; box-shadow: var(--shadow), inset 0 0 0 2px #2a2010; }
+.phone-notch { background: #1c1408; border-color: #5a4a2a; }
+.phone-dots span { background: #5a4a2a; }
+.chapter-number, .chapter-status, .map-pin-label { background: rgba(40, 30, 14, 0.8); }
+.hud-gauge { background: rgba(40, 30, 14, 0.9); }
+.boot-bar { background: var(--night-2); }
+body::before { opacity: 0.13; }
