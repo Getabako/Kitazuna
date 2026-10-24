@@ -448,3 +448,188 @@ body.is-quake { animation: quake 0.5s; }
     .menu-shot { width: 54px; height: 96px; }
     .msg-face { width: 68px; height: 68px; }
 }
+
+/* =====================================================================
+   2026-10-24 v2 「レトロ × 最新」の最新レイヤー
+   - ガラス板（backdrop blur）・ホログラム縁（conic-gradient の回転）・ネオンの光
+   - 立ち絵の視差（.parallax / data-depth）・ドット絵の生きたスプライト（.live-sprite）
+   - 文字の塊を 画像タイル（bento）・順路（route）・層タイル（layers）・折りたたみ（details.more）へ
+   ===================================================================== */
+:root {
+    --cyan: #5ff2ff;
+    --magenta: #ff5fd2;
+    --glass: rgba(16, 22, 48, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.14);
+}
+
+/* アイコン（Font Awesome 代わりの SVG マスク。絵文字は使わない） */
+.ico { display: inline-block; width: 1.1em; height: 1.1em; vertical-align: -0.2em; margin-right: 0.35em; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+.ico-phone { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='2' width='12' height='20' rx='2.5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='12' cy='18' r='1.2'/%3E%3C/svg%3E"); }
+.ico-free { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M9 8h6M9 12h6M12 8v9' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-noinstall { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v10m0 0l-4-4m4 4l4-4M4 17v3h16v-3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3 3l18 18' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ico-tap { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 11V5a2 2 0 1 1 4 0v6m0-2a2 2 0 1 1 4 0v2m0-1a2 2 0 1 1 4 0v4a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4 14a2 2 0 0 1 3-2.5l2 2.5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.ico-swipe { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.ico-press { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='5' width='18' height='14' rx='2' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M7 10h5M7 14h10' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+
+/* ガラス板＋ホログラム縁 */
+.glass, .bento-tile, .layer, .route-stop, .team-card, .chip, .title-badges li {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3);
+}
+.holo { position: relative; isolation: isolate; }
+.holo::before {
+    content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: inherit;
+    background: conic-gradient(from var(--holo-angle, 0deg), var(--gold), var(--cyan), var(--magenta), var(--vermilion), var(--gold));
+    filter: blur(0.5px); opacity: 0.9; animation: holoSpin 6s linear infinite;
+}
+@property --holo-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes holoSpin { to { --holo-angle: 360deg; } }
+
+/* ---------- タイトル: 立ち絵・生きたスプライト・特徴バッジ ---------- */
+.title-cast { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.title-cast img { position: absolute; bottom: 0; filter: drop-shadow(0 0 28px rgba(95, 242, 255, 0.35)) drop-shadow(0 20px 30px rgba(0,0,0,0.7)); will-change: transform; }
+.cast-nagisa { right: -8%; height: 62svh; opacity: 0.95; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%); }
+.cast-suginoo { left: -18%; height: 48svh; opacity: 0.45; filter: drop-shadow(0 0 30px rgba(255, 95, 210, 0.3)) brightness(0.7); -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 60%, transparent 100%); }
+.title-sprites { position: relative; z-index: 3; display: flex; justify-content: center; gap: 1.2rem; margin-bottom: -0.6rem; }
+.live-sprite { width: 72px; height: 72px; image-rendering: pixelated; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.6)); animation: spriteBob 1.6s ease-in-out infinite alternate; }
+.live-sprite + .live-sprite { animation-delay: 0.6s; }
+@keyframes spriteBob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+.title-tagline { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.7rem; }
+.title-badges { position: relative; z-index: 3; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem; margin-bottom: 1rem; }
+.title-badges li { font-size: 0.92rem; letter-spacing: 0.05em; color: var(--washi); border-radius: 999px; padding: 0.3rem 0.9rem; display: inline-flex; align-items: center; }
+.title-badges .ico { color: var(--cyan); }
+.quest-count { background: linear-gradient(90deg, var(--vermilion), var(--magenta)); box-shadow: 0 0 18px rgba(255, 95, 210, 0.55); }
+
+/* メニューはガラス＋ホログラムの主ボタン */
+.menu-item { background: var(--glass); backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); border-width: 2px; }
+.menu-item.is-primary { border-color: transparent; background: linear-gradient(135deg, rgba(47, 122, 77, 0.7), rgba(16, 22, 48, 0.75)); }
+.menu-item.is-primary::before {
+    content: ""; position: absolute; inset: -3px; z-index: -1; border-radius: inherit;
+    background: conic-gradient(from var(--holo-angle, 0deg), var(--gold), var(--cyan), var(--magenta), var(--gold));
+    animation: holoSpin 5s linear infinite;
+}
+.menu-item.is-primary { isolation: isolate; }
+.menu-shot-book { object-fit: cover; border-color: var(--washi); }
+.menu-shot-icon { object-fit: contain; image-rendering: pixelated; background: var(--night-3); padding: 6px; }
+.chapter-tabs button { background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-color: var(--glass-border); }
+
+/* ---------- 物語・仲間: 短いヒント ---------- */
+.map-hint, .screen-lead { color: var(--muted); font-size: 0.98rem; }
+.map-hint .ico, .screen-lead .ico, .sub-note .ico { color: var(--cyan); }
+
+/* ---------- 遊び方: シネマ帯 ---------- */
+.cinema { position: relative; border-radius: 18px; overflow: hidden; min-height: 240px; display: flex; align-items: flex-end; box-shadow: var(--shadow), 0 0 0 1px var(--glass-border); margin-bottom: 1rem; }
+.cinema-bg { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: center 30%; will-change: transform; }
+.cinema-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,16,32,0) 20%, rgba(11,16,32,0.9) 100%), linear-gradient(90deg, rgba(11,16,32,0.55), transparent 60%); }
+.cinema-text { position: relative; padding: 1.4rem 1.3rem 1.3rem; }
+.cinema-kicker { font-family: var(--font-dot); letter-spacing: 0.35em; color: var(--cyan); font-size: 0.85rem; display: block; margin-bottom: 0.2rem; }
+.cinema-text h3 { font-family: var(--font-head); font-weight: 400; font-size: clamp(1.5rem, 6vw, 2.3rem); color: #fff; letter-spacing: 0.08em; line-height: 1.3; text-shadow: 0 2px 0 var(--ink), 0 0 24px rgba(95,242,255,0.35); }
+.cinema-text p { color: var(--washi); font-size: 1rem; margin-top: 0.3rem; }
+@media (min-width: 720px) { .cinema { min-height: 360px; } .cinema-text { padding: 2rem 2.2rem; } }
+
+/* 旅の順路（章の土地を絵で） */
+.route { display: flex; gap: 0.5rem; overflow-x: auto; padding: 0.4rem 0.2rem 0.8rem; margin-bottom: 1.6rem; scrollbar-width: none; -webkit-overflow-scrolling: touch; position: relative; }
+.route::-webkit-scrollbar { display: none; }
+.route-stop { flex: none; width: 96px; border-radius: 14px; padding: 0.6rem 0.4rem 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.1rem; color: var(--muted); position: relative; }
+.route-stop img { width: 48px; height: 48px; object-fit: contain; image-rendering: pixelated; filter: grayscale(1) brightness(0.6); }
+.route-stop b { font-family: var(--font-head); font-weight: 400; font-size: 1.05rem; letter-spacing: 0.1em; }
+.route-stop small { font-family: var(--font-dot); font-size: 0.8rem; letter-spacing: 0.1em; color: var(--gold); min-height: 1.1em; }
+.route-stop.is-open { color: #fff; border-color: var(--cyan); box-shadow: 0 0 18px rgba(95,242,255,0.35), inset 0 0 0 1px rgba(95,242,255,0.4); }
+.route-stop.is-open img { filter: none; }
+.route-stop + .route-stop::before { content: ""; position: absolute; left: -0.5rem; top: 50%; width: 0.5rem; height: 2px; background: var(--glass-border); }
+@media (min-width: 720px) { .route { justify-content: center; } }
+
+/* 太鼓の助け舟 */
+.taiko-help { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; font-size: 1rem; }
+.taiko-key { font-family: var(--font-dot); font-size: 0.85rem; letter-spacing: 0.12em; color: var(--ink); background: var(--gold); border-radius: 6px; padding: 0.05rem 0.5rem; margin-right: 0.2rem; }
+
+/* ベントー（画像タイル） */
+.bento { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; gap: 0.7rem; margin-top: 1.6rem; }
+.bento-tile { position: relative; border-radius: 16px; overflow: hidden; display: block; color: #fff; transition: transform 0.25s, box-shadow 0.25s; }
+.bento-tile img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(.2,.8,.2,1); }
+.bento-tile:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--cyan), 0 14px 30px rgba(0,0,0,0.5); }
+.bento-tile:hover img { transform: scale(1.06); }
+.bento-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,16,32,0) 35%, rgba(11,16,32,0.92) 100%); }
+.bento-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 0.7rem 0.8rem; display: flex; flex-direction: column; line-height: 1.4; }
+.bento-cap b { font-family: var(--font-head); font-weight: 400; font-size: 1.05rem; letter-spacing: 0.06em; text-shadow: 0 1px 0 var(--ink); }
+.bento-cap small { font-size: 0.82rem; color: var(--washi); margin-top: 0.15rem; }
+.bento-wide { grid-column: 1 / -1; }
+.bento-tall { grid-column: 1 / -1; grid-row: span 1; }
+.bento-cast { object-position: left center; }
+@media (min-width: 720px) {
+    .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; }
+    .bento-wide { grid-column: span 2; grid-row: span 2; }
+    .bento-tall { grid-column: span 2; grid-row: span 1; }
+    .bento-cap b { font-size: 1.25rem; } .bento-cap small { font-size: 0.92rem; }
+}
+
+/* ---------- 本: チップ・3層タイル・折りたたみ ---------- */
+.book-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 1rem; }
+.chip { font-size: 0.9rem; letter-spacing: 0.05em; color: var(--washi); border-radius: 999px; padding: 0.25rem 0.8rem; }
+.chip-gold { color: var(--ink); background: var(--gold); border-color: var(--gold); font-weight: 700; }
+.layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 0.9rem; }
+.layer { border-radius: 14px; padding: 0.7rem 0.4rem 0.6rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.15rem; }
+.layer img { width: 100%; height: 64px; object-fit: cover; border-radius: 8px; margin-bottom: 0.3rem; }
+.layer img.is-pixel { object-fit: contain; image-rendering: pixelated; }
+.layer b { font-size: 0.98rem; color: #fff; letter-spacing: 0.04em; line-height: 1.4; }
+.layer small { font-size: 0.78rem; color: var(--muted); }
+details.more { margin: 0.4rem 0 1rem; }
+details.more summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-dot); letter-spacing: 0.12em; color: var(--cyan); font-size: 0.98rem; padding: 0.3rem 0; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before { content: "▶"; font-size: 0.7em; transition: transform 0.2s; }
+details.more[open] summary::before { transform: rotate(90deg); }
+details.more .book-list { margin-top: 0.6rem; }
+details.more > p { margin-top: 0.8rem; }
+.more-paper summary { color: var(--vermilion-2); }
+
+/* ---------- 最新情報: 画像つき掲示 ---------- */
+.board-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.poster { padding: 1.3rem 0.9rem 0.9rem; align-items: center; text-align: center; gap: 0.2rem; }
+.poster-art { width: 72px; height: 72px; object-fit: contain; image-rendering: pixelated; margin-bottom: 0.2rem; }
+.poster-title { font-size: 1.1rem; }
+.poster-desc { font-size: 0.85rem; }
+@media (min-width: 720px) { .board-grid { grid-template-columns: repeat(4, 1fr); } .poster-art { width: 96px; height: 96px; } }
+
+/* ---------- 作者: 立ち絵＋巻物、顔写真つきスタッフ ---------- */
+.author-stage { position: relative; max-width: 860px; margin: 0 auto; padding-top: 1rem; }
+.author-nagisa { position: absolute; right: -4%; top: -3rem; height: 260px; z-index: 2; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7)); will-change: transform; pointer-events: none; }
+.author-stage .makimono { position: relative; z-index: 1; }
+.makimono-paper { padding-right: 1.5rem; }
+.vision-quote { font-size: 1.08rem; line-height: 1.95; font-weight: 500; }
+@media (min-width: 720px) { .author-nagisa { height: 400px; right: -8%; top: -5rem; } .author-stage .makimono { margin-right: 120px; } }
+@media (max-width: 719px) { .author-nagisa { height: 200px; right: -6%; top: -2.4rem; } .author-stage .makimono-paper { padding-top: 2.6rem; } }
+.team-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; max-width: 760px; }
+.team-card { flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; padding: 0.9rem 0.5rem; border-radius: 16px; border-color: var(--glass-border); background: var(--glass); }
+.team-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--night-3); overflow: hidden; border: 2px solid var(--gold); box-shadow: 0 0 16px rgba(255,207,74,0.25); }
+.team-icon img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.team-card h5 { font-size: 0.98rem; line-height: 1.4; }
+.team-card p { font-size: 0.8rem; line-height: 1.5; }
+.press-line { text-align: center; color: var(--muted); font-size: 0.92rem; max-width: 36em; margin: 1.6rem auto 0; }
+.press-line .ico { color: var(--cyan); }
+
+/* ---------- 画面の雰囲気: ネオンの光芒とスキャンライン（レトロ×最新） ---------- */
+.screen-title span { background: linear-gradient(90deg, var(--gold), #fff3b0 50%, var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 14px rgba(255,207,74,0.35)) drop-shadow(3px 3px 0 var(--ink)); }
+.screen-title small { color: var(--cyan); opacity: 0.85; }
+.play-screen { background: radial-gradient(ellipse at 80% 20%, rgba(255,95,210,0.14), transparent 55%), radial-gradient(ellipse at 10% 80%, rgba(95,242,255,0.12), transparent 55%); }
+.item-screen { background: radial-gradient(ellipse at 50% 30%, rgba(255,207,74,0.12), transparent 60%); }
+body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-events: none; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) { .parallax { transform: none !important; } .holo::before, .menu-item.is-primary::before { animation: none; } }
+
+/* v2 微調整 */
+.menu-item.is-primary { background: linear-gradient(135deg, rgba(40, 110, 70, 0.96), rgba(14, 20, 44, 0.97)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.title-tagline { font-size: 1.05rem; text-wrap: balance; }
+.author-nagisa { top: auto; bottom: -0.6rem; right: -8%; height: 210px; }
+@media (min-width: 720px) { .author-nagisa { top: auto; bottom: -1rem; right: -6%; height: 380px; } .author-stage .makimono { margin-right: 140px; } }
+@media (max-width: 719px) { .author-stage .makimono-paper { padding-top: 2rem; padding-bottom: 2.4rem; } .author-stage .makimono-paper .vision-quote, .author-stage .makimono-paper .more { padding-right: 22%; } }
+
+/* v2 微調整 2: ホログラム縁は background の二層（padding-box / border-box）で描く。::before は使わない */
+.menu-item.is-primary::before { display: none; }
+.menu-item.is-primary {
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, rgba(40, 110, 70, 0.96), rgba(14, 20, 44, 0.97)) padding-box,
+                conic-gradient(from var(--holo-angle, 0deg), var(--gold), var(--cyan), var(--magenta), var(--gold)) border-box;
+    animation: holoSpin 5s linear infinite;
+    box-shadow: var(--shadow), 0 0 22px rgba(95, 242, 255, 0.25);
+}
+.cinema-bg { inset: -22% 0; height: 144%; }

@@ -470,18 +470,7 @@ function setupSecret() {
     });
 }
 
-// つくっている人
-function renderTeam() {
-    const grid = document.getElementById("team-grid"); if (!grid) return;
-    const team = [
-        { icon: "画", role: "緒方孝治", description: "キャラクターデザイン（秋田の守り神たち）。くにおくんシリーズのデザイナー" },
-        { icon: "画", role: "手塚屋", description: "キャラクターデザイン（健太・ヒロシ・雅弘の杉野家）" },
-        { icon: "作", role: "高崎翔太", description: "企画・物語・開発。秋田で if(塾) を運営" },
-        { icon: "AI", role: "AI（Codex ほか）", description: "台本・背景・効果音・コードの相棒。作り方は公式ファンブックに" },
-        { icon: "塾", role: "if(塾)の生徒たち", description: "テストプレイと秋田の取材に協力" },
-    ];
-    grid.innerHTML = team.map(t => `<div class="team-card"><div class="team-icon">${t.icon}</div><div><h5>${t.role}</h5><p>${t.description}</p></div></div>`).join("");
-}
+// つくっている人 → ファイル末尾の v2 renderTeam（顔アイコン版）に移した
 
 // セーブ画面まで来たら THANK YOU FOR PLAYING
 function setupThanks() {
@@ -519,3 +508,45 @@ document.addEventListener("DOMContentLoaded", () => {
     setupThanks();
     window.addEventListener("resize", pickVideo);
 });
+
+// =====================================================================
+// 2026-10-24 v2: 最新レイヤー（視差・生きたスプライト・スタッフの顔）
+// =====================================================================
+// 立ち絵の視差: data-depth の分だけスクロールに遅れて動く
+function setupParallax() {
+    const els = Array.from(document.querySelectorAll(".parallax")); if (!els.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let ticking = false;
+    const update = () => {
+        ticking = false; const vh = window.innerHeight;
+        els.forEach(el => {
+            const r = el.getBoundingClientRect(); const depth = parseFloat(el.dataset.depth || "0.1");
+            const center = r.top + r.height / 2 - vh / 2; el.style.transform = `translate3d(0, ${(-center * depth).toFixed(1)}px, 0)`;
+        });
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+}
+// ドット絵の待機アニメ（nagisaidle1〜3 などをコマ送り）
+function setupLiveSprites() {
+    const els = Array.from(document.querySelectorAll(".live-sprite")); if (!els.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    els.forEach((el, i) => {
+        const tpl = el.dataset.frames; const count = parseInt(el.dataset.count || "3", 10); let n = 1;
+        setInterval(() => { n = n % count + 1; el.src = tpl.replace("{n}", n); }, 420 + i * 60);
+    });
+}
+// つくっている人: 文字アイコンではなく、ゆかりのキャラクターの顔で
+function renderTeam() {
+    const grid = document.getElementById("team-grid"); if (!grid) return;
+    const F = "images/kitazunasozai/character/";
+    const team = [
+        { face: F + "namahage/namahageface/13.png", role: "緒方孝治", description: "守り神たちの絵" },
+        { face: F + "kenta/kentaface/1.png", role: "手塚屋", description: "健太と杉野家の絵" },
+        { face: F + "nagisa/nagisaface/8.png", role: "高崎翔太", description: "企画・物語・開発" },
+        { face: F + "akita/akitaface/31.png", role: "AI", description: "台本・背景・音・コード" },
+        { face: F + "tanpo/tanpoface/37.png", role: "if(塾)の生徒", description: "テストプレイ・取材" },
+    ];
+    grid.innerHTML = team.map(t => `<div class="team-card"><div class="team-icon"><img src="${t.face}" alt="" loading="lazy"></div><div><h5>${t.role}</h5><p>${t.description}</p></div></div>`).join("");
+}
+document.addEventListener("DOMContentLoaded", () => { setupParallax(); setupLiveSprites(); renderTeam(); });
