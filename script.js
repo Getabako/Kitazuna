@@ -173,7 +173,7 @@ const SECTION_NAMES = [
 ];
 const WALK_FRAMES = [1, 2, 3, 2].map(n => `images/kitazunasozai/character/kenta/kentawalk/kentawalk${n}.png`);
 const IDLE_FRAME = "images/kitazunasozai/character/kenta/kentaidle/kentaidle1.png";
-let walkFrame = 0, walkTimer = null, lastScrollY = 0;
+let walkFrame = 0, walkTimer = null, lastScrollY = 0, gaugeFull = false;
 function setupScrollHud() {
     const fill = document.getElementById("hud-gauge-fill");
     const label = document.getElementById("hud-gauge-label");
@@ -196,10 +196,42 @@ function setupScrollHud() {
         walkFrame = (walkFrame + 1) % WALK_FRAMES.length; walkerImg.src = WALK_FRAMES[walkFrame];
         clearTimeout(walkTimer); walkTimer = setTimeout(() => { walkerImg.src = IDLE_FRAME; }, 220);
         toTop.classList.toggle("is-show", window.scrollY > window.innerHeight * 0.8);
+        // ゲージが満ちたら一度だけ演出。6 割より上に戻ればまた満たせる
+        if (p >= 0.985 && !gaugeFull) { gaugeFull = true; onGaugeFull(); }
+        if (p < 0.6) gaugeFull = false;
     };
     let ticking = false;
     window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
     onScroll();
+}
+
+// ゲージ MAX: 魂の提灯が満ちた！ 提灯が舞い上がり、仲間のドット絵が画面下を行進する
+const PARADE = [
+    ["kenta", 3], ["nagisa", 2], ["komachi", 4], ["inaniwa", 3], ["kanto", 3], ["tatsuko", 3], ["hachiro", 3], ["akita", 3], ["tanpo", 3], ["torio", 3],
+];
+function onGaugeFull() {
+    const root = document.getElementById("gauge-full"); if (!root || root.classList.contains("is-show")) return;
+    const hud = document.getElementById("hud"); if (hud) { hud.classList.remove("is-max"); void hud.offsetWidth; hud.classList.add("is-max"); }
+    SE.chain(); if (SE.enabled) SE.item();
+    document.body.classList.remove("is-quake"); void document.body.offsetWidth; document.body.classList.add("is-quake");
+    // 提灯
+    const field = document.getElementById("gauge-full-lanterns"); field.innerHTML = "";
+    for (let i = 0; i < 28; i++) {
+        const el = document.createElement("span"); el.className = "lantern";
+        el.style.left = (Math.random() * 100) + "%"; el.style.setProperty("--drift", (Math.random() * 120 - 60) + "px");
+        el.style.transform = `scale(${0.8 + Math.random() * 1.2})`; el.style.animationDuration = (3.5 + Math.random() * 3) + "s"; el.style.animationDelay = (Math.random() * 1.5) + "s";
+        field.appendChild(el);
+    }
+    // 行進（右から左へ、歩きのコマ送り）
+    const parade = document.getElementById("parade"); parade.innerHTML = "";
+    const timers = [];
+    PARADE.forEach(([name, frames], i) => {
+        const img = document.createElement("img"); img.src = `images/kitazunasozai/character/${name}/${name}walk/${name}walk1.png`; img.alt = "";
+        img.style.animationDelay = (i * 0.45) + "s"; parade.appendChild(img);
+        let n = 1; timers.push(setInterval(() => { n = n % frames + 1; img.src = `images/kitazunasozai/character/${name}/${name}walk/${name}walk${n}.png`; }, 160));
+    });
+    root.classList.add("is-show");
+    setTimeout(() => { root.classList.remove("is-show"); timers.forEach(clearInterval); parade.innerHTML = ""; field.innerHTML = ""; }, 9000);
 }
 
 // タイトル画面の提灯（ゆらゆら昇る魂の提灯）
