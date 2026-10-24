@@ -1,9 +1,11 @@
-// ===== 公開先リンク（決まったらここを書き換える。空なら「準備中」を案内） =====
+// ===== 公開先リンク（2026-10-24: links.js に集約。書き換えは links.js だけでよい） =====
 // このサイトの内容は「ゲーム本体（ゲーム/ECRPG の ReleasePlan・Assets）」と「公式ファンブックの原稿（KindleMaker kitazuna-book）」を正とする。
 // サイトの古い記述をもとに書き直さないこと（CONTENT-SOURCES.md 参照）。
-const NOTE_URL = "https://note.com/ifjuku";      // 最新情報は note で発信（2026-10-19 LINE は使わない判断）
-const BOOK_URL = "https://www.amazon.co.jp/dp/B0HMTVHVN9";      // Amazon の予約ページ（2026-10-13 予約開始・500円・Kindle Unlimited 対象）
-const GAME_URL = "";      // 男鹿編の公開URL（2026-11-11 に設定）
+const L = window.KITAZUNA_LINKS || {};
+const NOTE_URL = L.NOTE_URL || "https://note.com/ifjuku";
+const BOOK_URL = L.BOOK_URL || "https://www.amazon.co.jp/dp/B0HMTVHVN9";
+const GAME_URL = L.GAME_URL || "";
+const GAME_RELEASE_DATE = L.GAME_RELEASE_DATE || "2026-11-11";
 
 function openNote(event) {
     if (event) event.preventDefault();
@@ -15,6 +17,44 @@ function openBook(event) {
     if (BOOK_URL) { window.open(BOOK_URL, "_blank", "noopener"); return false; }
     alert("Amazonの予約ページは準備中です。公開されたらnoteでお知らせします。");
     return false;
+}
+function openGame(event) {
+    if (event) event.preventDefault();
+    if (GAME_URL) { window.open(GAME_URL, "_blank", "noopener"); return false; }
+    alert("ゲームの公開URLは準備中です。公開されたらnoteとXでお知らせします。");
+    return false;
+}
+
+// 公開日の前後で、ゲームバナーと見出しの文言を切り替える（links.js の GAME_RELEASE_DATE 基準・日本時間）
+function isGameReleased() {
+    const now = new Date();
+    const jst = new Date(now.getTime() + (now.getTimezoneOffset() + 9 * 60) * 60000);
+    const today = jst.toISOString().slice(0, 10);
+    return today >= GAME_RELEASE_DATE;
+}
+function applyLinksAndReleaseState() {
+    const setHref = (id, url) => { const el = document.getElementById(id); if (el && url) el.href = url; };
+    const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    ["hero-game-banner", "screens-play-link"].forEach(id => setHref(id, GAME_URL));
+    ["hero-book-link"].forEach(id => setHref(id, BOOK_URL));
+    ["hero-note-link", "follow-note", "footer-note"].forEach(id => setHref(id, NOTE_URL));
+    setHref("follow-youtube", L.YOUTUBE_URL); setHref("footer-youtube", L.YOUTUBE_URL);
+    setHref("follow-x", L.X_URL); setHref("footer-x", L.X_URL);
+    setHref("follow-instagram", L.INSTAGRAM_URL); setHref("footer-instagram", L.INSTAGRAM_URL);
+
+    if (isGameReleased()) {
+        setText("release-badge", "第1章 男鹿編　公開中（ブラウザで遊べます）");
+        setText("game-banner-tag", "第1章 男鹿編・公開中");
+        setText("game-banner-title", "いますぐ遊ぶ");
+        setText("game-banner-sub", "スマホの縦画面で開くだけ。インストール不要・無料");
+        setText("screens-play-link", "ブラウザで遊ぶ");
+        setText("screens-play-note", "第1章 男鹿編を公開中。スマホの縦画面で開いてください。");
+    } else {
+        setText("release-badge", "第1章 男鹿編　2026年11月11日（きりたんぽの日）公開");
+        setText("game-banner-tag", "開発版を先行体験（ブラウザ）");
+        setText("game-banner-title", "いますぐ遊ぶ");
+        setText("game-banner-sub", "スマホの縦画面で開くだけ。インストール不要・無料");
+    }
 }
 
 // パーティクル生成
@@ -482,6 +522,7 @@ function renderTeamMembers() {
 // 感謝演出
 function showGratitude() {
     setTimeout(() => {
+        if (window.__gratitudeShown) return; window.__gratitudeShown = true;
         const overlay = document.getElementById('gratitude-overlay');
         overlay.style.display = 'flex';
         
@@ -526,12 +567,20 @@ function checkMobile() {
 
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
+    applyLinksAndReleaseState();
     createParticles();
     renderStoryPage();
     renderCharacterCard();
     generateAkitaMaps();
     renderTeamMembers();
-    showGratitude();
+    // 感謝演出は「最後まで読んだ人」にだけ一度見せる（以前は開いて 3 秒後に全画面で出ていて、玄関として邪魔だった・2026-10-24）
+    const footer = document.querySelector('.footer-container');
+    if (footer && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            if (entries.some(e => e.isIntersecting)) { io.disconnect(); showGratitude(); }
+        }, { threshold: 0.6 });
+        io.observe(footer);
+    }
     checkMobile();
     
     // レスポンシブ対応

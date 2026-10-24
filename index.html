@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitazuna: 未来杉の守護者</title>
+    <title>Kitazuna: 未来杉の守護者｜秋田の守り神たちと巡るRPG</title>
+    <meta name="description" content="秋田ご当地RPG『Kitazuna 未来杉の守護者』公式サイト。ブラウザで遊べる第一章（男鹿編）、公式ファンブック、最新情報はここから。">
+    <link rel="canonical" href="https://kitazuna.if-juku.net/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kitazuna 未来杉の守護者">
+    <meta property="og:title" content="Kitazuna: 未来杉の守護者｜秋田の守り神たちと巡るRPG">
+    <meta property="og:description" content="スマホのブラウザで遊べる秋田ご当地RPG。第一章 男鹿編は 2026年11月11日 公開。公式ファンブックは Amazon で予約受付中。">
+    <meta property="og:url" content="https://kitazuna.if-juku.net/">
+    <meta property="og:image" content="https://kitazuna.if-juku.net/images/screens/title.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@kitazunaakita">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Cinzel:wght@400;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
 </head>
@@ -23,6 +33,7 @@
             <img src="images/kitazunalogo.png" alt="Kitazuna ロゴ" class="logo">
             
             <nav class="navigation-menu">
+                <button class="famicom-button famicom-play" data-color="#ffd700" onclick="openGame(event)">遊ぶ</button>
                 <button class="famicom-button" data-color="#4ecdc4" onclick="scrollToSection('story-section')">ストーリー</button>
                 <button class="famicom-button" data-color="#ff6b6b" onclick="scrollToSection('character-section')">キャラクター</button>
                 <button class="famicom-button" data-color="#ffd700" onclick="scrollToSection('game-section')">遊び方</button>
@@ -33,12 +44,23 @@
             <div class="main-content">
                 <h1 class="game-title">Kitazuna: 未来杉の守護者</h1>
                 <p class="subtitle">秋田の守り神たちと、太鼓で祭に入るRPG。<br>スマホでURLを開くだけで遊べます。</p>
-                <p class="release-badge">第1章 男鹿編　2026年11月11日（きりたんぽの日）公開</p>
-                <p class="release-sub">公式ファンブック 第1巻 男鹿編　Amazonで予約受付中（500円・Kindle Unlimited対象）</p>
+                <p class="release-badge" id="release-badge">第1章 男鹿編　2026年11月11日（きりたんぽの日）公開</p>
+
+                <a class="game-banner" id="hero-game-banner" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)">
+                    <img class="game-banner-shot" src="images/screens/title.jpg" alt="Kitazuna タイトル画面">
+                    <div class="game-banner-body">
+                        <span class="game-banner-tag" id="game-banner-tag">開発版を先行体験（ブラウザ）</span>
+                        <span class="game-banner-title" id="game-banner-title">いますぐ遊ぶ</span>
+                        <span class="game-banner-sub" id="game-banner-sub">スマホの縦画面で開くだけ。インストール不要・無料</span>
+                    </div>
+                    <span class="game-banner-arrow" aria-hidden="true">PLAY</span>
+                </a>
+
                 <div class="hero-cta-row">
+                    <a class="cta-button cta-book" id="hero-book-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener" onclick="return openBook(event)">公式ファンブックを予約する</a>
                     <a class="cta-button cta-note" id="hero-note-link" href="https://note.com/ifjuku" target="_blank" rel="noopener">最新情報はnoteで</a>
-                    <a class="cta-button cta-book" id="hero-book-link" href="#" onclick="return openBook(event)">公式ファンブックを予約する</a>
                 </div>
+                <p class="release-sub">公式ファンブック 第1巻 男鹿編　2026年11月11日 発売　Amazonで予約受付中（500円・Kindle Unlimited対象）</p>
             </div>
 
             <div class="scroll-indicator" onclick="scrollToSection('story-section')">
@@ -145,6 +167,10 @@
                     <figure><img src="images/screens/play-6.jpg" alt="秋田県のマップ" loading="lazy"><figcaption>秋田県のマップ。章ごとに土地がひらく</figcaption></figure>
                 </div>
                 <p class="screens-next">男鹿編のあとは、第二章「湯沢編」を12月11日に公開予定。</p>
+                <div class="play-row">
+                    <a class="cta-button cta-play" id="screens-play-link" href="https://kitazuna-test.vercel.app/" target="_blank" rel="noopener" onclick="return openGame(event)">この画面を実際に触ってみる</a>
+                    <p class="play-note" id="screens-play-note">開発中のブラウザ版をそのまま開きます。正式公開は 2026年11月11日。</p>
+                </div>
             </div>
         </section>
 
@@ -166,6 +192,34 @@
                     <p class="book-note">巻は、ゲームの章と一緒に進みます。第2巻は「湯沢編＋プログラミング編」。</p>
                     <a class="cta-button cta-book" id="book-amazon-link" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener">Amazonで予約する</a>
                 </div>
+            </div>
+        </section>
+
+        <!-- フォロー・最新情報セクション（2026-10-24 玄関化: 動画・SNS・note へここから往復できるように） -->
+        <section id="follow-section" class="follow-container">
+            <h2 class="section-title">最新情報・制作の裏側</h2>
+            <p class="follow-lead">ショート動画、制作記録、告知。それぞれの場所でKitazunaを追いかけられます。</p>
+            <div class="follow-grid">
+                <a class="follow-card follow-youtube" id="follow-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">
+                    <span class="follow-label">YouTube</span>
+                    <span class="follow-title">ショート動画で世界観を</span>
+                    <span class="follow-desc">キャラクターが語る秋田の民話と、ゲームの実画面。毎晩更新</span>
+                </a>
+                <a class="follow-card follow-x" id="follow-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">
+                    <span class="follow-label">X</span>
+                    <span class="follow-title">@kitazunaakita</span>
+                    <span class="follow-desc">公開日・章の追加・不具合のお知らせはここが一番早い</span>
+                </a>
+                <a class="follow-card follow-note" id="follow-note" href="https://note.com/ifjuku" target="_blank" rel="noopener">
+                    <span class="follow-label">note</span>
+                    <span class="follow-title">制作の裏側を毎日</span>
+                    <span class="follow-desc">AIでどう作っているか、秋田の文化をどう物語にしたかの記録</span>
+                </a>
+                <a class="follow-card follow-instagram" id="follow-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">
+                    <span class="follow-label">Instagram</span>
+                    <span class="follow-title">キャラクターと場面の画像</span>
+                    <span class="follow-desc">守り神たちのビジュアルと、本の漫画の一部を先出し</span>
+                </a>
             </div>
         </section>
 
@@ -226,17 +280,24 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>このサイト</h3>
+                    <a href="#" class="footer-link footer-link-play" onclick="return openGame(event)">ブラウザで遊ぶ</a>
                     <a href="#story-section" class="footer-link">ストーリー</a>
                     <a href="#character-section" class="footer-link">キャラクター</a>
                     <a href="#game-section" class="footer-link">遊び方</a>
                     <a href="#book-section" class="footer-link">公式ファンブック</a>
+                    <a href="#follow-section" class="footer-link">最新情報</a>
                     <a href="#author-section" class="footer-link">作者</a>
                 </div>
 
                 <div class="footer-section">
                     <h3>公開の知らせを受け取る</h3>
-                    <p class="footer-text">男鹿編の公開URL、続く章の公開、本の発売は note で発信しています。制作の裏側も毎日書いています。</p>
-                    <a class="cta-button cta-note footer-cta" href="https://note.com/ifjuku" target="_blank" rel="noopener">noteをフォローする</a>
+                    <p class="footer-text">続く章の公開、本の発売、動画の更新。それぞれの場所で発信しています。</p>
+                    <div class="footer-sns">
+                        <a class="footer-link" id="footer-youtube" href="https://www.youtube.com/@if-juku" target="_blank" rel="noopener">YouTube</a>
+                        <a class="footer-link" id="footer-x" href="https://x.com/kitazunaakita" target="_blank" rel="noopener">X（@kitazunaakita）</a>
+                        <a class="footer-link" id="footer-instagram" href="https://www.instagram.com/if_juku" target="_blank" rel="noopener">Instagram</a>
+                    </div>
+                    <a class="cta-button cta-note footer-cta" id="footer-note" href="https://note.com/ifjuku" target="_blank" rel="noopener">noteをフォローする</a>
                 </div>
 
                 <div class="footer-section">
@@ -259,6 +320,7 @@
         <button class="back-to-top" onclick="scrollToTop()">↑</button>
     </main>
 
+    <script src="links.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

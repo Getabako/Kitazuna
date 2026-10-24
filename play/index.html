@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitazuna をブラウザで遊ぶ</title>
+    <meta name="robots" content="noindex">
+    <script src="../links.js"></script>
+    <style>
+        html { font-size: 17px; }
+        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f1b16; color: #f5f5f5; font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; line-height: 1.9; letter-spacing: 0.04em; text-align: center; padding: 24px; box-sizing: border-box; }
+        a { color: #ffd700; font-weight: 700; font-size: 1.2rem; }
+        p { margin: 0.4rem 0; }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Kitazuna 未来杉の守護者 を開いています…</p>
+        <p><a id="go" href="https://kitazuna-test.vercel.app/">自動で開かない場合はこちら</a></p>
+        <p style="opacity:.75;font-size:.95rem">スマホの縦画面で遊べます。インストールは要りません。</p>
+    </div>
+    <script>
+        (function () {
+            var url = (window.KITAZUNA_LINKS && window.KITAZUNA_LINKS.GAME_URL) || "https://kitazuna.if-juku.net/";
+            document.getElementById("go").href = url;
+            window.location.replace(url);
+        })();
+    </script>
+</body>
+</html>
