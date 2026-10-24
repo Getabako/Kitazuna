@@ -836,3 +836,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-even
 .chapter-visual::after { background: linear-gradient(180deg, rgba(10,14,34,0.1), rgba(10,14,34,0) 60%, rgba(10,14,34,0.55)); }
 .chapter-sprites { right: 0.6rem; left: auto; }
 .chapter-status .ico { margin-right: 0.25em; }
+/* v3.2: HUD の提灯はゲーム本体の「魂の提灯」の絵。キャッチは「秋田の守り神と絆を結ぶRPG」 */
+.hud-lantern { width: auto; height: 40px; border-radius: 0; background: none; box-shadow: none; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 190, 90, 0.75)); animation: lanternSway 2.4s ease-in-out infinite alternate; transform-origin: 50% 0; }
+.hud-lantern::before, .hud-lantern::after { display: none; }
+@keyframes lanternSway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
