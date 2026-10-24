@@ -1028,3 +1028,12 @@ body::before {
         radial-gradient(ellipse at 15% 0%, rgba(255, 207, 74, 0.10), transparent 50%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='260' viewBox='0 0 140 260'%3E%3Cpath d='M30 255 C 36 190, 46 140, 78 70' fill='none' stroke='%23ffcf4a' stroke-width='2' stroke-linecap='round'/%3E%3Cg fill='%23ffcf4a'%3E%3Cellipse cx='84' cy='56' rx='4.5' ry='9' transform='rotate(-30 84 56)'/%3E%3Cellipse cx='74' cy='70' rx='4.5' ry='9' transform='rotate(-30 74 70)'/%3E%3Cellipse cx='90' cy='72' rx='4.5' ry='9' transform='rotate(-30 90 72)'/%3E%3Cellipse cx='68' cy='86' rx='4.5' ry='9' transform='rotate(-30 68 86)'/%3E%3Cellipse cx='84' cy='88' rx='4.5' ry='9' transform='rotate(-30 84 88)'/%3E%3Cellipse cx='62' cy='102' rx='4.5' ry='9' transform='rotate(-30 62 102)'/%3E%3Cellipse cx='78' cy='104' rx='4.5' ry='9' transform='rotate(-30 78 104)'/%3E%3Cellipse cx='57' cy='118' rx='4.5' ry='9' transform='rotate(-30 57 118)'/%3E%3Cellipse cx='72' cy='120' rx='4.5' ry='9' transform='rotate(-30 72 120)'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 140px 260px repeat;
 }
+/* v3.11 稲穂の模様: 生成したシルエットをランダムに散らしたタイル（継ぎ目は反対側で繋ぐ） */
+body::before {
+    background:
+        radial-gradient(ellipse at 50% 110%, rgba(255, 200, 80, 0.35), transparent 60%),
+        radial-gradient(ellipse at 15% 0%, rgba(255, 207, 74, 0.10), transparent 50%),
+        url("images/site/ears-tile.png") 0 0 / 900px 900px repeat;
+    opacity: 0.14;
+}
+@media (max-width: 600px) { body::before { background-size: auto, auto, 640px 640px; } }
