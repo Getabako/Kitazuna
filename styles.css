@@ -831,3 +831,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 990; pointer-even
 .scroll-screen { overflow: hidden; }
 .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .team-card, .howto li, .tab-bar button, .party-slot { min-width: 0; }
+/* v3.1: 章タイトルは絵の下の一行に（ドット絵と重ならない）。公開日はカレンダー付き */
+.chapter-title { position: static; text-align: left; font-size: 1.1rem; margin: 0 0 0.3rem; color: #fff; }
+.chapter-visual::after { background: linear-gradient(180deg, rgba(10,14,34,0.1), rgba(10,14,34,0) 60%, rgba(10,14,34,0.55)); }
+.chapter-sprites { right: 0.6rem; left: auto; }
+.chapter-status .ico { margin-right: 0.25em; }

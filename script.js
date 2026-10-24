@@ -263,13 +263,13 @@ function setupMessageWindow() {
 // 物語: 章データ（文面は従来どおり）と秋田マップのピン
 // ---------------------------------------------------------------------
 const chapters = [
-    { id: 1, number: "プロローグ", place: "秋田へ", pin: { x: 30, y: 66 }, state: "open", title: "真面目の国に、影が目覚める", status: "11/11",
+    { id: 1, number: "プロローグ", place: "秋田へ", pin: { x: 30, y: 66 }, state: "open", title: "真面目の国に、影が目覚める", status: "11.11",
       description: "秋田の子どもは真面目に学び、大人は真面目に働く。それ自体はこの土地の誇り。けれど度を越した真面目さが黒い念となって杉山へ吸い込まれ、封印の祠の縄が千切れる。かつて秋田を消滅の危機に落とした老木の精霊「スギノオウ」が目を覚ます。その頃、内向的な大学生・杉野健太は祖父・雅弘から「魂の提灯」と一通の紹介状を託され、新幹線で秋田へ向かっていた。",
       teaseText: "紹介状に記された名は「男鹿・海風源三郎」。行けば、答えが見つかる。" },
-    { id: 2, number: "第一章", place: "男鹿", pin: { x: 17, y: 36 }, state: "open", title: "男鹿編 ── ナギサと祠の試練", status: "11/11",
+    { id: 2, number: "第一章", place: "男鹿", pin: { x: 17, y: 36 }, state: "open", title: "男鹿編 ── ナギサと祠の試練", status: "11.11",
       description: "男鹿で健太を迎えるのは、祖父の戦友・海風源三郎と、ナマハゲに憧れて自分で面を作った少女ナギサ。祠へ向かうのは「男だけ」の掟。それでもナギサは健太の代わりに参道を登る。真山神社の奥、ナマハゲの祠で待つのは、太鼓を叩いて祭に入る「祠の試練」。護摩餅のもてなしと口上の意味を知り、ナギサは最初の魂の提灯を受け取る。",
       teaseText: "そのものになれなくても、伝えられる。女のナマハゲ、ここに立つ。" },
-    { id: 3, number: "第二章", place: "湯沢", pin: { x: 52, y: 87 }, state: "soon", title: "湯沢編 ── コマチ堂とバズる平安美人", status: "12/11",
+    { id: 3, number: "第二章", place: "湯沢", pin: { x: 52, y: 87 }, state: "soon", title: "湯沢編 ── コマチ堂とバズる平安美人", status: "12.11",
       description: "雪と温泉の町、湯沢。閑古鳥が鳴く骨董品店「コマチ堂」で、小野小町の化身コマチと出会う。平安から続く美意識を、ナギサの提案でSNSという現代の手段につなぐ。古い価値に新しい居場所を作る物語。",
       teaseText: "二つ目の魂が目を覚ます。千年の美意識は、今の秋田に届くのか。" },
     { id: 4, number: "第三章", place: "秋田", pin: { x: 34, y: 52 }, state: "locked", title: "秋田編 ── 令和耕助と足竿燈",
@@ -309,7 +309,8 @@ function renderStoryPage() {
         ? `<img src="images/dotchara${currentPage}a.png" alt=""><img src="images/dotchara${currentPage}b.png" alt="">`
         : `<img src="images/dotchara${currentPage}.png" alt="">`;
     const statusClass = c.state === "open" ? "is-open" : c.state === "soon" ? "is-soon" : "";
-    const statusHtml = c.state === "locked" ? '<i class="ico ico-lock"></i>' : c.status;
+    const statusHtml = c.state === "locked" ? '<i class="ico ico-lock"></i>' : `<i class="ico ico-calendar"></i>${c.status} 公開`;
+    const shortTitle = c.title.replace(" ── ", "　");
     win.innerHTML = `
         <div class="chapter-visual">
             <img class="chapter-image" src="images/story${currentPage}.png" alt="${c.title}" loading="lazy">
@@ -318,9 +319,9 @@ function renderStoryPage() {
                 <span class="chapter-status ${statusClass}">${statusHtml}</span>
             </div>
             <div class="chapter-sprites">${sprites}</div>
-            <h3 class="chapter-title one">${c.title}</h3>
         </div>
         <div class="chapter-body">
+            <h3 class="chapter-title one">${shortTitle}</h3>
             <details class="more">
                 <summary>あらすじ</summary>
                 <p class="chapter-description">${c.description}</p>
