@@ -1014,3 +1014,10 @@ details.more[open] summary { box-shadow: 0 1px 0 #1a1206; transform: translateY(
 @keyframes paradeWalk { from { transform: translateX(0); } to { transform: translateX(calc(-100vw - 80px)); } }
 @media (prefers-reduced-motion: reduce) { .parade img { animation-duration: 0.01ms; } }
 .gauge-full { background: radial-gradient(ellipse at 50% 40%, rgba(255, 207, 74, 0.18), rgba(20, 14, 4, 0.55) 70%); }
+/* v3.9 ゲージ MAX の札は一枚の窓にまとめ、下の文字と重ならないように。行進は間隔を広く */
+.gauge-full { background: rgba(20, 14, 4, 0.72); }
+.gauge-full-box { background: var(--win-bg); border: 3px solid var(--gold); border-radius: var(--radius); padding: 1.2rem 1.4rem 1rem; box-shadow: var(--shadow), 0 0 40px rgba(255, 207, 74, 0.35); width: min(360px, calc(100vw - 32px)); }
+.gauge-full-text { border: 0; background: none; box-shadow: none; padding: 0; font-size: 1.25rem; white-space: normal; }
+.gauge-full-sub { margin-top: 0.3rem; }
+.parade img { animation-duration: 8s; }
+@keyframes paradeWalk { from { transform: translateX(0); } to { transform: translateX(calc(-100vw - 80px)); } }

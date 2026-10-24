@@ -173,7 +173,7 @@ const SECTION_NAMES = [
 ];
 const WALK_FRAMES = [1, 2, 3, 2].map(n => `images/kitazunasozai/character/kenta/kentawalk/kentawalk${n}.png`);
 const IDLE_FRAME = "images/kitazunasozai/character/kenta/kentaidle/kentaidle1.png";
-let walkFrame = 0, walkTimer = null, lastScrollY = 0, gaugeFull = false;
+let walkFrame = 0, walkTimer = null, walkTicker = null, lastScrollY = 0, gaugeFull = false;
 function setupScrollHud() {
     const fill = document.getElementById("hud-gauge-fill");
     const label = document.getElementById("hud-gauge-label");
@@ -193,8 +193,8 @@ function setupScrollHud() {
         walker.style.transform = `translateX(${Math.max(0, travel * p)}px)`;
         walker.classList.toggle("is-flip", window.scrollY < lastScrollY);
         lastScrollY = window.scrollY;
-        walkFrame = (walkFrame + 1) % WALK_FRAMES.length; walkerImg.src = WALK_FRAMES[walkFrame];
-        clearTimeout(walkTimer); walkTimer = setTimeout(() => { walkerImg.src = IDLE_FRAME; }, 220);
+        if (!walkTicker) walkTicker = setInterval(() => { walkFrame = (walkFrame + 1) % WALK_FRAMES.length; walkerImg.src = WALK_FRAMES[walkFrame]; }, 130);
+        clearTimeout(walkTimer); walkTimer = setTimeout(() => { clearInterval(walkTicker); walkTicker = null; walkerImg.src = IDLE_FRAME; }, 260);
         toTop.classList.toggle("is-show", window.scrollY > window.innerHeight * 0.8);
         // ゲージが満ちたら一度だけ演出。6 割より上に戻ればまた満たせる
         if (p >= 0.985 && !gaugeFull) { gaugeFull = true; onGaugeFull(); }
@@ -227,11 +227,11 @@ function onGaugeFull() {
     const timers = [];
     PARADE.forEach(([name, frames], i) => {
         const img = document.createElement("img"); img.src = `images/kitazunasozai/character/${name}/${name}walk/${name}walk1.png`; img.alt = "";
-        img.style.animationDelay = (i * 0.45) + "s"; parade.appendChild(img);
+        img.style.animationDelay = (i * 1.1) + "s"; parade.appendChild(img);
         let n = 1; timers.push(setInterval(() => { n = n % frames + 1; img.src = `images/kitazunasozai/character/${name}/${name}walk/${name}walk${n}.png`; }, 160));
     });
     root.classList.add("is-show");
-    setTimeout(() => { root.classList.remove("is-show"); timers.forEach(clearInterval); parade.innerHTML = ""; field.innerHTML = ""; }, 9000);
+    setTimeout(() => { root.classList.remove("is-show"); timers.forEach(clearInterval); parade.innerHTML = ""; field.innerHTML = ""; }, 19000);
 }
 
 // タイトル画面の提灯（ゆらゆら昇る魂の提灯）
