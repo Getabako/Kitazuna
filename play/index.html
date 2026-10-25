@@ -8,22 +8,65 @@
     <script src="../links.js"></script>
     <style>
         html { font-size: 17px; }
-        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f1b16; color: #f5f5f5; font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; line-height: 1.9; letter-spacing: 0.04em; text-align: center; padding: 24px; box-sizing: border-box; }
-        a { color: #ffd700; font-weight: 700; font-size: 1.2rem; }
-        p { margin: 0.4rem 0; }
+        :root { --gold: #e9c46a; --ink: #2a2010; --paper: #fff6dc; }
+        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 20%, #4a3a16 0%, #2a2010 55%, #1a1206 100%); color: #f5f1e6; font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; line-height: 1.9; letter-spacing: 0.04em; text-align: center; padding: 24px; box-sizing: border-box; }
+        .win { max-width: 420px; width: 100%; background: rgba(20, 14, 6, .82); border: 3px solid var(--gold); border-radius: 14px; padding: 26px 20px 22px; box-shadow: 0 0 0 3px #1a1206, 0 12px 40px rgba(0,0,0,.6); }
+        .eyebrow { font-size: .95rem; color: var(--gold); letter-spacing: .12em; margin: 0 0 6px; }
+        h1 { font-size: 1.45rem; margin: 0 0 10px; line-height: 1.5; }
+        .count { font-size: 2.3rem; font-weight: 800; color: var(--gold); margin: 6px 0 2px; line-height: 1.3; }
+        .date { font-size: 1.05rem; margin: 0 0 18px; opacity: .9; }
+        .btn { display: block; margin: 10px auto 0; padding: 14px 16px; border-radius: 10px; font-weight: 800; font-size: 1.05rem; text-decoration: none; color: var(--ink); background: linear-gradient(#ffe39a, #e9c46a); box-shadow: 0 5px 0 #1a1206; }
+        .btn.sub { background: linear-gradient(#f7efd8, #e2d6b2); }
+        .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #1a1206; }
+        .note { font-size: .92rem; opacity: .75; margin: 16px 0 0; }
+        #opening { display: none; }
+        a.plain { color: var(--gold); font-weight: 700; }
     </style>
 </head>
 <body>
-    <div>
+    <div class="win" id="waiting">
+        <p class="eyebrow">KITAZUNA 未来杉の守護者</p>
+        <h1>第一章 男鹿編<br>公開まで</h1>
+        <p class="count" id="count">あと -- 日</p>
+        <p class="date" id="date">11月11日 公開</p>
+        <a class="btn" id="book" href="https://www.amazon.co.jp/dp/B0HMTVHVN9" target="_blank" rel="noopener">公式ファンブックを予約（Amazon）</a>
+        <a class="btn sub" id="site" href="../">公式サイトで物語と仲間を見る</a>
+        <p class="note">公開日の 0 時（日本時間）から、このページがそのままゲームの入口になります。<br>ブックマークしておくと、当日ここから遊べます。</p>
+    </div>
+    <div class="win" id="opening">
         <p>Kitazuna 未来杉の守護者 を開いています…</p>
-        <p><a id="go" href="https://kitazuna-test.vercel.app/">自動で開かない場合はこちら</a></p>
-        <p style="opacity:.75;font-size:.95rem">スマホの縦画面で遊べます。インストールは要りません。</p>
+        <p><a class="plain" id="go" href="https://kitazuna-test.vercel.app/">自動で開かない場合はこちら</a></p>
+        <p class="note">スマホの縦画面で遊べます。インストールは要りません。</p>
     </div>
     <script>
         (function () {
-            var url = (window.KITAZUNA_LINKS && window.KITAZUNA_LINKS.GAME_URL) || "https://kitazuna.if-juku.net/";
-            document.getElementById("go").href = url;
-            window.location.replace(url);
+            var L = window.KITAZUNA_LINKS || {};
+            var url = L.GAME_URL || "https://kitazuna.if-juku.net/";
+            var rel = L.GAME_RELEASE_DATE || "2026-11-11";
+            var key = L.PREVIEW_KEY || "";
+            function jst() { var n = new Date(); return new Date(n.getTime() + (n.getTimezoneOffset() + 9 * 60) * 60000); }
+            var today = jst().toISOString().slice(0, 10);
+            var released = today >= rel;
+            var pass = false;
+            try {
+                var q = new URLSearchParams(location.search).get("preview");
+                if (key && q === key) localStorage.setItem("kz_preview", q);
+                pass = !!key && localStorage.getItem("kz_preview") === key;
+            } catch (e) {}
+            if (released || pass) {
+                document.getElementById("waiting").style.display = "none";
+                document.getElementById("opening").style.display = "block";
+                document.getElementById("go").href = url;
+                window.location.replace(url);
+                return;
+            }
+            var t = jst(); t.setHours(0, 0, 0, 0);
+            var r = new Date(rel + "T00:00:00");
+            var d = Math.ceil((r - t) / 86400000);
+            document.getElementById("count").textContent = d <= 0 ? "本日 公開" : "あと " + d + " 日";
+            var m = rel.split("-");
+            document.getElementById("date").textContent = Number(m[1]) + "月" + Number(m[2]) + "日 公開";
+            if (L.BOOK_URL) document.getElementById("book").href = L.BOOK_URL;
         })();
     </script>
 </body>

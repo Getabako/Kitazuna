@@ -12,6 +12,16 @@ const NOTE_URL = L.NOTE_URL || "https://note.com/ifjuku";
 const BOOK_URL = L.BOOK_URL || "https://www.amazon.co.jp/dp/B0HMTVHVN9";
 const GAME_URL = L.GAME_URL || "";
 const GAME_RELEASE_DATE = L.GAME_RELEASE_DATE || "2026-11-11";
+const PREVIEW_KEY = L.PREVIEW_KEY || "";
+// 公開前の関係者確認: ?preview=合言葉 を付けて開くと端末に記憶され、以後は公開前でもゲームへ通る（2026-10-25）
+function hasPreviewPass() {
+    try {
+        const q = new URLSearchParams(location.search).get("preview");
+        if (PREVIEW_KEY && q === PREVIEW_KEY) localStorage.setItem("kz_preview", q);
+        return !!PREVIEW_KEY && localStorage.getItem("kz_preview") === PREVIEW_KEY;
+    } catch (e) { return false; }
+}
+function canPlayNow() { return isGameReleased() || hasPreviewPass(); }
 
 function openNote(event) { if (event) event.preventDefault(); window.open(NOTE_URL, "_blank", "noopener"); return false; }
 function openBook(event) {
@@ -22,6 +32,8 @@ function openBook(event) {
 }
 function openGame(event) {
     if (event) event.preventDefault();
+    // 公開前は /play（公開待ちページ）へ。公開日 0 時（日本時間）から自動でゲーム本体へ通る
+    if (!canPlayNow()) { window.location.href = "play/"; return false; }
     if (GAME_URL) { window.open(GAME_URL, "_blank", "noopener"); return false; }
     alert("ゲームの公開URLは準備中です。公開されたらnoteとXでお知らせします。");
     return false;
@@ -46,7 +58,7 @@ function daysUntilRelease() {
 function applyLinksAndReleaseState() {
     const setHref = (id, url) => { const el = document.getElementById(id); if (el && url) el.href = url; };
     const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    ["hero-game-banner", "screens-play-link"].forEach(id => setHref(id, GAME_URL));
+    ["hero-game-banner", "screens-play-link"].forEach(id => setHref(id, canPlayNow() ? GAME_URL : "play/"));
     ["hero-book-link", "book-amazon-link"].forEach(id => setHref(id, BOOK_URL));
     ["hero-note-link", "follow-note", "footer-note", "footer-note2"].forEach(id => setHref(id, NOTE_URL));
     setHref("follow-youtube", L.YOUTUBE_URL); setHref("footer-youtube", L.YOUTUBE_URL);
