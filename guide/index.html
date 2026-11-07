@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UnityとAIをつなぐ手順｜Kitazuna 公式ファンブック</title>
+<meta name="description" content="『Kitazuna 公式ファンブック』第1巻の手引きで使う、Unityのダウンロードから、AIとUnityをつなぐ（Unity CLI）までの手順。手順は変わるので、このページで最新に保ちます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Reggae+One&display=swap" rel="stylesheet">
+<style>
+  html { font-size: 17px; }
+  :root { --gold: #c9962f; --ink: #2a2010; --paper: #fff9ea; --line: #e6d6aa; --code: #1f1a10; --muted: #6b5a3a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Noto Sans JP", sans-serif; line-height: 1.9; letter-spacing: .04em; }
+  header { background: linear-gradient(#3a2c10, #2a2010); color: #fff6dc; padding: 28px 16px 24px; text-align: center; }
+  header .eyebrow { margin: 0; color: #e9c46a; font-size: .9rem; letter-spacing: .14em; }
+  header h1 { font-family: "Reggae One", serif; font-weight: 400; font-size: 1.7rem; line-height: 1.5; margin: 8px 0 6px; }
+  header p { margin: 0; font-size: .95rem; opacity: .9; }
+  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 64px; }
+  h2 { font-size: 1.35rem; margin: 2.6em 0 .6em; padding: .2em 0 .3em .7em; border-left: 6px solid var(--gold); border-bottom: 1px solid var(--line); line-height: 1.6; }
+  h2 .step { display: inline-block; font-size: .85rem; background: var(--gold); color: #fff; border-radius: 6px; padding: 0 .6em; margin-right: .5em; vertical-align: .15em; }
+  h3 { font-size: 1.1rem; margin: 1.8em 0 .4em; }
+  p, li { font-size: 1rem; }
+  ul, ol { padding-left: 1.4em; }
+  li { margin: .3em 0; }
+  a { color: #8a5a00; font-weight: 700; word-break: break-all; }
+  .box { background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 1.2em 0; }
+  .box.warn { border-color: #e2a96b; background: #fff4e8; }
+  .box.ok { border-color: #a9cf8f; background: #f3faee; }
+  .box p:first-child { margin-top: 0; } .box p:last-child { margin-bottom: 0; }
+  .label { font-weight: 900; }
+  .code { position: relative; margin: .8em 0 1.2em; }
+  .code .os { display: inline-block; font-size: .8rem; font-weight: 700; color: #fff; background: #5a4a2a; border-radius: 6px 6px 0 0; padding: 2px 10px; }
+  pre { margin: 0; background: var(--code); color: #f7efd8; border-radius: 0 10px 10px 10px; padding: 14px 16px; overflow-x: auto; font-size: .9rem; line-height: 1.7; letter-spacing: 0; white-space: pre-wrap; word-break: break-all; }
+  .code button { position: absolute; top: 26px; right: 8px; font-size: .8rem; padding: 4px 10px; border-radius: 6px; border: 1px solid #8a7a5a; background: #3a3020; color: #f7efd8; cursor: pointer; font-family: inherit; }
+  .prompt pre { background: #fff; color: var(--ink); border: 2px dashed var(--gold); border-radius: 10px; font-family: "Noto Sans JP", sans-serif; font-size: .95rem; }
+  .prompt button { top: 8px; background: #fff6dc; color: var(--ink); border-color: var(--gold); }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f6ecd0; white-space: nowrap; }
+  .toc { background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 12px 18px; margin: 1.6em 0; }
+  .toc ol { margin: .3em 0; }
+  footer { text-align: center; font-size: .9rem; color: var(--muted); padding: 24px 16px 40px; border-top: 1px solid var(--line); }
+  @media (max-width: 480px) { header h1 { font-size: 1.4rem; } h2 { font-size: 1.2rem; } }
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">KITAZUNA 公式ファンブック 第1巻 手引き</p>
+  <h1>UnityとAIをつなぐ手順</h1>
+  <p>最終更新：2026年11月6日</p>
+</header>
+<main>
+
+<div class="box">
+  <p>このページは、『Kitazuna 未来杉の守護者 公式ファンブック 1 男鹿編』の手引きで使う準備の手順です。本では「何のために、何をつなぐのか」を書き、ボタンの位置や入力する命令は、このページにまとめました。</p>
+  <p>UnityもAIも、手順や画面がよく変わります。変わったら、本ではなくこのページを直していきます。</p>
+</div>
+
+<div class="toc">
+  <p class="label">このページの流れ</p>
+  <ol>
+    <li>用意するもの</li>
+    <li>Unityをダウンロードして、プロジェクトを作る</li>
+    <li>AIを用意する</li>
+    <li>Unity CLIを入れる</li>
+    <li>プロジェクトにPipelineを入れる</li>
+    <li>つながったか確かめる</li>
+    <li>AIに「Unityを使っていい」と伝える</li>
+    <li>つまずいたとき</li>
+  </ol>
+</div>
+
+<h2><span class="step">0</span>用意するもの</h2>
+<table>
+  <tr><th>パソコン</th><td>Mac または Windows。スマホやタブレットだけではできません。</td></tr>
+  <tr><th>Unityのアカウント</th><td>無料で作れます。個人や小さな規模なら、無料のプランで始められます。</td></tr>
+  <tr><th>AI</th><td>パソコンの中のファイルを読んだり、命令を打ったりできるAI。たとえば Codex や Claude Code。チャット画面だけのAIでは、Unityを動かせません。</td></tr>
+  <tr><th>ターミナル</th><td>文字で命令を打つ画面です。Macは「ターミナル」、Windowsは「PowerShell」。最初から入っています。</td></tr>
+</table>
+<div class="box ok">
+  <p>ターミナルに慣れていなくても大丈夫です。このページの命令は、そのままコピーして貼れば動きます。分からない表示が出たら、その文字をそのままAIに貼って「これはどういう意味？次に何をすればいい？」と聞いてください。</p>
+</div>
+
+<h2><span class="step">1</span>Unityをダウンロードして、プロジェクトを作る</h2>
+<ol>
+  <li>Unityの公式ページから <strong>Unity Hub</strong> をダウンロードして入れます。<br><a href="https://unity.com/ja/download" target="_blank" rel="noopener">https://unity.com/ja/download</a></li>
+  <li>Unity Hub を開いてサインインし、「インストール」から <strong>Unity 6 の LTS</strong>（長く使える安定版）を入れます。ブラウザで遊べる形にしたいなら、追加のモジュールで <strong>Web Build Support</strong> にも印を付けます。</li>
+  <li>「新しいプロジェクト」から <strong>2D</strong> のテンプレートを選び、名前と保存場所を決めて作ります。保存場所は、あとで使うので覚えておきます。</li>
+</ol>
+<div class="box">
+  <p>『Kitazuna』は Unity 6.5 で作っています。これから始めるなら、その時点の Unity 6 の LTS で問題ありません。</p>
+</div>
+
+<h2><span class="step">2</span>AIを用意する</h2>
+<p>パソコンの中で作業できるAIを1つ用意します。入れ方は各公式ページに沿ってください。</p>
+<ul>
+  <li>Codex（OpenAI）：<a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li>
+  <li>Claude Code（Anthropic）：<a href="https://www.anthropic.com/claude-code" target="_blank" rel="noopener">https://www.anthropic.com/claude-code</a></li>
+</ul>
+<p>入れたら、ステップ1で作った Unity プロジェクトのフォルダを、AIの作業場所として開きます。</p>
+
+<h2><span class="step">3</span>Unity CLIを入れる</h2>
+<p>Unity CLI は、Unity を文字の命令で動かすための公式の道具です。AIはこれを使って、Unityの中を調べたり、動かしたり、確かめたりします。2026年11月の時点では<strong>ベータ版</strong>です。</p>
+<div class="code"><span class="os">Mac</span><pre>curl -fsSL https://public-cdn.cloud.unity3d.com/hub/prod/cli/install.sh | UNITY_CLI_CHANNEL=beta bash</pre><button type="button">コピー</button></div>
+<div class="code"><span class="os">Windows（PowerShell）</span><pre>$env:UNITY_CLI_CHANNEL='beta'; irm https://public-cdn.cloud.unity3d.com/hub/prod/cli/install.ps1 | iex</pre><button type="button">コピー</button></div>
+<p>入れ終わったら、ターミナルを一度閉じて開き直し、次の2つを打ちます。1つ目でバージョンが出れば入っています。2つ目でブラウザが開くので、Unityのアカウントでサインインします。</p>
+<div class="code"><span class="os">Mac / Windows 共通</span><pre>unity --version
+unity auth login</pre><button type="button">コピー</button></div>
+
+<h2><span class="step">4</span>プロジェクトにPipelineを入れる</h2>
+<p>Pipeline は、Unity CLI からの命令を Unity エディタの中で受け取るための部品です。プロジェクトごとに入れます。</p>
+<ol>
+  <li>Unity エディタで、ステップ1のプロジェクトを開いておきます。</li>
+  <li>ターミナルで、プロジェクトのフォルダに移動します（<code>cd</code> のあとに、フォルダをターミナルへドラッグすると場所が入ります）。</li>
+  <li>次の命令を打ちます。</li>
+</ol>
+<div class="code"><span class="os">Mac / Windows 共通</span><pre>unity pipeline install</pre><button type="button">コピー</button></div>
+<p>しばらくすると、Unity エディタの上のメニューに <strong>Pipeline</strong> が増えます。これが見えたら入っています。</p>
+
+<h2><span class="step">5</span>つながったか確かめる</h2>
+<p>Unity エディタを開いたまま、ターミナルで次を打ちます。</p>
+<div class="code"><span class="os">Mac / Windows 共通</span><pre>unity pipeline list
+unity command</pre><button type="button">コピー</button></div>
+<p>1つ目で、Pipeline を入れたプロジェクトが一覧に出ます。2つ目で、Unity に頼める命令の一覧（再生する、テストする、画面を撮る など）がずらっと出れば、つながっています。</p>
+<p>最後に、Unity に小さな計算を頼んでみます。<strong>2</strong> と返ってくれば成功です。</p>
+<div class="code"><span class="os">Mac / Windows 共通</span><pre>unity command eval "return 1+1;"</pre><button type="button">コピー</button></div>
+
+<h2><span class="step">6</span>AIに「Unityを使っていい」と伝える</h2>
+<p>AIは、何も言わなければ Unity CLI があることを知りません。プロジェクトのフォルダに、AIへの約束ごとを書いたファイルを置きます。Codex なら <code>AGENTS.md</code>、Claude Code なら <code>CLAUDE.md</code> という名前です。中身は、たとえば次のように書きます。</p>
+<div class="code prompt"><pre>このフォルダは Unity のプロジェクトです。
+Unity の中を調べたり、動かしたり、確かめたりするときは Unity CLI を使ってください。
+- 使える命令は「unity command」で一覧を見てから選ぶ
+- 変更したら、必ず「unity command recompile」で通るか確かめる
+- 大きく作り替える前に、何をするかを先に私に説明する</pre><button type="button">コピー</button></div>
+<p>準備ができたら、最初の頼みごとをしてみましょう。本の手引きで使う頼み文です。</p>
+<div class="code prompt"><pre>Unity CLI を使って、主人公が1画面を左右に歩くだけの2Dゲームを作りたいです。
+いきなり全部作らず、作る順番を小さく分けて、1つずつ一緒に進めてください。
+1つ終わるごとに、Unity で何が変わったかと、私が確かめることを教えてください。</pre><button type="button">コピー</button></div>
+
+<h2><span class="step">7</span>つまずいたとき</h2>
+<ul>
+  <li><strong>まず診断。</strong>ターミナルで <code>unity doctor</code> を打つと、何が足りないかを調べてくれます。</li>
+  <li><strong>出た文字をそのままAIに貼る。</strong>エラーの文や、画面のスクリーンショットをそのまま渡して「どうすればいい？」と聞くのがいちばん早い解決法です。</li>
+  <li><strong>「unity」が見つからないと言われる。</strong>ターミナルを閉じて開き直してください。それでもだめなら、そのメッセージをAIに貼ります。</li>
+  <li><strong>命令が届かない。</strong>Unity エディタでプロジェクトを開いているか、メニューに Pipeline があるかを確かめます。</li>
+</ul>
+<div class="box warn">
+  <p class="label">気をつけること</p>
+  <p>Unity CLI と Pipeline は、まだベータ版・実験版です。使い方が変わることがあります。</p>
+  <p>AIに Unity CLI を渡すのは、自分のパソコンを触らせるのと同じです。大事なプロジェクトは、始める前にフォルダごと複製してから試してください。<code>eval</code> は Unity の中で何でも実行できる命令なので、自分のパソコンの中だけで使います。</p>
+</div>
+
+<h3>公式の説明（英語）</h3>
+<ul>
+  <li><a href="https://docs.unity.com/en-us/unity-cli/unity-cli" target="_blank" rel="noopener">Unity CLI ドキュメント</a></li>
+  <li><a href="https://docs.unity.com/en-us/unity-production-pipeline/local-tools-cli/unity-pipeline-package" target="_blank" rel="noopener">Unity Pipeline パッケージ</a></li>
+  <li><a href="https://unity.com/resources/unity-pipeline-cli-technical-walkthrough" target="_blank" rel="noopener">Unity Pipeline と Unity CLI の解説</a></li>
+</ul>
+
+</main>
+<footer>
+  <p><a href="../">Kitazuna 公式サイトへ</a>　｜　<a href="../play/">ゲームを遊ぶ</a></p>
+  <p>本のQRコードから来た方へ：手順が本と違って見えたら、このページの内容が新しい方です。</p>
+</footer>
+<script>
+document.querySelectorAll(".code button").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var t = b.parentNode.querySelector("pre").innerText;
+    var done = function () { b.textContent = "コピーしました"; setTimeout(function () { b.textContent = "コピー"; }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {}); else done();
+  });
+});
+</script>
+</body>
+</html>
