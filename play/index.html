@@ -44,8 +44,8 @@
             var url = L.GAME_URL || "https://kitazuna.if-juku.net/";
             var rel = L.GAME_RELEASE_DATE || "2026-11-11";
             var key = L.PREVIEW_KEY || "";
-            function jst() { var n = new Date(); return new Date(n.getTime() + (n.getTimezoneOffset() + 9 * 60) * 60000); }
-            var today = jst().toISOString().slice(0, 10);
+            // 日本時間の今日（UTC に +9 時間して UTC の日付を読む。端末のタイムゾーンに依存しない）
+            var today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
             var released = today >= rel;
             var pass = false;
             try {
@@ -60,9 +60,7 @@
                 window.location.replace(url);
                 return;
             }
-            var t = jst(); t.setHours(0, 0, 0, 0);
-            var r = new Date(rel + "T00:00:00");
-            var d = Math.ceil((r - t) / 86400000);
+            var d = Math.ceil((Date.parse(rel + "T00:00:00Z") - Date.parse(today + "T00:00:00Z")) / 86400000);
             document.getElementById("count").textContent = d <= 0 ? "本日 公開" : "あと " + d + " 日";
             var m = rel.split("-");
             document.getElementById("date").textContent = Number(m[1]) + "月" + Number(m[2]) + "日 公開";

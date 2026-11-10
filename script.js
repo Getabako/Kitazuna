@@ -44,16 +44,11 @@ function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
 // ---------------------------------------------------------------------
 // 公開日の前後で文言を切り替える（日本時間）
 // ---------------------------------------------------------------------
-function jstToday() {
-    const now = new Date();
-    const jst = new Date(now.getTime() + (now.getTimezoneOffset() + 9 * 60) * 60000);
-    return jst;
-}
-function isGameReleased() { return jstToday().toISOString().slice(0, 10) >= GAME_RELEASE_DATE; }
+// 日本時間の「今日」を YYYY-MM-DD で返す（UTC に +9 時間して UTC の日付を読む。端末のタイムゾーンに依存しない）
+function jstTodayStr() { return new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10); }
+function isGameReleased() { return jstTodayStr() >= GAME_RELEASE_DATE; }
 function daysUntilRelease() {
-    const today = jstToday(); today.setHours(0, 0, 0, 0);
-    const rel = new Date(GAME_RELEASE_DATE + "T00:00:00");
-    return Math.ceil((rel - today) / 86400000);
+    return Math.ceil((Date.parse(GAME_RELEASE_DATE + "T00:00:00Z") - Date.parse(jstTodayStr() + "T00:00:00Z")) / 86400000);
 }
 function applyLinksAndReleaseState() {
     const setHref = (id, url) => { const el = document.getElementById(id); if (el && url) el.href = url; };
